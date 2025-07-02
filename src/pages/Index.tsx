@@ -140,7 +140,7 @@ const Index = () => {
                   </Link>
                 </SignedIn>
                 
-                <Link to="/view-notes">
+                <Link to="/learning-platforms">
                   <Button variant="outline" className="text-lg px-8 py-3 border-2">
                     Explore Features
                   </Button>

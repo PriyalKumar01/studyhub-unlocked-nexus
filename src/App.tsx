@@ -11,8 +11,10 @@ import ViewNotes from "./pages/ViewNotes";
 import ResumeBuilder from "./pages/ResumeBuilder";
 import Opportunities from "./pages/Opportunities";
 import About from "./pages/About";
+import LearningPlatforms from "./pages/LearningPlatforms";
 import NotFound from "./pages/NotFound";
 import CustomCursor from "./components/CustomCursor";
+import WhatsAppButton from "./components/WhatsAppButton";
 
 const queryClient = new QueryClient();
 
@@ -32,6 +34,7 @@ const App = () => {
         <Toaster />
         <Sonner />
         <CustomCursor />
+        <WhatsAppButton />
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<Index />} />
@@ -40,6 +43,7 @@ const App = () => {
             <Route path="/view-notes" element={<ViewNotes />} />
             <Route path="/resume-builder" element={<ResumeBuilder />} />
             <Route path="/opportunities" element={<Opportunities />} />
+            <Route path="/learning-platforms" element={<LearningPlatforms />} />
             <Route path="/about" element={<About />} />
             <Route path="*" element={<NotFound />} />
           </Routes>

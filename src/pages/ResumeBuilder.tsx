@@ -209,6 +209,269 @@ const ResumeBuilder = () => {
     </div>
   );
 
+  const renderEducation = () => (
+    <div className="space-y-6">
+      {education.map((edu, index) => (
+        <div key={index} className="p-4 border rounded-lg space-y-4">
+          <div className="flex justify-between items-center">
+            <h3 className="font-medium">Education {index + 1}</h3>
+            {education.length > 1 && (
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={() => removeEducation(index)}
+                className="text-red-500 hover:text-red-700"
+              >
+                <X className="h-4 w-4" />
+              </Button>
+            )}
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div>
+              <Label htmlFor={`institution-${index}`}>Institution *</Label>
+              <Input
+                id={`institution-${index}`}
+                value={edu.institution}
+                onChange={(e) => {
+                  const newEducation = [...education];
+                  newEducation[index].institution = e.target.value;
+                  setEducation(newEducation);
+                }}
+                placeholder="University/College Name"
+              />
+            </div>
+            <div>
+              <Label htmlFor={`degree-${index}`}>Degree *</Label>
+              <Input
+                id={`degree-${index}`}
+                value={edu.degree}
+                onChange={(e) => {
+                  const newEducation = [...education];
+                  newEducation[index].degree = e.target.value;
+                  setEducation(newEducation);
+                }}
+                placeholder="B.Tech Computer Science"
+              />
+            </div>
+            <div>
+              <Label htmlFor={`year-${index}`}>Year *</Label>
+              <Input
+                id={`year-${index}`}
+                value={edu.year}
+                onChange={(e) => {
+                  const newEducation = [...education];
+                  newEducation[index].year = e.target.value;
+                  setEducation(newEducation);
+                }}
+                placeholder="2020-2024"
+              />
+            </div>
+            <div>
+              <Label htmlFor={`cgpa-${index}`}>CGPA/Percentage</Label>
+              <Input
+                id={`cgpa-${index}`}
+                value={edu.cgpa}
+                onChange={(e) => {
+                  const newEducation = [...education];
+                  newEducation[index].cgpa = e.target.value;
+                  setEducation(newEducation);
+                }}
+                placeholder="8.5/10 or 85%"
+              />
+            </div>
+          </div>
+        </div>
+      ))}
+      <Button onClick={addEducation} variant="outline" className="w-full">
+        <Plus className="h-4 w-4 mr-2" />
+        Add Education
+      </Button>
+    </div>
+  );
+
+  const renderExperience = () => (
+    <div className="space-y-6">
+      {experience.map((exp, index) => (
+        <div key={index} className="p-4 border rounded-lg space-y-4">
+          <div className="flex justify-between items-center">
+            <h3 className="font-medium">Experience {index + 1}</h3>
+            {experience.length > 1 && (
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={() => removeExperience(index)}
+                className="text-red-500 hover:text-red-700"
+              >
+                <X className="h-4 w-4" />
+              </Button>
+            )}
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div>
+              <Label htmlFor={`company-${index}`}>Company *</Label>
+              <Input
+                id={`company-${index}`}
+                value={exp.company}
+                onChange={(e) => {
+                  const newExperience = [...experience];
+                  newExperience[index].company = e.target.value;
+                  setExperience(newExperience);
+                }}
+                placeholder="Company Name"
+              />
+            </div>
+            <div>
+              <Label htmlFor={`position-${index}`}>Position *</Label>
+              <Input
+                id={`position-${index}`}
+                value={exp.position}
+                onChange={(e) => {
+                  const newExperience = [...experience];
+                  newExperience[index].position = e.target.value;
+                  setExperience(newExperience);
+                }}
+                placeholder="Software Engineer Intern"
+              />
+            </div>
+            <div className="md:col-span-2">
+              <Label htmlFor={`duration-${index}`}>Duration *</Label>
+              <Input
+                id={`duration-${index}`}
+                value={exp.duration}
+                onChange={(e) => {
+                  const newExperience = [...experience];
+                  newExperience[index].duration = e.target.value;
+                  setExperience(newExperience);
+                }}
+                placeholder="June 2023 - August 2023"
+              />
+            </div>
+            <div className="md:col-span-2">
+              <Label htmlFor={`description-${index}`}>Description</Label>
+              <Textarea
+                id={`description-${index}`}
+                value={exp.description}
+                onChange={(e) => {
+                  const newExperience = [...experience];
+                  newExperience[index].description = e.target.value;
+                  setExperience(newExperience);
+                }}
+                placeholder="Describe your key responsibilities and achievements..."
+                rows={4}
+              />
+            </div>
+          </div>
+        </div>
+      ))}
+      <Button onClick={addExperience} variant="outline" className="w-full">
+        <Plus className="h-4 w-4 mr-2" />
+        Add Experience
+      </Button>
+    </div>
+  );
+
+  const renderProjects = () => (
+    <div className="space-y-6">
+      {projects.map((project, index) => (
+        <div key={index} className="p-4 border rounded-lg space-y-4">
+          <div className="flex justify-between items-center">
+            <h3 className="font-medium">Project {index + 1}</h3>
+            {projects.length > 1 && (
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={() => removeProject(index)}
+                className="text-red-500 hover:text-red-700"
+              >
+                <X className="h-4 w-4" />
+              </Button>
+            )}
+          </div>
+          <div className="space-y-4">
+            <div>
+              <Label htmlFor={`project-name-${index}`}>Project Name *</Label>
+              <Input
+                id={`project-name-${index}`}
+                value={project.name}
+                onChange={(e) => {
+                  const newProjects = [...projects];
+                  newProjects[index].name = e.target.value;
+                  setProjects(newProjects);
+                }}
+                placeholder="E-commerce Website"
+              />
+            </div>
+            <div>
+              <Label htmlFor={`project-description-${index}`}>Description</Label>
+              <Textarea
+                id={`project-description-${index}`}
+                value={project.description}
+                onChange={(e) => {
+                  const newProjects = [...projects];
+                  newProjects[index].description = e.target.value;
+                  setProjects(newProjects);
+                }}
+                placeholder="Describe your project..."
+                rows={3}
+              />
+            </div>
+            <div>
+              <Label htmlFor={`project-link-${index}`}>Project Link</Label>
+              <Input
+                id={`project-link-${index}`}
+                value={project.link}
+                onChange={(e) => {
+                  const newProjects = [...projects];
+                  newProjects[index].link = e.target.value;
+                  setProjects(newProjects);
+                }}
+                placeholder="https://github.com/username/project"
+              />
+            </div>
+            <div>
+              <Label>Technologies Used</Label>
+              <div className="flex gap-2 mt-2">
+                <Input
+                  placeholder="Add technology"
+                  onKeyPress={(e) => {
+                    if (e.key === 'Enter') {
+                      const tech = e.currentTarget.value.trim();
+                      if (tech && !projects[index].technologies.includes(tech)) {
+                        const newProjects = [...projects];
+                        newProjects[index].technologies.push(tech);
+                        setProjects(newProjects);
+                        e.currentTarget.value = '';
+                      }
+                    }
+                  }}
+                />
+              </div>
+              <div className="flex flex-wrap gap-2 mt-2">
+                {project.technologies.map((tech, techIndex) => (
+                  <Badge key={techIndex} variant="secondary" className="flex items-center gap-1">
+                    {tech}
+                    <X
+                      className="h-3 w-3 cursor-pointer"
+                      onClick={() => {
+                        const newProjects = [...projects];
+                        newProjects[index].technologies.splice(techIndex, 1);
+                        setProjects(newProjects);
+                      }}
+                    />
+                  </Badge>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      ))}
+      <Button onClick={addProject} variant="outline" className="w-full">
+        <Plus className="h-4 w-4 mr-2" />
+        Add Project
+      </Button>
+    </div>
+  );
+
   const renderPreview = () => (
     <div className="space-y-6 bg-white p-8 rounded-lg text-black">
       <div className="text-center border-b pb-4">
@@ -249,6 +512,50 @@ const ResumeBuilder = () => {
                   <span>{edu.institution}</span>
                   {edu.cgpa && <span>CGPA: {edu.cgpa}</span>}
                 </div>
+              </div>
+            )
+          ))}
+        </div>
+      )}
+
+      {experience.some(exp => exp.company) && (
+        <div>
+          <h2 className="text-lg font-semibold border-b mb-2">Experience</h2>
+          {experience.map((exp, index) => (
+            exp.company && (
+              <div key={index} className="mb-3">
+                <div className="flex justify-between">
+                  <span className="font-medium">{exp.position}</span>
+                  <span className="text-sm">{exp.duration}</span>
+                </div>
+                <div className="text-sm mb-1">{exp.company}</div>
+                {exp.description && <p className="text-sm text-gray-600">{exp.description}</p>}
+              </div>
+            )
+          ))}
+        </div>
+      )}
+
+      {projects.some(project => project.name) && (
+        <div>
+          <h2 className="text-lg font-semibold border-b mb-2">Projects</h2>
+          {projects.map((project, index) => (
+            project.name && (
+              <div key={index} className="mb-3">
+                <div className="flex justify-between items-center">
+                  <span className="font-medium">{project.name}</span>
+                  {project.link && (
+                    <a href={project.link} target="_blank" rel="noopener noreferrer" className="text-xs text-blue-600">
+                      View Project
+                    </a>
+                  )}
+                </div>
+                {project.description && <p className="text-sm text-gray-600 mb-1">{project.description}</p>}
+                {project.technologies.length > 0 && (
+                  <div className="text-xs text-gray-500">
+                    Technologies: {project.technologies.join(', ')}
+                  </div>
+                )}
               </div>
             )
           ))}
@@ -340,6 +647,9 @@ const ResumeBuilder = () => {
               </CardHeader>
               <CardContent>
                 {activeStep === 0 && renderPersonalInfo()}
+                {activeStep === 1 && renderEducation()}
+                {activeStep === 2 && renderExperience()}
+                {activeStep === 3 && renderProjects()}
                 {activeStep === 4 && renderSkills()}
                 {activeStep === 5 && renderPreview()}
                 

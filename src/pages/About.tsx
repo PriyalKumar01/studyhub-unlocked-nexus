@@ -108,7 +108,7 @@ const About = () => {
                       </a>
                     </Button>
                     <Button variant="outline" size="sm" asChild>
-                      <a href="https://linkedin.com/in/priyalkumar" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2">
+                      <a href="https://www.linkedin.com/in/priyal-kumar-29b26529a/" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2">
                         <Linkedin className="h-4 w-4" />
                         LinkedIn
                       </a>
