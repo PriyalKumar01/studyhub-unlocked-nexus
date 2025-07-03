@@ -4,6 +4,7 @@ import { Button } from '@/components/ui/button';
 import { BookOpen, Menu, X } from 'lucide-react';
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import ThemeToggle from './ThemeToggle';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -29,7 +30,7 @@ const Navbar = () => {
             <img 
               src="/lovable-uploads/74279ef2-dc77-4aa2-97ca-c05cd96d2b9a.png" 
               alt="College Study Hub" 
-              className="h-10 w-auto"
+              className="h-16 w-auto"
             />
           </Link>
 
@@ -52,6 +53,7 @@ const Navbar = () => {
 
           {/* Auth & Mobile Menu */}
           <div className="flex items-center space-x-4">
+            <ThemeToggle />
             <SignedOut>
               <SignInButton>
                 <Button variant="outline" size="sm">Sign In</Button>

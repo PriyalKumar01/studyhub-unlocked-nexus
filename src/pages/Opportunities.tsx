@@ -69,7 +69,7 @@ const Opportunities = () => {
     },
   ];
 
-  const types = ['all', 'Internship', 'Full-time', 'Graduate Program'];
+  const types = ['all', 'Internship', 'Full-time', 'Graduate Program', 'Hackathon', 'Challenges', 'Contests', 'Other'];
   const locations = ['all', 'Bangalore', 'Mumbai', 'Hyderabad', 'Delhi', 'Pune'];
 
   const filteredOpportunities = opportunities.filter(opportunity => {
@@ -100,6 +100,10 @@ const Opportunities = () => {
       case 'Internship': return 'bg-blue-100 text-blue-800';
       case 'Full-time': return 'bg-green-100 text-green-800';
       case 'Graduate Program': return 'bg-purple-100 text-purple-800';
+      case 'Hackathon': return 'bg-red-100 text-red-800';
+      case 'Challenges': return 'bg-yellow-100 text-yellow-800';
+      case 'Contests': return 'bg-orange-100 text-orange-800';
+      case 'Other': return 'bg-indigo-100 text-indigo-800';
       default: return 'bg-gray-100 text-gray-800';
     }
   };

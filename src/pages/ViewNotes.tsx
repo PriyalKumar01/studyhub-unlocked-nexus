@@ -7,6 +7,7 @@ import { Badge } from '@/components/ui/badge';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Search, Download, User, Calendar, BookOpen, Filter } from 'lucide-react';
 import Navbar from '@/components/Navbar';
+import NotesCategories from '@/components/NotesCategories';
 
 const ViewNotes = () => {
   const [searchTerm, setSearchTerm] = useState('');
@@ -149,59 +150,75 @@ const ViewNotes = () => {
           </Select>
         </motion.div>
 
-        {/* Notes Grid */}
+        {/* Notes Categories */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.4, duration: 0.5 }}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+          className="mb-8"
         >
-          {filteredNotes.map((note, index) => (
-            <motion.div
-              key={note.id}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.1 * index, duration: 0.5 }}
-              whileHover={{ scale: 1.02 }}
-            >
-              <Card className="feature-card h-full">
-                <CardHeader>
-                  <div className="flex justify-between items-start mb-2">
-                    <Badge variant="secondary">{note.subject}</Badge>
-                    <Badge variant="outline">{note.semester} Sem</Badge>
-                  </div>
-                  <CardTitle className="text-lg leading-tight">{note.title}</CardTitle>
-                  <CardDescription className="text-sm">
-                    {note.description}
-                  </CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <div className="space-y-3">
-                    <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                      <User className="h-4 w-4" />
-                      <span>By {note.uploadedBy}</span>
-                    </div>
-                    <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                      <Calendar className="h-4 w-4" />
-                      <span>{new Date(note.uploadDate).toLocaleDateString()}</span>
-                    </div>
-                    <div className="flex items-center justify-between text-sm text-muted-foreground">
-                      <span>{note.downloads} downloads</span>
-                      <span>{note.fileSize}</span>
-                    </div>
-                    <Button
-                      onClick={() => handleDownload(note.id, note.title)}
-                      className="w-full btn-hero"
-                    >
-                      <Download className="h-4 w-4 mr-2" />
-                      Download Notes
-                    </Button>
-                  </div>
-                </CardContent>
-              </Card>
-            </motion.div>
-          ))}
+          <h2 className="text-2xl font-bold mb-6">Browse by Category</h2>
+          <NotesCategories />
         </motion.div>
+
+        {/* Uploaded Notes */}
+        {filteredNotes.length > 0 && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.6, duration: 0.5 }}
+            className="mb-8"
+          >
+            <h2 className="text-2xl font-bold mb-6">Recently Uploaded Notes</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {filteredNotes.map((note, index) => (
+                <motion.div
+                  key={note.id}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.1 * index, duration: 0.5 }}
+                  whileHover={{ scale: 1.02 }}
+                >
+                  <Card className="feature-card h-full">
+                    <CardHeader>
+                      <div className="flex justify-between items-start mb-2">
+                        <Badge variant="secondary">{note.subject}</Badge>
+                        <Badge variant="outline">{note.semester} Sem</Badge>
+                      </div>
+                      <CardTitle className="text-lg leading-tight">{note.title}</CardTitle>
+                      <CardDescription className="text-sm">
+                        {note.description}
+                      </CardDescription>
+                    </CardHeader>
+                    <CardContent>
+                      <div className="space-y-3">
+                        <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                          <User className="h-4 w-4" />
+                          <span>By {note.uploadedBy}</span>
+                        </div>
+                        <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                          <Calendar className="h-4 w-4" />
+                          <span>{new Date(note.uploadDate).toLocaleDateString()}</span>
+                        </div>
+                        <div className="flex items-center justify-between text-sm text-muted-foreground">
+                          <span>{note.downloads} downloads</span>
+                          <span>{note.fileSize}</span>
+                        </div>
+                        <Button
+                          onClick={() => handleDownload(note.id, note.title)}
+                          className="w-full btn-hero"
+                        >
+                          <Download className="h-4 w-4 mr-2" />
+                          Download Notes
+                        </Button>
+                      </div>
+                    </CardContent>
+                  </Card>
+                </motion.div>
+              ))}
+            </div>
+          </motion.div>
+        )}
 
         {filteredNotes.length === 0 && (
           <motion.div

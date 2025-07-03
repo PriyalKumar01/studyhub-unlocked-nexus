@@ -23,7 +23,12 @@ const NotesUpload = () => {
     file: null as File | null,
   });
 
-  const subjects = [
+  const categories = [
+    'Complete B.Tech Notes (1st Semester)', 'Complete B.Tech Notes (2nd Semester)', 
+    'Complete B.Tech Notes (3rd Semester)', 'Complete B.Tech Notes (4th Semester)',
+    'Complete B.Tech Notes (5th Semester)', 'Complete B.Tech Notes (6th Semester)',
+    'Complete B.Tech Notes (7th Semester)', 'Complete B.Tech Notes (8th Semester)',
+    'BBA Notes', 'DSA in C++', 'DSA in Java', 'GATE Notes', 'JEE Notes', 'Web Development Notes',
     'Mathematics', 'Physics', 'Chemistry', 'Computer Science', 'Electronics',
     'Mechanical Engineering', 'Civil Engineering', 'Electrical Engineering',
     'Information Technology', 'Chemical Engineering', 'Biotechnology'
@@ -158,15 +163,15 @@ const NotesUpload = () => {
                       />
                     </div>
                     <div>
-                      <Label htmlFor="subject">Subject *</Label>
+                      <Label htmlFor="subject">Category *</Label>
                       <Select value={formData.subject} onValueChange={(value) => setFormData({ ...formData, subject: value })}>
                         <SelectTrigger>
-                          <SelectValue placeholder="Select subject" />
+                          <SelectValue placeholder="Select category" />
                         </SelectTrigger>
                         <SelectContent>
-                          {subjects.map((subject) => (
-                            <SelectItem key={subject} value={subject}>
-                              {subject}
+                          {categories.map((category) => (
+                            <SelectItem key={category} value={category}>
+                              {category}
                             </SelectItem>
                           ))}
                         </SelectContent>

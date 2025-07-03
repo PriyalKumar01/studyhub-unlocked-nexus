@@ -7,9 +7,9 @@ import Navbar from '@/components/Navbar';
 
 const About = () => {
   const founderAchievements = [
+    { icon: <Users className="h-4 w-4" />, text: 'Guide and mentor 10k+ students across all platforms' },
     { icon: <BookOpen className="h-4 w-4" />, text: 'Built study platform serving 2500+ students' },
-    { icon: <Users className="h-4 w-4" />, text: 'Facilitated 10,000+ note shares' },
-    { icon: <Award className="h-4 w-4" />, text: 'Issued 1200+ certificates' },
+    { icon: <Award className="h-4 w-4" />, text: 'Founder of CodeXtream as well' },
     { icon: <Heart className="h-4 w-4" />, text: 'Passionate about education technology' },
   ];
 
