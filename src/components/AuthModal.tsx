@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { SignIn, SignUp } from '@clerk/clerk-react';
-import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from '@/components/ui/dialog';
 import { Button } from '@/components/ui/button';
 import { X } from 'lucide-react';
 
@@ -24,6 +24,12 @@ const AuthModal = ({ isOpen, onClose, mode, setMode }: AuthModalProps) => {
               <X className="h-4 w-4" />
             </Button>
           </div>
+          <DialogDescription>
+            {mode === 'signin' 
+              ? 'Sign in to access your study materials and continue your learning journey.' 
+              : 'Create your account to access thousands of study notes and connect with fellow students.'
+            }
+          </DialogDescription>
         </DialogHeader>
         <div className="mt-4">
           {mode === 'signin' ? (
