@@ -13,6 +13,9 @@ import ResumeBuilder from "./pages/ResumeBuilder";
 import Opportunities from "./pages/Opportunities";
 import About from "./pages/About";
 import LearningPlatforms from "./pages/LearningPlatforms";
+import TermsOfService from "./pages/TermsOfService";
+import PrivacyPolicy from "./pages/PrivacyPolicy";
+import AdminDashboard from "./pages/AdminDashboard";
 import NotFound from "./pages/NotFound";
 import CustomCursor from "./components/CustomCursor";
 import WhatsAppButton from "./components/WhatsAppButton";
@@ -70,6 +73,9 @@ const App = () => {
               <Route path="/opportunities" element={<Opportunities />} />
               <Route path="/learning-platforms" element={<LearningPlatforms />} />
               <Route path="/about" element={<About />} />
+              <Route path="/admin" element={<AdminDashboard />} />
+              <Route path="/terms-of-service" element={<TermsOfService />} />
+              <Route path="/privacy-policy" element={<PrivacyPolicy />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
           </BrowserRouter>

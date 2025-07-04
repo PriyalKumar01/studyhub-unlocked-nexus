@@ -88,10 +88,11 @@ const About = () => {
                 <div>
                   <h3 className="font-semibold text-lg mb-4">About Priyal</h3>
                   <p className="text-muted-foreground mb-6">
-                    As a computer science student, Priyal recognized the challenges students face 
-                    in accessing quality study materials and career guidance. This inspired the 
-                    creation of College Study Hub - a platform designed to bridge the gap between 
-                    academic resources and career development.
+                    <strong>Priyal Kumar</strong> — Guide & mentor to 10K+ students across platforms. 
+                    Founder of CodeXtream. Passionate about student communities, technical education, 
+                    and open learning. As a computer science student, Priyal recognized the challenges 
+                    students face in accessing quality study materials and career guidance, inspiring 
+                    the creation of College Study Hub.
                   </p>
                   
                   <div className="flex gap-3">

@@ -9,6 +9,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { Textarea } from '@/components/ui/textarea';
 import { Upload, FileText, CheckCircle, AlertCircle } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
+import { supabase } from '@/integrations/supabase/client';
 import Navbar from '@/components/Navbar';
 
 const NotesUpload = () => {
@@ -66,6 +67,15 @@ const NotesUpload = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
+    if (!user) {
+      toast({
+        title: 'Authentication required',
+        description: 'Please sign in to upload notes.',
+        variant: 'destructive',
+      });
+      return;
+    }
+    
     if (!formData.file || !formData.title || !formData.subject || !formData.semester) {
       toast({
         title: 'Missing information',
@@ -78,11 +88,42 @@ const NotesUpload = () => {
     setIsUploading(true);
 
     try {
-      // Simulate upload process
-      await new Promise(resolve => setTimeout(resolve, 2000));
+      // Upload file to Supabase Storage
+      const fileExt = formData.file.name.split('.').pop();
+      const fileName = `${user.id}/${Date.now()}.${fileExt}`;
       
-      // Here you would normally send data to your backend
-      // For now, we'll just show a success message
+      const { error: uploadError } = await supabase.storage
+        .from('notes-files')
+        .upload(fileName, formData.file);
+
+      if (uploadError) {
+        throw uploadError;
+      }
+
+      // Get public URL
+      const { data: { publicUrl } } = supabase.storage
+        .from('notes-files')
+        .getPublicUrl(fileName);
+
+      // Insert note record into database
+      const { error: insertError } = await supabase
+        .from('notes')
+        .insert({
+          title: formData.title,
+          subject: formData.subject,
+          semester: formData.semester,
+          description: formData.description || null,
+          file_name: formData.file.name,
+          file_url: publicUrl,
+          uploaded_by: user.id,
+          user_email: user.emailAddresses[0]?.emailAddress || '',
+          user_name: user.fullName || user.firstName || 'Anonymous',
+        });
+
+      if (insertError) {
+        throw insertError;
+      }
+      
       toast({
         title: 'Notes uploaded successfully!',
         description: 'Your notes have been sent for admin approval. You\'ll be notified once approved.',
@@ -102,6 +143,7 @@ const NotesUpload = () => {
       if (fileInput) fileInput.value = '';
 
     } catch (error) {
+      console.error('Upload error:', error);
       toast({
         title: 'Upload failed',
         description: 'Something went wrong. Please try again.',

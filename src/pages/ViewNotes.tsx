@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -6,83 +6,85 @@ import { Input } from '@/components/ui/input';
 import { Badge } from '@/components/ui/badge';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Search, Download, User, Calendar, BookOpen, Filter } from 'lucide-react';
+import { supabase } from '@/integrations/supabase/client';
+import { useToast } from '@/hooks/use-toast';
 import Navbar from '@/components/Navbar';
 import NotesCategories from '@/components/NotesCategories';
 
 const ViewNotes = () => {
+  const { toast } = useToast();
   const [searchTerm, setSearchTerm] = useState('');
   const [filterSubject, setFilterSubject] = useState('all');
   const [filterSemester, setFilterSemester] = useState('all');
+  const [notes, setNotes] = useState<any[]>([]);
+  const [loading, setLoading] = useState(true);
 
-  // Mock data - In real app, this would come from your backend
-  const notes = [
-    {
-      id: 1,
-      title: 'Linear Algebra Complete Notes',
-      subject: 'Mathematics',
-      semester: '3rd',
-      uploadedBy: 'Rahul Sharma',
-      uploadDate: '2024-01-15',
-      downloads: 234,
-      description: 'Comprehensive notes covering matrices, eigenvalues, and vector spaces',
-      fileSize: '2.4 MB',
-      approved: true,
-    },
-    {
-      id: 2,
-      title: 'Data Structures and Algorithms',
-      subject: 'Computer Science',
-      semester: '4th',
-      uploadedBy: 'Priya Singh',
-      uploadDate: '2024-01-10',
-      downloads: 189,
-      description: 'Complete DSA notes with examples and problem solving techniques',
-      fileSize: '3.1 MB',
-      approved: true,
-    },
-    {
-      id: 3,
-      title: 'Thermodynamics Fundamentals',
-      subject: 'Mechanical Engineering',
-      semester: '3rd',
-      uploadedBy: 'Amit Kumar',
-      uploadDate: '2024-01-08',
-      downloads: 156,
-      description: 'Laws of thermodynamics with practical applications and examples',
-      fileSize: '1.8 MB',
-      approved: true,
-    },
-    {
-      id: 4,
-      title: 'Digital Electronics',
-      subject: 'Electronics',
-      semester: '2nd',
-      uploadedBy: 'Sneha Patel',
-      uploadDate: '2024-01-05',
-      downloads: 203,
-      description: 'Boolean algebra, logic gates, and digital circuit design',
-      fileSize: '2.7 MB',
-      approved: true,
-    },
-  ];
+  // Fetch notes from Supabase
+  useEffect(() => {
+    fetchNotes();
+  }, []);
 
-  const subjects = ['all', 'Mathematics', 'Computer Science', 'Electronics', 'Mechanical Engineering', 'Physics', 'Chemistry'];
+  const fetchNotes = async () => {
+    try {
+      const { data, error } = await supabase
+        .from('notes')
+        .select('*')
+        .eq('approved', true)
+        .order('uploaded_at', { ascending: false });
+
+      if (error) {
+        throw error;
+      }
+
+      setNotes(data || []);
+    } catch (error) {
+      console.error('Error fetching notes:', error);
+      toast({
+        title: 'Error loading notes',
+        description: 'Failed to load notes. Please try again.',
+        variant: 'destructive',
+      });
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const subjects = ['all', 'Complete B.Tech Notes (1st Semester)', 'Complete B.Tech Notes (2nd Semester)', 
+    'Complete B.Tech Notes (3rd Semester)', 'Complete B.Tech Notes (4th Semester)',
+    'Complete B.Tech Notes (5th Semester)', 'Complete B.Tech Notes (6th Semester)',
+    'Complete B.Tech Notes (7th Semester)', 'Complete B.Tech Notes (8th Semester)',
+    'BBA Notes', 'DSA in C++', 'DSA in Java', 'GATE Notes', 'JEE Notes', 'Web Development Notes',
+    'Mathematics', 'Physics', 'Chemistry', 'Computer Science', 'Electronics',
+    'Mechanical Engineering', 'Civil Engineering', 'Electrical Engineering',
+    'Information Technology', 'Chemical Engineering', 'Biotechnology'];
   const semesters = ['all', '1st', '2nd', '3rd', '4th', '5th', '6th', '7th', '8th'];
 
   const filteredNotes = notes.filter(note => {
     const matchesSearch = note.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
                          note.subject.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                         note.uploadedBy.toLowerCase().includes(searchTerm.toLowerCase());
+                         note.user_name.toLowerCase().includes(searchTerm.toLowerCase());
     const matchesSubject = filterSubject === 'all' || note.subject === filterSubject;
     const matchesSemester = filterSemester === 'all' || note.semester === filterSemester;
     
-    return matchesSearch && matchesSubject && matchesSemester && note.approved;
+    return matchesSearch && matchesSubject && matchesSemester;
   });
 
-  const handleDownload = (noteId: number, title: string) => {
-    // In a real app, this would trigger the actual download
-    console.log(`Downloading note ${noteId}: ${title}`);
-    // You could track downloads here
+  const handleDownload = async (noteId: string, title: string, fileUrl: string) => {
+    try {
+      // Open the file URL in a new tab
+      window.open(fileUrl, '_blank');
+      
+      toast({
+        title: 'Download started',
+        description: `Downloading: ${title}`,
+      });
+    } catch (error) {
+      toast({
+        title: 'Download failed',
+        description: 'Failed to download the file. Please try again.',
+        variant: 'destructive',
+      });
+    }
   };
 
   return (
@@ -162,7 +164,17 @@ const ViewNotes = () => {
         </motion.div>
 
         {/* Uploaded Notes */}
-        {filteredNotes.length > 0 && (
+        {loading ? (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.6, duration: 0.5 }}
+            className="mb-8 text-center py-12"
+          >
+            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary mx-auto"></div>
+            <p className="mt-4 text-muted-foreground">Loading notes...</p>
+          </motion.div>
+        ) : filteredNotes.length > 0 ? (
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -187,25 +199,24 @@ const ViewNotes = () => {
                       </div>
                       <CardTitle className="text-lg leading-tight">{note.title}</CardTitle>
                       <CardDescription className="text-sm">
-                        {note.description}
+                        {note.description || 'No description available'}
                       </CardDescription>
                     </CardHeader>
                     <CardContent>
                       <div className="space-y-3">
                         <div className="flex items-center gap-2 text-sm text-muted-foreground">
                           <User className="h-4 w-4" />
-                          <span>By {note.uploadedBy}</span>
+                          <span>By {note.user_name}</span>
                         </div>
                         <div className="flex items-center gap-2 text-sm text-muted-foreground">
                           <Calendar className="h-4 w-4" />
-                          <span>{new Date(note.uploadDate).toLocaleDateString()}</span>
+                          <span>{new Date(note.uploaded_at).toLocaleDateString()}</span>
                         </div>
                         <div className="flex items-center justify-between text-sm text-muted-foreground">
-                          <span>{note.downloads} downloads</span>
-                          <span>{note.fileSize}</span>
+                          <span>File: {note.file_name}</span>
                         </div>
                         <Button
-                          onClick={() => handleDownload(note.id, note.title)}
+                          onClick={() => handleDownload(note.id, note.title, note.file_url)}
                           className="w-full btn-hero"
                         >
                           <Download className="h-4 w-4 mr-2" />
@@ -218,9 +229,7 @@ const ViewNotes = () => {
               ))}
             </div>
           </motion.div>
-        )}
-
-        {filteredNotes.length === 0 && (
+        ) : (
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}

@@ -41,6 +41,7 @@ export type Database = {
           approved: boolean | null
           approved_at: string | null
           approved_by: string | null
+          description: string | null
           file_name: string
           file_url: string
           id: string
@@ -56,6 +57,7 @@ export type Database = {
           approved?: boolean | null
           approved_at?: string | null
           approved_by?: string | null
+          description?: string | null
           file_name: string
           file_url: string
           id?: string
@@ -71,6 +73,7 @@ export type Database = {
           approved?: boolean | null
           approved_at?: string | null
           approved_by?: string | null
+          description?: string | null
           file_name?: string
           file_url?: string
           id?: string
