@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { SignIn, SignUp } from '@clerk/clerk-react';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from '@/components/ui/dialog';
 import { Button } from '@/components/ui/button';
+import { Checkbox } from '@/components/ui/checkbox';
 import { X } from 'lucide-react';
 
 interface AuthModalProps {
@@ -12,6 +13,8 @@ interface AuthModalProps {
 }
 
 const AuthModal = ({ isOpen, onClose, mode, setMode }: AuthModalProps) => {
+  const [agreedToTerms, setAgreedToTerms] = useState(false);
+
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
       <DialogContent className="sm:max-w-md">
@@ -32,6 +35,46 @@ const AuthModal = ({ isOpen, onClose, mode, setMode }: AuthModalProps) => {
           </DialogDescription>
         </DialogHeader>
         <div className="mt-4">
+          {mode === 'signup' && (
+            <div className="mb-6 p-4 bg-muted/50 rounded-lg border">
+              <div className="flex items-start space-x-3">
+                <Checkbox 
+                  id="terms" 
+                  checked={agreedToTerms}
+                  onCheckedChange={(checked) => setAgreedToTerms(checked === true)}
+                />
+                <div className="space-y-1 leading-none">
+                  <label
+                    htmlFor="terms"
+                    className="text-sm font-medium leading-relaxed peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                  >
+                    I understand and agree to the{' '}
+                    <a 
+                      href="https://collegestudyhbtu.netlify.app/terms-of-service" 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="text-primary underline hover:no-underline"
+                    >
+                      Terms & Conditions
+                    </a>{' '}
+                    and{' '}
+                    <a 
+                      href="https://collegestudyhbtu.netlify.app/privacy-policy" 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="text-primary underline hover:no-underline"
+                    >
+                      Privacy Policy
+                    </a>
+                  </label>
+                  <p className="text-xs text-muted-foreground">
+                    By checking this box, you confirm that you have read and understand our terms regarding educational use, content sharing restrictions, and admin approval process.
+                  </p>
+                </div>
+              </div>
+            </div>
+          )}
+          
           {mode === 'signin' ? (
             <SignIn
               appearance={{
@@ -42,14 +85,16 @@ const AuthModal = ({ isOpen, onClose, mode, setMode }: AuthModalProps) => {
               }}
             />
           ) : (
-            <SignUp
-              appearance={{
-                elements: {
-                  rootBox: "w-full",
-                  card: "shadow-none border-0 bg-transparent",
-                }
-              }}
-            />
+            <div className={agreedToTerms ? 'opacity-100' : 'opacity-50 pointer-events-none'}>
+              <SignUp
+                appearance={{
+                  elements: {
+                    rootBox: "w-full",
+                    card: "shadow-none border-0 bg-transparent",
+                  }
+                }}
+              />
+            </div>
           )}
           <div className="mt-4 text-center">
             <Button 

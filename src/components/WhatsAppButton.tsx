@@ -23,7 +23,7 @@ const WhatsAppButton = () => {
   }, []);
 
   return (
-    <div className="fixed left-6 bottom-6 z-40">
+    <div className="fixed right-6 bottom-6 z-40">
       <div className={`relative transition-all duration-500 ${isPulsing ? 'animate-bounce' : ''}`}>
         <Button
           onClick={handleWhatsAppClick}
@@ -32,7 +32,7 @@ const WhatsAppButton = () => {
         >
           <MessageCircle className="h-6 w-6" />
         </Button>
-        <div className={`absolute -top-2 -right-2 bg-red-500 text-white text-xs px-2 py-1 rounded-full whitespace-nowrap transition-all duration-300 ${isPulsing ? 'animate-pulse scale-110' : 'scale-100'}`}>
+        <div className={`absolute -top-2 -left-2 bg-green-600 text-white text-xs px-2 py-1 rounded-full whitespace-nowrap transition-all duration-300 ${isPulsing ? 'animate-pulse scale-110' : 'scale-100'}`}>
           Need Help!
         </div>
       </div>
