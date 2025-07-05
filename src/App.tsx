@@ -17,9 +17,13 @@ import TermsOfService from "./pages/TermsOfService";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 import AdminDashboard from "./pages/AdminDashboard";
 import NotFound from "./pages/NotFound";
+import FirstSemesterNotes from "./pages/FirstSemesterNotes";
+import OpportunityUpload from "./pages/OpportunityUpload";
 import CustomCursor from "./components/CustomCursor";
 import WhatsAppButton from "./components/WhatsAppButton";
 import AuthModal from "./components/AuthModal";
+import ScrollToTop from "./components/ScrollToTop";
+import LoadingSpinner from "./components/LoadingSpinner";
 import { ThemeProvider } from "./providers/ThemeProvider";
 
 const queryClient = new QueryClient();
@@ -28,26 +32,33 @@ const App = () => {
   const { isSignedIn } = useUser();
   const [showAuthModal, setShowAuthModal] = useState(false);
   const [authMode, setAuthMode] = useState<'signin' | 'signup'>('signin');
+  const [isLoading, setIsLoading] = useState(true);
+
+  // Cursor effect removed as requested
 
   useEffect(() => {
-    // Remove default cursor
-    document.body.style.cursor = 'none';
-    
-    return () => {
-      document.body.style.cursor = 'default';
-    };
+    // Show loading spinner for 2 seconds
+    const loadingTimer = setTimeout(() => {
+      setIsLoading(false);
+    }, 2000);
+
+    return () => clearTimeout(loadingTimer);
   }, []);
 
   useEffect(() => {
     // Show auth modal for new visitors after 3 seconds
-    if (!isSignedIn) {
+    if (!isSignedIn && !isLoading) {
       const timer = setTimeout(() => {
         setShowAuthModal(true);
       }, 3000);
 
       return () => clearTimeout(timer);
     }
-  }, [isSignedIn]);
+  }, [isSignedIn, isLoading]);
+
+  if (isLoading) {
+    return <LoadingSpinner />;
+  }
 
   return (
     <ThemeProvider defaultTheme="light" storageKey="college-study-hub-theme">
@@ -57,6 +68,7 @@ const App = () => {
           <Sonner />
           <CustomCursor />
           <WhatsAppButton />
+          <ScrollToTop />
           <AuthModal 
             isOpen={showAuthModal} 
             onClose={() => setShowAuthModal(false)}
@@ -69,8 +81,10 @@ const App = () => {
               <Route path="/dashboard" element={<Dashboard />} />
               <Route path="/upload-notes" element={<NotesUpload />} />
               <Route path="/view-notes" element={<ViewNotes />} />
+              <Route path="/first-semester-notes" element={<FirstSemesterNotes />} />
               <Route path="/resume-builder" element={<ResumeBuilder />} />
               <Route path="/opportunities" element={<Opportunities />} />
+              <Route path="/upload-opportunity" element={<OpportunityUpload />} />
               <Route path="/learning-platforms" element={<LearningPlatforms />} />
               <Route path="/about" element={<About />} />
               <Route path="/admin" element={<AdminDashboard />} />
