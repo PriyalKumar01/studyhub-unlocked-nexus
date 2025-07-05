@@ -98,7 +98,7 @@ const NotesCategories = () => {
                     onClick={(e) => {
                       e.stopPropagation();
                       if (category.id === 'btech') {
-                        window.location.href = '/first-semester-notes';
+                        window.location.href = '/btech-notes';
                       }
                     }}
                   >

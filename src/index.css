@@ -108,19 +108,7 @@
 
   body {
     @apply bg-background text-foreground font-sans;
-    cursor: none;
   }
-
-  /* Show native cursor on input fields */
-  input, textarea, select {
-    cursor: text !important;
-  }
-  
-  button, a, [role="button"] {
-    cursor: none !important;
-  }
-
-  /* Custom cursor removed - using component-based cursor */
 }
 
 @layer components {

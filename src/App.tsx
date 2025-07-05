@@ -17,6 +17,7 @@ import TermsOfService from "./pages/TermsOfService";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 import AdminDashboard from "./pages/AdminDashboard";
 import NotFound from "./pages/NotFound";
+import BTechNotes from "./pages/BTechNotes";
 import FirstSemesterNotes from "./pages/FirstSemesterNotes";
 import OpportunityUpload from "./pages/OpportunityUpload";
 import CustomCursor from "./components/CustomCursor";
@@ -66,7 +67,6 @@ const App = () => {
         <TooltipProvider>
           <Toaster />
           <Sonner />
-          <CustomCursor />
           <WhatsAppButton />
           <ScrollToTop />
           <AuthModal 
@@ -81,6 +81,7 @@ const App = () => {
               <Route path="/dashboard" element={<Dashboard />} />
               <Route path="/upload-notes" element={<NotesUpload />} />
               <Route path="/view-notes" element={<ViewNotes />} />
+              <Route path="/btech-notes" element={<BTechNotes />} />
               <Route path="/first-semester-notes" element={<FirstSemesterNotes />} />
               <Route path="/resume-builder" element={<ResumeBuilder />} />
               <Route path="/opportunities" element={<Opportunities />} />
