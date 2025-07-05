@@ -260,7 +260,10 @@ const AdminDashboard = () => {
           <TabsContent value="opportunities" className="space-y-6">
             <div className="flex justify-between items-center">
               <h2 className="text-2xl font-bold">Opportunities Management</h2>
-              <Button className="btn-hero">
+              <Button 
+                className="btn-hero"
+                onClick={() => window.location.href = '/upload-opportunity'}
+              >
                 <Plus className="h-4 w-4 mr-2" />
                 Add Opportunity
               </Button>

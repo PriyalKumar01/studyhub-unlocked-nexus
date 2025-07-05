@@ -94,8 +94,10 @@ export type Database = {
           company: string
           created_at: string | null
           created_by: string
+          deadline: string | null
           description: string
           id: string
+          image_url: string | null
           likes_count: number | null
           location: string
           title: string
@@ -108,8 +110,10 @@ export type Database = {
           company: string
           created_at?: string | null
           created_by: string
+          deadline?: string | null
           description: string
           id?: string
+          image_url?: string | null
           likes_count?: number | null
           location: string
           title: string
@@ -122,8 +126,10 @@ export type Database = {
           company?: string
           created_at?: string | null
           created_by?: string
+          deadline?: string | null
           description?: string
           id?: string
+          image_url?: string | null
           likes_count?: number | null
           location?: string
           title?: string

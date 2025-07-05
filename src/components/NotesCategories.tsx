@@ -91,8 +91,19 @@ const NotesCategories = () => {
               </CardHeader>
               <CardContent>
                 <div className="flex items-center justify-between">
-                  <Badge variant="secondary">Coming Soon</Badge>
-                  <Button variant="outline" size="sm">View Notes</Button>
+                  <Badge variant="secondary">{category.id === 'btech' ? 'Available' : 'Coming Soon'}</Badge>
+                  <Button 
+                    variant="outline" 
+                    size="sm"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      if (category.id === 'btech') {
+                        window.location.href = '/first-semester-notes';
+                      }
+                    }}
+                  >
+                    View Notes
+                  </Button>
                 </div>
                 
                 {selectedCategory === category.id && category.semesters.length > 0 && (
