@@ -19,6 +19,11 @@ import AdminDashboard from "./pages/AdminDashboard";
 import NotFound from "./pages/NotFound";
 import BTechNotes from "./pages/BTechNotes";
 import FirstSemesterNotes from "./pages/FirstSemesterNotes";
+import SecondSemesterNotes from "./pages/SecondSemesterNotes";
+import ThirdSemesterNotes from "./pages/ThirdSemesterNotes";
+import DSANotes from "./pages/DSANotes";
+import CodingStudyMaterial from "./pages/CodingStudyMaterial";
+import WebDevelopmentNotes from "./pages/WebDevelopmentNotes";
 import OpportunityUpload from "./pages/OpportunityUpload";
 import CustomCursor from "./components/CustomCursor";
 import WhatsAppButton from "./components/WhatsAppButton";
@@ -83,6 +88,11 @@ const App = () => {
               <Route path="/view-notes" element={<ViewNotes />} />
               <Route path="/btech-notes" element={<BTechNotes />} />
               <Route path="/first-semester-notes" element={<FirstSemesterNotes />} />
+              <Route path="/second-semester-notes" element={<SecondSemesterNotes />} />
+              <Route path="/third-semester-notes" element={<ThirdSemesterNotes />} />
+              <Route path="/dsa-notes" element={<DSANotes />} />
+              <Route path="/coding-study-material" element={<CodingStudyMaterial />} />
+              <Route path="/web-development-notes" element={<WebDevelopmentNotes />} />
               <Route path="/resume-builder" element={<ResumeBuilder />} />
               <Route path="/opportunities" element={<Opportunities />} />
               <Route path="/upload-opportunity" element={<OpportunityUpload />} />

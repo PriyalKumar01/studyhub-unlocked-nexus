@@ -24,17 +24,17 @@ const NotesCategories = () => {
       color: 'bg-green-500'
     },
     {
-      id: 'dsa-cpp',
-      title: 'DSA in C++',
-      description: 'Data Structures and Algorithms in C++',
+      id: 'dsa-notes',
+      title: 'DSA Notes',
+      description: 'Data Structures and Algorithms study materials',
       icon: <Code className="h-6 w-6" />,
       semesters: [],
       color: 'bg-purple-500'
     },
     {
-      id: 'dsa-java',
-      title: 'DSA in Java',
-      description: 'Data Structures and Algorithms in Java',
+      id: 'coding-material',
+      title: 'Coding Study Material',
+      description: 'Interview preparation and coding resources',
       icon: <Code className="h-6 w-6" />,
       semesters: [],
       color: 'bg-orange-500'
@@ -99,6 +99,12 @@ const NotesCategories = () => {
                       e.stopPropagation();
                       if (category.id === 'btech') {
                         window.location.href = '/btech-notes';
+                      } else if (category.id === 'dsa-notes') {
+                        window.location.href = '/dsa-notes';
+                      } else if (category.id === 'coding-material') {
+                        window.location.href = '/coding-study-material';
+                      } else if (category.id === 'web-dev') {
+                        window.location.href = '/web-development-notes';
                       }
                     }}
                   >
