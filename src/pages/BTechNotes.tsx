@@ -21,14 +21,14 @@ const BTechNotes = () => {
       id: 2,
       name: '2nd Semester',
       description: 'Advanced foundation and core engineering subjects',
-      available: false,
+      available: true,
       route: '/second-semester-notes'
     },
     {
       id: 3,
       name: '3rd Semester',
       description: 'Core engineering and specialization introduction',
-      available: false,
+      available: true,
       route: '/third-semester-notes'
     },
     {
@@ -179,7 +179,7 @@ const BTechNotes = () => {
             and important resources to help you excel in your engineering journey.
           </p>
           <div className="mt-4 flex flex-wrap gap-2">
-            <Badge variant="outline">✅ 1st Semester Available</Badge>
+            <Badge variant="outline">✅ 1st-3rd Semester Available</Badge>
             <Badge variant="outline">⏳ More Semesters Coming Soon</Badge>
             <Badge variant="outline">📝 Student Contributions</Badge>
             <Badge variant="outline">🔍 Easy Search & Filter</Badge>

@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
@@ -65,8 +64,6 @@ const NotesCategories = () => {
     }
   ];
 
-  const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
-
   return (
     <div className="space-y-6">
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -80,7 +77,17 @@ const NotesCategories = () => {
           >
             <Card 
               className="feature-card h-full cursor-pointer transition-all duration-300"
-              onClick={() => setSelectedCategory(selectedCategory === category.id ? null : category.id)}
+              onClick={() => {
+                if (category.id === 'btech') {
+                  window.location.href = '/btech-notes';
+                } else if (category.id === 'dsa-notes') {
+                  window.location.href = '/dsa-notes';
+                } else if (category.id === 'coding-material') {
+                  window.location.href = '/coding-study-material';
+                } else if (category.id === 'web-dev') {
+                  window.location.href = '/web-development-notes';
+                }
+              }}
             >
               <CardHeader>
                 <div className={`w-12 h-12 ${category.color} rounded-full flex items-center justify-center text-white mb-4`}>
@@ -91,7 +98,9 @@ const NotesCategories = () => {
               </CardHeader>
               <CardContent>
                 <div className="flex items-center justify-between">
-                  <Badge variant="secondary">{category.id === 'btech' ? 'Available' : 'Coming Soon'}</Badge>
+                  <Badge variant="secondary">
+                    {['btech', 'dsa-notes', 'coding-material', 'web-dev'].includes(category.id) ? 'Available' : 'Coming Soon'}
+                  </Badge>
                   <Button 
                     variant="outline" 
                     size="sm"
@@ -111,24 +120,6 @@ const NotesCategories = () => {
                     View Notes
                   </Button>
                 </div>
-                
-                {selectedCategory === category.id && category.semesters.length > 0 && (
-                  <motion.div
-                    initial={{ opacity: 0, height: 0 }}
-                    animate={{ opacity: 1, height: 'auto' }}
-                    exit={{ opacity: 0, height: 0 }}
-                    className="mt-4 pt-4 border-t"
-                  >
-                    <h4 className="font-medium mb-2">Semesters:</h4>
-                    <div className="grid grid-cols-2 gap-2">
-                      {category.semesters.map((semester) => (
-                        <Badge key={semester} variant="outline" className="text-xs">
-                          {semester}
-                        </Badge>
-                      ))}
-                    </div>
-                  </motion.div>
-                )}
               </CardContent>
             </Card>
           </motion.div>
