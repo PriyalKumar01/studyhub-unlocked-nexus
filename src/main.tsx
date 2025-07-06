@@ -10,7 +10,21 @@ if (!PUBLISHABLE_KEY) {
 }
 
 createRoot(document.getElementById("root")!).render(
-  <ClerkProvider publishableKey={PUBLISHABLE_KEY}>
+  <ClerkProvider 
+    publishableKey={PUBLISHABLE_KEY}
+    appearance={{
+      signIn: { 
+        elements: { 
+          footerAction: { display: "none" },
+          footer: { 
+            "& + div": { 
+              background: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
+            }
+          }
+        }
+      }
+    }}
+  >
     <App />
   </ClerkProvider>
 );

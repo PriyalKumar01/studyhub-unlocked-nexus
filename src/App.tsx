@@ -30,6 +30,7 @@ import WhatsAppButton from "./components/WhatsAppButton";
 import AuthModal from "./components/AuthModal";
 import ScrollToTop from "./components/ScrollToTop";
 import LoadingSpinner from "./components/LoadingSpinner";
+import CookieConsent from "./components/CookieConsent";
 import { ThemeProvider } from "./providers/ThemeProvider";
 
 const queryClient = new QueryClient();
@@ -74,6 +75,7 @@ const App = () => {
           <Sonner />
           <WhatsAppButton />
           <ScrollToTop />
+          <CookieConsent />
           <AuthModal 
             isOpen={showAuthModal} 
             onClose={() => setShowAuthModal(false)}

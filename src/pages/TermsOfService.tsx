@@ -1,6 +1,8 @@
 import { motion } from 'framer-motion';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { ScrollArea } from '@/components/ui/scroll-area';
+import { Button } from '@/components/ui/button';
+import { ExternalLink } from 'lucide-react';
 import Navbar from '@/components/Navbar';
 
 const TermsOfService = () => {
@@ -144,6 +146,23 @@ const TermsOfService = () => {
               </ScrollArea>
             </CardContent>
           </Card>
+          
+          {/* External Link Button */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.3, duration: 0.5 }}
+            className="mt-6 text-center"
+          >
+            <Button 
+              variant="outline" 
+              onClick={() => window.open(`${window.location.origin}/terms-of-service.html`, '_blank')}
+              className="flex items-center gap-2 mx-auto"
+            >
+              <ExternalLink className="h-4 w-4" />
+              View Full Terms Document
+            </Button>
+          </motion.div>
         </motion.div>
       </div>
     </div>

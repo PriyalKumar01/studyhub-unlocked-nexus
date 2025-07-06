@@ -61,23 +61,23 @@ const Navbar = () => {
           {/* Logo */}
           <Link to="/" className="flex items-center space-x-2">
             <img 
-              src="/lovable-uploads/74279ef2-dc77-4aa2-97ca-c05cd96d2b9a.png" 
+              src="/lovable-uploads/f15f6f50-a4a5-4b2e-b676-422e9520a924.png" 
               alt="College Study Hub" 
-              className="h-16 w-auto"
+              className="h-12 w-auto"
             />
           </Link>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-1">
+          <div className="hidden md:flex items-center space-x-8">
             {navItems.map((item) => (
               <Link
                 key={item.href}
                 to={item.href}
-                className={`px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200 flex items-center gap-2 ${
+                className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 flex items-center gap-2 ${
                   isActive(item.href)
-                    ? 'bg-primary text-primary-foreground'
-                    : 'text-foreground hover:bg-accent hover:text-accent-foreground'
-                } ${item.href === '/admin' ? 'bg-gradient-primary text-white hover:opacity-80' : ''}`}
+                    ? 'bg-primary text-primary-foreground shadow-md'
+                    : 'text-foreground hover:bg-accent hover:text-accent-foreground hover:shadow-sm'
+                } ${item.href === '/admin' ? 'bg-gradient-primary text-white hover:opacity-80 shadow-lg' : ''}`}
               >
                 {item.icon}
                 {item.label}

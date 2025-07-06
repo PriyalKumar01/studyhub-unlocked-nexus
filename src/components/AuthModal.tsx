@@ -50,7 +50,7 @@ const AuthModal = ({ isOpen, onClose, mode, setMode }: AuthModalProps) => {
                   >
                     I understand and agree to the{' '}
                     <a 
-                      href="https://collegestudyhbtu.netlify.app/terms-of-service" 
+                      href={`${window.location.origin}/terms-of-service.html`}
                       target="_blank" 
                       rel="noopener noreferrer"
                       className="text-primary underline hover:no-underline"
@@ -59,7 +59,7 @@ const AuthModal = ({ isOpen, onClose, mode, setMode }: AuthModalProps) => {
                     </a>{' '}
                     and{' '}
                     <a 
-                      href="https://collegestudyhbtu.netlify.app/privacy-policy" 
+                      href={`${window.location.origin}/privacy-policy.html`}
                       target="_blank" 
                       rel="noopener noreferrer"
                       className="text-primary underline hover:no-underline"
