@@ -224,9 +224,7 @@ const FourthSemesterNotes = () => {
                       <div className={`w-10 h-10 ${subject.color} rounded-full flex items-center justify-center text-white text-lg`}>
                         <FileText className="h-5 w-5" />
                       </div>
-                      <Badge variant="secondary" className="bg-green-100 text-green-700 border-green-200">
-                        Available
-                      </Badge>
+                      <Badge variant="secondary" >PDF</Badge>
                     </div>
                     <CardTitle className="text-lg leading-tight">{note.title}</CardTitle>
                     <CardDescription>
@@ -333,10 +331,8 @@ const FourthSemesterNotes = () => {
                 </CardHeader>
                 <CardContent>
                   <div className="flex items-center justify-between">
-                    <Badge variant="secondary" className="bg-green-100 text-green-700 border-green-200">
-                      Available
-                    </Badge>
-                    <Button variant="outline" size="sm" className="hover:bg-primary hover:text-primary-foreground">
+                    <Badge variant="secondary"> {subject.notes.length} Files</Badge>
+                    <Button variant="outline" size="sm" >
                       View Notes
                     </Button>
                   </div>

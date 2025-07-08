@@ -9,7 +9,7 @@ const About = () => {
   const founderAchievements = [
     { icon: <Users className="h-4 w-4" />, text: 'Guide and mentor 10k+ students across all platforms' },
     { icon: <BookOpen className="h-4 w-4" />, text: 'Built study platform serving 2500+ students' },
-    { icon: <Award className="h-4 w-4" />, text: 'Founder of CodeXtream as well' },
+    { icon: <Award className="h-4 w-4" />, text: 'Founded CodeXtream, a student-led community fostering tech collaboration' },
     { icon: <Heart className="h-4 w-4" />, text: 'Passionate about education technology' },
   ];
 
@@ -54,7 +54,7 @@ const About = () => {
           className="text-center mb-12"
         >
           <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-4">
-            About College Study Hub
+            About College Study
           </h1>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
             Empowering students with comprehensive academic resources, note sharing, 
@@ -78,7 +78,7 @@ const About = () => {
                   className="w-full h-full object-cover"
                 />
               </div>
-              <CardTitle className="text-2xl mb-2">Meet the Founder</CardTitle>
+              <CardTitle className="text-2xl mb-2">Meet the Founder & CEO - College Study</CardTitle>
               <CardDescription className="text-lg">
                 <strong>Priyal Kumar</strong> - Computer Science Student & Education Technology Enthusiast
               </CardDescription>

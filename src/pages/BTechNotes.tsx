@@ -35,7 +35,7 @@ const BTechNotes = () => {
       id: 4,
       name: '4th Semester',
       description: 'Advanced core subjects and practical applications',
-      available: false,
+      available: true,
       route: '/fourth-semester-notes'
     },
     {
@@ -179,7 +179,7 @@ const BTechNotes = () => {
             and important resources to help you excel in your engineering journey.
           </p>
           <div className="mt-4 flex flex-wrap gap-2">
-            <Badge variant="outline">✅ 1st-3rd Semester Available</Badge>
+            <Badge variant="outline">✅ 1st-4th Semester Available</Badge>
             <Badge variant="outline">⏳ More Semesters Coming Soon</Badge>
             <Badge variant="outline">📝 Student Contributions</Badge>
             <Badge variant="outline">🔍 Easy Search & Filter</Badge>

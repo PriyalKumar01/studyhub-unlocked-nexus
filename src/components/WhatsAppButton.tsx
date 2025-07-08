@@ -6,7 +6,7 @@ const WhatsAppButton = () => {
   const [isVisible, setIsVisible] = useState(true);
   const [typewriterText, setTypewriterText] = useState('');
   const [isPulsing, setIsPulsing] = useState(false);
-  const fullText = 'Need Help?';
+   const fullText = '';
 
   const handleWhatsAppClick = () => {
     const phoneNumber = '+918957221543';
@@ -67,13 +67,20 @@ const WhatsAppButton = () => {
       
       {/* WhatsApp Button */}
       <div className={`relative transition-all duration-500 ${isPulsing ? 'animate-pulse scale-110' : ''}`}>
-        <Button
-          onClick={handleWhatsAppClick}
-          className={`w-16 h-16 rounded-full bg-green-500 hover:bg-green-600 text-white shadow-lg hover:shadow-xl transition-all duration-300 flex items-center justify-center p-0 group`}
-          title="Need Help? WhatsApp us!"
-        >
-          <MessageCircle className="h-7 w-7 group-hover:scale-110 transition-transform duration-300" />
-        </Button>
+        <a
+  href="https://wa.me/918957221543?text=Hi%20Priyal%2C%20I%20need%20help%20regarding%20College%20Study%20Hub."
+  target="_blank"
+  rel="noopener noreferrer"
+  className="fixed right-6 bottom-6 z-50"
+>
+  <Button
+    className="w-16 h-16 rounded-full bg-green-500 text-white shadow-lg flex items-center justify-center"
+    title="Need Help? WhatsApp us!"
+  >
+    <MessageCircle className="h-7 w-7" />
+  </Button>
+</a>
+
         
         {/* Ripple Effect */}
         <div className="absolute inset-0 rounded-full bg-green-400 opacity-20 animate-ping" />
