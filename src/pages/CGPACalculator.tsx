@@ -101,18 +101,18 @@ const CGPACalculator = () => {
       });
 
       const sgpa = semesterCredits > 0 ? semesterGradePoints / semesterCredits : 0;
-      return { ...semester, sgpa: parseFloat(sgpa.toFixed(2)) };
+      return { ...semester, sgpa: parseFloat(sgpa.toFixed(3)) };
     });
 
     const cgpa = totalCredits > 0 ? totalGradePoints / totalCredits : 0;
     
     setSemesters(updatedSemesters);
-    setOverallCGPA(parseFloat(cgpa.toFixed(2)));
+    setOverallCGPA(parseFloat(cgpa.toFixed(3)));
     setShowResults(true);
 
     toast({
       title: "CGPA Calculated! 🎉",
-      description: `Your overall CGPA is ${cgpa.toFixed(2)}`,
+      description: `Your overall CGPA is ${cgpa.toFixed(3)}`,
     });
   };
 
@@ -252,7 +252,7 @@ Generated on: ${new Date().toLocaleDateString()}
                       Semester {semester.number}
                       {showResults && (
                         <Badge className={`ml-2 ${getCGPAColor(semester.sgpa)}`}>
-                          SGPA: {semester.sgpa}
+                          SGPA: {semester.sgpa.toFixed(3)}
                         </Badge>
                       )}
                     </CardTitle>

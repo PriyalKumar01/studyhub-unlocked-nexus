@@ -62,7 +62,7 @@ const Navbar = () => {
           {/* Logo */}
           <Link to="/" className="flex items-center space-x-2">
             <img 
-              src="/lovable-uploads/f3b6ce00-a0ff-4b44-bbdb-ab5640339741.png" 
+              src="/lovable-uploads/f3b6ce00-a0ff-4b44-bbdb-ab5640339741.png"  
               alt="College Study Hub" 
               className="h-12 w-auto"
             />
