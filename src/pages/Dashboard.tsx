@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { Upload, FileText, Briefcase, UserCheck, BookOpen, PlusCircle } from 'lucide-react';
+import { Upload, FileText, Briefcase, UserCheck, BookOpen, PlusCircle, Calculator } from 'lucide-react';
 import Navbar from '@/components/Navbar';
 
 const Dashboard = () => {
@@ -37,6 +37,13 @@ const Dashboard = () => {
       icon: <Briefcase className="h-6 w-6" />,
       href: '/opportunities',
       color: 'bg-warning',
+    },
+    {
+      title: 'CGPA Calculator',
+      description: 'Calculate your semester and overall CGPA',
+      icon: <Calculator className="h-6 w-6" />,
+      href: '/cgpa-calculator',
+      color: 'bg-gradient-secondary',
     },
   ];
 
@@ -72,7 +79,7 @@ const Dashboard = () => {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.2, duration: 0.5 }}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8"
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6 mb-8"
         >
           {quickActions.map((action, index) => (
             <motion.div

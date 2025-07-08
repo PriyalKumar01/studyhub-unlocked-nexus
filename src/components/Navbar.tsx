@@ -47,6 +47,7 @@ const Navbar = () => {
     { href: '/view-notes', label: 'Notes', icon: null },
     { href: '/opportunities', label: 'Opportunities', icon: null },
     { href: '/resume-builder', label: 'Resume', icon: null },
+    { href: '/cgpa-calculator', label: 'CGPA', icon: null },
     { href: '/about', label: 'About', icon: null },
   ];
 
@@ -61,7 +62,7 @@ const Navbar = () => {
           {/* Logo */}
           <Link to="/" className="flex items-center space-x-2">
             <img 
-              src="/lovable-uploads/f15f6f50-a4a5-4b2e-b676-422e9520a924.png" 
+              src="/lovable-uploads/f3b6ce00-a0ff-4b44-bbdb-ab5640339741.png" 
               alt="College Study Hub" 
               className="h-12 w-auto"
             />

@@ -25,6 +25,8 @@ import DSANotes from "./pages/DSANotes";
 import CodingStudyMaterial from "./pages/CodingStudyMaterial";
 import WebDevelopmentNotes from "./pages/WebDevelopmentNotes";
 import OpportunityUpload from "./pages/OpportunityUpload";
+import FourthSemesterNotes from "./pages/FourthSemesterNotes";
+import CGPACalculator from "./pages/CGPACalculator";
 import CustomCursor from "./components/CustomCursor";
 import WhatsAppButton from "./components/WhatsAppButton";
 import AuthModal from "./components/AuthModal";
@@ -92,6 +94,8 @@ const App = () => {
               <Route path="/first-semester-notes" element={<FirstSemesterNotes />} />
               <Route path="/second-semester-notes" element={<SecondSemesterNotes />} />
               <Route path="/third-semester-notes" element={<ThirdSemesterNotes />} />
+              <Route path="/fourth-semester-notes" element={<FourthSemesterNotes />} />
+              <Route path="/cgpa-calculator" element={<CGPACalculator />} />
               <Route path="/dsa-notes" element={<DSANotes />} />
               <Route path="/coding-study-material" element={<CodingStudyMaterial />} />
               <Route path="/web-development-notes" element={<WebDevelopmentNotes />} />

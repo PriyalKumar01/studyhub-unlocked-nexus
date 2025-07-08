@@ -156,7 +156,7 @@ const Index = () => {
             >
               <div className="relative float-animation">
                 <img 
-                  src="/lovable-uploads/74279ef2-dc77-4aa2-97ca-c05cd96d2b9a.png" 
+                  src="/lovable-uploads/f3b6ce00-a0ff-4b44-bbdb-ab5640339741.png" 
                   alt="College Study Hub" 
                   className="w-full max-w-md mx-auto pulse-glow"
                 />
@@ -402,7 +402,7 @@ const Index = () => {
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
             <div className="md:col-span-2">
               <img 
-                src="/lovable-uploads/74279ef2-dc77-4aa2-97ca-c05cd96d2b9a.png" 
+                src="/lovable-uploads/f3b6ce00-a0ff-4b44-bbdb-ab5640339741.png" 
                 alt="College Study Hub" 
                 className="h-12 mb-4"
               />

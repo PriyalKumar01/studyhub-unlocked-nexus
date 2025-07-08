@@ -70,9 +70,9 @@ const ThirdSemesterNotes = () => {
       ]
     },
     {
-      id: 'ppl',
-      name: 'Principles of Programming Languages',
-      icon: '⚙️',
+      id: 'python',
+      name: 'Python Programming',
+      icon: '🐍',
       color: 'bg-orange-500',
       notes: [
         { title: 'PP Notes', url: 'https://drive.google.com/file/d/14MsO70g821_IZrtXEp8bezOKnte8Enak/view?usp=drive_link' },
