@@ -45,7 +45,7 @@ const Index = () => {
 
   const stats = [
     {
-      end: 2500,
+      end: 4500,
       suffix: '+',
       title: 'Active Students',
       description: 'Students actively using our platform',
@@ -54,8 +54,8 @@ const Index = () => {
     {
       end: 10000,
       suffix: '+',
-      title: 'Notes Shared',
-      description: 'Study materials shared by students',
+      title: 'Notes Downloaded',
+      description: 'Study materials shared by Us',
       icon: <BookOpen className="h-8 w-8" />,
     },
     {
@@ -66,9 +66,9 @@ const Index = () => {
       icon: <Award className="h-8 w-8" />,
     },
     {
-      end: 15,
+      end: 50,
       suffix: '+',
-      title: 'Branches Covered',
+      title: 'College Covered',
       description: 'Different engineering branches',
       icon: <GraduationCap className="h-8 w-8" />,
     },
@@ -142,7 +142,7 @@ const Index = () => {
                 
                 <Link to="/learning-platforms">
                   <Button variant="outline" className="text-lg px-8 py-3 border-2">
-                    Explore Features
+                    Explore Integrated Platforms
                   </Button>
                 </Link>
               </div>
