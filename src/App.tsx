@@ -11,6 +11,7 @@ import NotesUpload from "./pages/NotesUpload";
 import ViewNotes from "./pages/ViewNotes";
 import ResumeBuilder from "./pages/ResumeBuilder";
 import Opportunities from "./pages/Opportunities";
+import UsefulAITools from './pages/UsefulAITools';
 import About from "./pages/About";
 import LearningPlatforms from "./pages/LearningPlatforms";
 import TermsOfService from "./pages/TermsOfService";
@@ -105,6 +106,7 @@ const App = () => {
               <Route path="/learning-platforms" element={<LearningPlatforms />} />
               <Route path="/about" element={<About />} />
               <Route path="/admin" element={<AdminDashboard />} />
+              <Route path="/useful-ai-tools" element={<UsefulAITools />} />
               <Route path="/terms-of-service" element={<TermsOfService />} />
               <Route path="/privacy-policy" element={<PrivacyPolicy />} />
               <Route path="*" element={<NotFound />} />

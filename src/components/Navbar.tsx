@@ -1,7 +1,7 @@
 import { Link, useLocation } from 'react-router-dom';
 import { SignedIn, SignedOut, UserButton, SignInButton, useUser } from '@clerk/clerk-react';
 import { Button } from '@/components/ui/button';
-import { BookOpen, Menu, X, Shield } from 'lucide-react';
+import { BookOpen, Menu, X, Shield, Sparkles } from 'lucide-react';
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { supabase } from '@/integrations/supabase/client';
@@ -48,6 +48,7 @@ const Navbar = () => {
     { href: '/opportunities', label: 'Opportunities', icon: null },
     { href: '/resume-builder', label: 'Resume', icon: null },
     { href: '/cgpa-calculator', label: 'CGPA', icon: null },
+    { href: '/useful-ai-tools', label: 'AI Tools', icon: <Sparkles className="h-4 w-4" />  },
     { href: '/about', label: 'About', icon: null },
   ];
 
