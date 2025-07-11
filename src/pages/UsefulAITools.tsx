@@ -16,7 +16,7 @@ const UsefulAITools = () => {
       id: 'education',
       name: 'Education / Study Tools',
       icon: '🧠',
-      color: 'bg-blue-500',
+      color: 'bg-cyan-500',
       tools: [
         { title: 'Notion AI', url: 'https://www.notion.so/product/ai', description: 'Productivity booster inside Notion.', access: 'Free + Paid' },
         { title: 'Owlift', url: 'https://owlift.io', description: 'Explains complex topics in simple words.', access: 'Free' },
@@ -25,8 +25,167 @@ const UsefulAITools = () => {
         { title: 'Learn About by Google', url: 'https://learnabout.withgoogle.com', description: 'PDF Q&A with level-based explanations.', access: 'Free' },
         { title: 'AI Dictionary by Sider', url: 'https://sider.ai/tools/dictionary', description: 'Multilingual dictionary with examples.', access: 'Free' },
         { title: 'Glitter AI', url: 'https://glitterai.app', description: 'Turn steps into tutorials from voice/text.', access: 'Free + Paid' },
+        { title: 'Write For Me GPT', url: 'https://writeforme.io', description: 'Generate scripts, vlogs & essays using AI.', access: 'Free-Trial'},
+       { title: 'Consensus', url: 'https://consensus.app', description: 'Research paper-based answers powered by AI.', access: 'Free' },
+        { title: 'Scispace', url: 'https://scispace.com', description: 'AI reader for scientific PDFs with explanations.', access: 'Free' },
+        { title: 'ScholarGPT', url: 'https://scholargpt.net', description: 'Academic search with ChatGPT interface.', access: 'Free' },
+        { title: 'Perplexity AI', url: 'https://www.perplexity.ai', description: 'Ask anything and get web-linked answers.', access: 'Free' }
       ]
     }, 
+    {
+      id: 'presentationTools',
+      name: 'Presentation & Media AI Tools',
+      icon: '📊',
+      color: 'bg-yellow-600',
+      tools: [
+        { title: 'Gamma App', url: 'https://gamma.app', description: 'Auto-generate PPTs from ideas.', access: 'Freemium' },
+        { title: 'Jasper', url: 'https://jasper.ai', description: 'Create high-quality branded content.', access: 'Paid' },
+        { title: 'Pitch', url: 'https://pitch.com', description: 'Modern presentation builder for teams.', access: 'Free + Paid' },
+        { title: 'Runway', url: 'https://runwayml.com', description: 'AI video editing and generation.', access: 'Freemium' },
+        { title: 'Pika Labs', url: 'https://pika.art', description: 'Text to video animations and scenes.', access: 'Free' },
+        { title: 'InVideo', url: 'https://invideo.io', description: 'Create engaging videos with AI templates.', access: 'Freemium' },
+        { title: 'Paper Animator AI', url: 'https://paperanimator.com/', description: 'Transform hand-drawn sketches into animated sequences using AI.', access: 'Free'}
+      ]
+    },
+{
+      id: 'linkedinTools',
+      name: 'LinkedIn & Career Boosters',
+      icon: '💼',
+      color: 'bg-blue-500',
+      tools: [
+        {
+          title: 'Rocket Reach',
+          url: 'https://rocketreach.co',
+          description: 'Find email, phone & LinkedIn profiles for professionals.',
+          access: 'Freemium'
+        },
+        {
+          title: 'Intouch Tool',
+          url: 'https://intouchtool.com',
+          description: 'Automated LinkedIn outreach & connection tool.',
+          access: 'Paid'
+        },
+        {
+          title: 'Careerflow AI',
+          url: 'https://careerflow.ai',
+          description: 'Optimize LinkedIn profile and job tracking.',
+          access: 'Freemium'
+        },
+        {
+          title: 'Taplio X',
+          url: 'https://taplio.com',
+          description: 'Grow LinkedIn audience with daily post suggestions & analytics.',
+          access: 'Paid'
+        }
+      ]
+    },
+    {
+    id: 'aiagents',
+    name: 'AI Agents & Automation',
+    icon: '🧠',
+    color: 'bg-purple-600',
+    tools: [
+      {
+        title: 'AutoGPT',
+        url: 'https://github.com/Torantulino/Auto-GPT',
+        type: 'Free',
+        description: 'Open-source AI agent that performs tasks autonomously.' , access: 'Free'
+      },
+      {
+        title: 'Jarvis (Microsoft)',
+        url: 'https://www.microsoft.com/en-us/ai',
+        type: 'Free',
+        description: 'Microsoft’s personal assistant powered by AI agents.', access: 'Free'
+      },
+      {
+        title: 'Replit Agent',
+        url: 'https://replit.com',
+        type: 'Free-Trial',
+        description: 'AI assistant that builds apps from natural language.', access: 'Free trial'
+      },
+      {
+        title: 'Do Browser',
+        url: 'https://dobrowser.com',
+        type: 'Paid',
+        description: 'Automate tasks in Chrome using voice or text commands.' , access: 'Paid'
+      },
+      {
+        title: 'Deep Research (OpenAI)',
+        url: 'https://openai.com/deep-research',
+        type: 'Paid',
+        description: 'Get deeply researched AI answers with web synthesis.' , access: 'Paid'
+      },
+      {
+    title: "Synthflow AI",
+    description: "AI voice assistant with human voice to automate your sales or appointment calls 24/7.",
+    url: "https://synthflow.ai",
+    access: "Free-Trial", type: 'Free-Trial',
+  },
+  {
+    title: "Fini AI",
+    description: "Turn your docs into a conversational AI assistant to resolve 70% of customer questions instantly.",
+    url: "https://fini.so",
+    access: "Free",
+    type: 'Free',
+  },
+  {
+    title: "SWE-agent",
+    description: "Fix bugs in your GitHub repo using GPT-4 with automated PRs.",
+    url: "https://github.com/Autonomous-AI/SWE-agent",
+    access: "Free",
+    type: 'Free',
+  },
+  {
+    title: "GoalGPT",
+    description: "Autonomous OpenAI-powered agent that completes tasks with minimal input.",
+    url: "https://github.com/goalgpt/GoalGPT",
+    access: "Free",
+    type: 'Free',
+  },
+  {
+    title: "AgentLLM",
+    description: "Open-source autonomous agent framework compatible with LLaMA models.",
+    url: "https://github.com/josh-xt/Agent-LLM",
+    access: "Free",
+    type: 'Free',
+  },
+  {
+    title: "OpenAGI",
+    description: "Experimental multimodal agent that can manipulate images autonomously.",
+    url: "https://github.com/opentibi/OpenAGI",
+    access: "Free",
+    type: 'Free',
+  },
+  {
+    title: "DreamGPT",
+    description: "Generates innovative ideas from hallucinations using GPT-style architecture.",
+    url: "https://github.com/smangrul/DreamGPT",
+    access: "Free",
+    type: 'Free',
+  },
+  {
+    title: "ChatArena",
+    description: "Simulates social interactions between AI agents via language games.",
+    url: "https://github.com/facebookresearch/ChatArena",
+    access: "Free",
+    type: 'Free',
+  },
+  {
+    title: "LoopGPT",
+    description: "Multi-tasking autonomous agent that can be paused and redirected mid-task.",
+    url: "https://github.com/melih-unsal/loopgpt",
+    access: "Freemium",
+    type: 'Freemium',
+  },
+  {
+    title: "Soul Machines AI Agents",
+    description: "Create emotionally intelligent AI agents for businesses and HR.",
+    url: "https://www.soulmachines.com/",
+    access: "Free-Trial",
+    type: 'Free',
+  },
+    ]
+  },
     {
       id: 'text-to-speech',
       name: 'Text-To-Speech / Audio Tools',
@@ -79,7 +238,20 @@ const UsefulAITools = () => {
       color: 'bg-orange-500',
       tools: [
         { title: 'Pinokio', url: 'https://pinokio.computer', description: '1-click AI setup like SD, LLaMA.', access: 'Free' },
-        { title: 'Fal AI', url: 'https://fal.ai', description: 'Deploy CV/NLP AI in apps fast.', access: 'Free' }
+        { title: 'Fal AI', url: 'https://fal.ai', description: 'Deploy CV/NLP AI in apps fast.', access: 'Free' },
+      { title: 'Microsoft Designer', url: 'https://designer.microsoft.com', description: 'Design social posts & visuals with AI.', access: 'Free' },
+        { title: 'Copy AI', url: 'https://copy.ai', description: 'Generate ad copy, captions & content.', access: 'Free + Paid' },
+        { title: 'Pixlr', url: 'https://pixlr.com', description: 'Free online photo editor with AI tools.', access: 'Freemium' },
+        { title: 'Photopea', url: 'https://photopea.com', description: 'Free Photoshop alternative in browser.', access: 'Free' },
+        { title: '10Web', url: 'https://10web.io', description: 'Build full WordPress sites using AI.', access: 'Freemium' },
+        { title: 'Screenshot to Code', url: 'https://screenshot.to/code', description: 'Convert screenshots to HTML code.', access: 'Free' },
+        { title: 'Replit', url: 'https://replit.com', description: 'AI IDE with Ghostwriter for fast dev work.', access: 'Free + Paid' },
+        { title: 'CodeJS', url: 'https://codejs.dev', description: 'AI coding assistant in the browser.', access: 'Free' },
+        { title: 'Blackbox AI', url: 'https://www.useblackbox.io/', description: 'Autocompletes code and explains it in seconds.', access: 'Freemium'},
+        { title: 'Lovable AI', url: 'https://lovable.ai', description: 'AI tools platform for students and devs with multiple utilities.', access: 'Free' },
+        { title: 'Volt VO',url: 'https://voltvo.ai',description: 'Build AI-powered workflows and actions visually.',  access: 'Free-Trial'},
+        { title: 'Clerk.dev',url: 'https://clerk.dev',description: 'Authentication & user management for React apps.', access: 'Freemium' },
+        { title: 'Supabase',url: 'https://supabase.com',description: 'Open-source Firebase alternative with built-in auth, DB, and edge functions.', access: 'Free + Paid'}  
       ]
     },
     {
@@ -100,97 +272,137 @@ const UsefulAITools = () => {
   icon: '🛡️',
   color: 'bg-red-500',
   tools: [
-    {
-      title: 'Undetectable AI',
-      url: 'https://undetectable.ai/',
-      type: 'Freemium',
-      description: 'Make AI-generated text human-like. Ideal for students, SEO writers, etc.'
+    { title: 'Undetectable AI', url: 'https://undetectable.ai/', type: 'Freemium',
+      description: 'Make AI-generated text human-like. Ideal for students, SEO writers, etc.', access: 'Free'
     },
     {
       title: 'GPTZero',
       url: 'https://gptzero.me/',
       type: 'Free',
-      description: 'Detect if your text is AI-written. Fast and reliable plagiarism checker.'
+      description: 'Detect if your text is AI-written. Fast and reliable plagiarism checker.',access: 'Free'
     },
     {
       title: 'QuillBot Humanizer',
       url: 'https://quillbot.com/humanizer',
       type: 'Free',
-      description: 'Refine text to bypass AI detectors with natural phrasing.'
+      description: 'Refine text to bypass AI detectors with natural phrasing.' , access: 'Free'
     },
     {
       title: 'Humanizer AI Tools',
       url: 'https://www.humanizeraitools.com/',
       type: 'Free',
-      description: 'Paste any text and instantly convert it to sound like a human wrote it.'
+      description: 'Paste any text and instantly convert it to sound like a human wrote it.' , access: 'Free'
     }
-  ]
-},{
-  id: 'aiagents',
-  name: 'AI Agents & Automation',
-  icon: '🧠',
-  color: 'bg-purple-600',
+  ] 
+},
+{
+  id: '3dAITools',
+  name: '3D AI & Creative Tools',
+  icon: '🧊',
+  color: 'bg-blue-600',
   tools: [
-    {
-      title: 'AutoGPT',
-      url: 'https://github.com/Torantulino/Auto-GPT',
-      type: 'Free',
-      description: 'Open-source AI agent that performs tasks autonomously.'
-    },
-    {
-      title: 'Jarvis (Microsoft)',
-      url: 'https://www.microsoft.com/en-us/ai',
-      type: 'Free',
-      description: 'Microsoft’s personal assistant powered by AI agents.'
-    },
-    {
-      title: 'Replit Agent',
-      url: 'https://replit.com',
-      type: 'Free-Trial',
-      description: 'AI assistant that builds apps from natural language.'
-    },
-    {
-      title: 'Do Browser',
-      url: 'https://dobrowser.com',
-      type: 'Paid',
-      description: 'Automate tasks in Chrome using voice or text commands.'
-    },
-    {
-      title: 'Deep Research (OpenAI)',
-      url: 'https://openai.com/deep-research',
-      type: 'Paid',
-      description: 'Get deeply researched AI answers with web synthesis.'
-    }
-  ]
+  {
+    title: "Leonardo AI",
+    description: "Design platform for generating 3D assets, textures, and illustrations for games, fashion, etc.",
+    url: "https://leonardo.ai",
+    type: "Freemium"
+  },
+  {
+    title: "Genie by Lumalabs",
+    description: "3D model builder with animations, particles, and Discord integration.",
+    url: "https://lumalabs.ai/genie",
+    type: "Free"
+  },
+  {
+    title: "Kinetix",
+    description: "Create 3D animations with no technical experience required.",
+    url: "https://www.kinetix.tech",
+    type: "Paid"
+  },
+  {
+    title: "Tripo AI",
+    description: "Generate high-quality 3D models from text prompts. Includes API.",
+    url: "https://www.tripo.ai",
+    type: "Free"
+  },
+  {
+    title: "DreamFusion 3D",
+    description: "Text-to-3D object generator project from Google researchers.",
+    url: "https://github.com/ashawkey/dreamfusion",
+    type: "Free"
+  },
+  {
+    title: "Get3D Nvidia",
+    description: "Realistic 3D model generator by Nvidia Labs.",
+    url: "https://nvlabs.github.io/GET3D/",
+    type: "Free"
+  },
+  {
+    title: "Hunyuan3D",
+    description: "Generate 3D characters with animation from text descriptions.",
+    url: "https://hunyuan3d.tencent.com/",
+    type: "Free"
+  },
+  {
+    title: "Krikey AI",
+    description: "3D avatar and scene creation with auto-animation.",
+    url: "https://www.krikey.ai",
+    type: "Freemium"
+  },
+  {
+    title: "Edify 3D",
+    description: "NVIDIA-backed ultra-realistic 3D asset generator with 4K textures.",
+    url: "https://www.edify.ai",
+    type: "Free"
+  },
+  {
+    title: "DeepMotion",
+    description: "Convert videos into animated 3D characters in real-time.",
+    url: "https://www.deepmotion.com/",
+    type: "Freemium"
+  },
+  {
+    title: "DimensionX",
+    description: "Transform images into 3D/4D interactive environments with camera control.",
+    url: "https://dimensionx.ai",
+    type: "Free"
+  },
+  {
+    title: "3D LHM (Alibaba)",
+    description: "Instant image-to-animated-3D converter by Alibaba for VR & games.",
+    url: "https://open.alizila.com/3d-lhm",
+    type: "Free"
+  }
+]
 },{
   id: 'facedetection',
   name: 'Face & Image Search Tools',
   icon: '🖼️',
-  color: 'bg-green-600',
+  color: 'bg-cyan-600',
   tools: [
     {
       title: 'FaceCheck ID',
       url: 'https://facecheck.id/',
       type: 'Freemium',
-      description: 'Find people online using their face image. Reverse face search.'
+      description: 'Find people online using their face image. Reverse face search.', access: 'Free + Paid'
     },
     {
       title: 'DeepFake Detector',
       url: 'https://deepware.ai/deepfake-detector/',
       type: 'Free',
-      description: 'Detect fake or AI-edited images in seconds.'
+      description: 'Detect fake or AI-edited images in seconds.', access: 'Free'
     },
     {
       title: 'PimEyes',
       url: 'https://pimeyes.com/',
       type: 'Freemium',
-      description: 'Upload a photo and find where it appears on the internet.'
+      description: 'Upload a photo and find where it appears on the internet.' , access: 'Free + Paid'
     },
     {
       title: 'Lenso.ai',
       url: 'https://lenso.ai/',
       type: 'Freemium',
-      description: 'AI-powered reverse image search engine with face recognition.'
+      description: 'AI-powered reverse image search engine with face recognition.', access: 'Free+ Paid'
     }
   ]
 },
