@@ -26,21 +26,35 @@ const Opportunities = () => {
   const allOpportunities = {
     //1-10 id is reserve for Internships, 11-20 for Jobs, 21-40 for Scholarships
     Internships: [
-      {
-        id: 1,
-        title: 'Frontend Intern - React',
-        company: 'StartupX',
-        type: 'Technical',
-        location: 'Remote',
-        deadline: '2024-12-15',
-        eligibility: ['B.Tech', 'ReactJS Knowledge', 'Git Basics'],
-        description: 'Join us remotely to build frontend features using React.',
-        applyLink: 'https://startupx.in/apply',
-        postedDate: '2024-07-01',
-        duration: '3 months'
-      },
-      {
-        id: 2,
+     {
+  id: 1,
+  title: 'Full Stack Developer Internship',
+  company: 'Bootcoding Pvt. Ltd.',
+  type: 'Technical',
+  location: 'Remote',
+  deadline: '2025-07-29',
+  eligibility: ['Engineering Students', 'Node.js/Python', 'Full Stack Project Experience'],
+  description: 'Build internal tools & dashboards using React and Node.js. AceInt AI interview required for shortlisting.',
+  applyLink: 'https://unstop.com/internships/full-stack-developer-internship-bootcoding-pvt-ltd-1522846?lb=gBjlX3Ge&utm_medium=Share&utm_source=shortUrl',
+  postedDate: '2025-07-16',
+  duration: '3 months'
+},
+{
+  id: 2,
+  title: 'Data Scientist Internship',
+  company: 'FlatUIUX',
+  type: 'Technical',
+  location: 'Remote',
+  deadline: '2025-08-10',
+  eligibility: ['Engineering Students', 'MBA Students', 'Python/R', 'SQL Knowledge'],
+  description: 'Work with data collection, analysis, ML modeling, and visualization tools like Tableau and Python libraries.',
+  applyLink: 'https://unstop.com/internships/data-scientist-internship-flatuiux-1523259?lb=gBjlX3Ge&utm_medium=Share&utm_source=shortUrl',
+  postedDate: '2025-07-15',
+  duration: '2 months'
+},
+
+{
+        id: 10,
         title: 'Content Writing Intern',
         company: 'EduBlogs',
         type: 'Non-technical',
