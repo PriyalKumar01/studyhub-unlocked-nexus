@@ -15,31 +15,31 @@ const Index = () => {
   const features = [
     {
       icon: <BookOpen className="h-8 w-8" />,
-      title: 'Notes Sharing',
-      description: 'Access thousands of quality notes shared by HBTU students across all branches and semesters.',
+      title: 'Premium Notes',
+      description: 'Access thousands of quality notes for 1st-4th semester with sign-in protection.',
       href: '/view-notes',
       gradient: 'bg-gradient-primary',
     },
     {
-      icon: <Upload className="h-8 w-8" />,
-      title: 'Easy Upload',
-      description: 'Share your notes with fellow students and earn appreciation certificates.',
-      href: '/upload-notes',
-      gradient: 'bg-gradient-secondary',
+      icon: <Briefcase className="h-8 w-8" />,
+      title: 'Opportunities',
+      description: 'Explore internships, jobs, scholarships, hackathons and competitions.',
+      href: '/opportunities',
+      gradient: 'bg-warning',
     },
     {
       icon: <UserCheck className="h-8 w-8" />,
-      title: 'Resume Builder',
-      description: 'Create professional resumes with our easy-to-use builder tailored for students.',
-      href: '/resume-builder',
+      title: 'CGPA Calculator',
+      description: 'Calculate your semester and overall CGPA with our advanced calculator.',
+      href: '/cgpa-calculator',
       gradient: 'bg-accent',
     },
     {
-      icon: <Briefcase className="h-8 w-8" />,
-      title: 'Opportunities',
-      description: 'Explore internships, jobs, and graduate programs from top companies.',
-      href: '/opportunities',
-      gradient: 'bg-warning',
+      icon: <TrendingUp className="h-8 w-8" />,
+      title: 'AI Tools',
+      description: 'Access useful AI tools for students to enhance learning and productivity.',
+      href: '/useful-ai-tools',
+      gradient: 'bg-gradient-secondary',
     },
   ];
 
@@ -84,7 +84,7 @@ const Index = () => {
     {
       name: 'Priya Singh',
       branch: 'Electronics',
-      message: 'The resume builder is fantastic. Got multiple interview calls after using it.',
+      message: 'The CGPA calculator and opportunities section helped me plan my career better.',
       rating: 5,
     },
     {
@@ -286,8 +286,8 @@ const Index = () => {
               },
               {
                 step: '3',
-                title: 'Build & Grow',
-                description: 'Use our resume builder and earn certificates for your contributions to the academic community.',
+                title: 'Excel & Succeed',
+                description: 'Calculate your CGPA, explore career opportunities, and utilize AI tools to boost your academic performance.',
               },
             ].map((step, index) => (
               <motion.div
@@ -419,7 +419,7 @@ const Index = () => {
               <div className="space-y-2">
                 <Link to="/view-notes" className="block text-muted-foreground hover:text-foreground">Notes</Link>
                 <Link to="/opportunities" className="block text-muted-foreground hover:text-foreground">Opportunities</Link>
-                <Link to="/resume-builder" className="block text-muted-foreground hover:text-foreground">Resume Builder</Link>
+                <Link to="/cgpa-calculator" className="block text-muted-foreground hover:text-foreground">CGPA Calculator</Link>
                 <Link to="/about" className="block text-muted-foreground hover:text-foreground">About</Link>
               </div>
             </div>

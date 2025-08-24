@@ -3,13 +3,16 @@ import { motion } from 'framer-motion';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
-import { Download, ArrowLeft, FileText } from 'lucide-react';
+import { Download, ArrowLeft, FileText, Play } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import Navbar from '@/components/Navbar';
+import { useDownloadTracking } from '@/hooks/useDownloadTracking';
+import { ProtectedNotes } from '@/components/ProtectedNotes';
 
 const FirstSemesterNotes = () => {
   const navigate = useNavigate();
   const [selectedSubject, setSelectedSubject] = useState<string | null>(null);
+  const { trackDownload } = useDownloadTracking();
 
   const subjects = [
     {
@@ -178,7 +181,10 @@ const FirstSemesterNotes = () => {
     url: 'https://drive.google.com/file/d/1fZ_EtsAe94yc9-SM20b6P8-j_9pjdOkN/view?usp=drive_link'
   };
 
-  const handleDownload = (url: string, title: string) => {
+  const handleDownload = async (url: string, title: string, subjectName?: string) => {
+    const canDownload = await trackDownload(title, url, '1st Semester', subjectName);
+    if (!canDownload) return;
+
     // Convert Google Drive view link to direct download link
     const fileId = url.match(/\/d\/([a-zA-Z0-9-_]+)/)?.[1];
     if (fileId) {
@@ -194,10 +200,11 @@ const FirstSemesterNotes = () => {
     if (!subject) return null;
 
     return (
-      <div className="min-h-screen bg-gradient-hero">
-        <Navbar />
-        
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <ProtectedNotes>
+        <div className="min-h-screen bg-gradient-hero">
+          <Navbar />
+          
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -245,7 +252,7 @@ const FirstSemesterNotes = () => {
                   </CardHeader>
                   <CardContent>
                     <Button
-                      onClick={() => handleDownload(note.url, note.title)}
+                      onClick={() => handleDownload(note.url, note.title, subject.name)}
                       className="w-full btn-hero"
                     >
                       <Download className="h-4 w-4 mr-2" />
@@ -257,13 +264,15 @@ const FirstSemesterNotes = () => {
             ))}
           </div>
         </div>
-      </div>
+        </div>
+      </ProtectedNotes>
     );
   }
 
   return (
-    <div className="min-h-screen bg-gradient-hero">
-      <Navbar />
+    <ProtectedNotes>
+      <div className="min-h-screen bg-gradient-hero">
+        <Navbar />
       
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <motion.div
@@ -308,7 +317,7 @@ const FirstSemesterNotes = () => {
             </CardHeader>
             <CardContent>
               <Button
-                onClick={() => handleDownload(syllabus.url, syllabus.title)}
+                onClick={() => handleDownload(syllabus.url, syllabus.title, 'Syllabus')}
                 className="btn-hero"
               >
                 <Download className="h-4 w-4 mr-2" />
@@ -342,9 +351,27 @@ const FirstSemesterNotes = () => {
                   </CardDescription>
                 </CardHeader>
                 <CardContent>
-                  <div className="flex items-center justify-between">
-                    <Badge variant="secondary">{subject.notes.length} Files</Badge>
-                    <Button variant="outline" size="sm">View Notes</Button>
+                  <div className="space-y-3">
+                    <div className="flex items-center justify-between">
+                      <Badge variant="secondary">{subject.notes.length} Files</Badge>
+                      <Button variant="outline" size="sm">View Notes</Button>
+                    </div>
+                    
+                    {/* Best Playlist Section */}
+                    <div className="pt-2 border-t">
+                      <h4 className="text-sm font-medium mb-2 flex items-center gap-2">
+                        <Play className="h-4 w-4" />
+                        Best Study Playlists
+                      </h4>
+                      <div className="space-y-1">
+                        <Button variant="ghost" size="sm" className="w-full justify-start text-xs h-8" disabled>
+                          📺 One Shot Videos - Coming Soon
+                        </Button>
+                        <Button variant="ghost" size="sm" className="w-full justify-start text-xs h-8" disabled>
+                          📚 Detailed Playlist - Coming Soon
+                        </Button>
+                      </div>
+                    </div>
                   </div>
                 </CardContent>
               </Card>
@@ -352,7 +379,8 @@ const FirstSemesterNotes = () => {
           ))}
         </div>
       </div>
-    </div>
+      </div>
+    </ProtectedNotes>
   );
 };
 

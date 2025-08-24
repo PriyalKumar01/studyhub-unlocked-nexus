@@ -7,9 +7,7 @@ import { useEffect, useState } from "react";
 import { useUser } from "@clerk/clerk-react";
 import Index from "./pages/Index";
 import Dashboard from "./pages/Dashboard";
-import NotesUpload from "./pages/NotesUpload";
 import ViewNotes from "./pages/ViewNotes";
-import ResumeBuilder from "./pages/ResumeBuilder";
 import Opportunities from "./pages/Opportunities";
 import UsefulAITools from './pages/UsefulAITools';
 import About from "./pages/About";
@@ -89,7 +87,6 @@ const App = () => {
             <Routes>
               <Route path="/" element={<Index />} />
               <Route path="/dashboard" element={<Dashboard />} />
-              <Route path="/upload-notes" element={<NotesUpload />} />
               <Route path="/view-notes" element={<ViewNotes />} />
               <Route path="/btech-notes" element={<BTechNotes />} />
               <Route path="/first-semester-notes" element={<FirstSemesterNotes />} />
@@ -100,7 +97,6 @@ const App = () => {
               <Route path="/dsa-notes" element={<DSANotes />} />
               <Route path="/coding-study-material" element={<CodingStudyMaterial />} />
               <Route path="/web-development-notes" element={<WebDevelopmentNotes />} />
-              <Route path="/resume-builder" element={<ResumeBuilder />} />
               <Route path="/opportunities" element={<Opportunities />} />
               <Route path="/upload-opportunity" element={<OpportunityUpload />} />
               <Route path="/learning-platforms" element={<LearningPlatforms />} />

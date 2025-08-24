@@ -7,7 +7,7 @@ export type Json =
   | Json[]
 
 export type Database = {
-  // Allows to automatically instanciate createClient with right options
+  // Allows to automatically instantiate createClient with right options
   // instead of createClient<Database, { PostgrestVersion: 'XX' }>(URL, KEY)
   __InternalSupabase: {
     PostgrestVersion: "12.2.3 (519615d)"
@@ -38,6 +38,48 @@ export type Database = {
           role?: string
           user_email?: string
           user_phone?: string | null
+        }
+        Relationships: []
+      }
+      note_downloads: {
+        Row: {
+          download_timestamp: string
+          id: string
+          ip_address: string | null
+          note_title: string
+          note_url: string
+          semester: string | null
+          subject: string | null
+          user_agent: string | null
+          user_email: string
+          user_id: string | null
+          user_name: string | null
+        }
+        Insert: {
+          download_timestamp?: string
+          id?: string
+          ip_address?: string | null
+          note_title: string
+          note_url: string
+          semester?: string | null
+          subject?: string | null
+          user_agent?: string | null
+          user_email: string
+          user_id?: string | null
+          user_name?: string | null
+        }
+        Update: {
+          download_timestamp?: string
+          id?: string
+          ip_address?: string | null
+          note_title?: string
+          note_url?: string
+          semester?: string | null
+          subject?: string | null
+          user_agent?: string | null
+          user_email?: string
+          user_id?: string | null
+          user_name?: string | null
         }
         Relationships: []
       }
@@ -209,6 +251,36 @@ export type Database = {
             referencedColumns: ["id"]
           },
         ]
+      }
+      resume_analyses: {
+        Row: {
+          analysis_result: Json | null
+          created_at: string
+          file_name: string | null
+          file_path: string | null
+          id: string
+          overall_score: number | null
+          user_id: string | null
+        }
+        Insert: {
+          analysis_result?: Json | null
+          created_at?: string
+          file_name?: string | null
+          file_path?: string | null
+          id?: string
+          overall_score?: number | null
+          user_id?: string | null
+        }
+        Update: {
+          analysis_result?: Json | null
+          created_at?: string
+          file_name?: string | null
+          file_path?: string | null
+          id?: string
+          overall_score?: number | null
+          user_id?: string | null
+        }
+        Relationships: []
       }
     }
     Views: {

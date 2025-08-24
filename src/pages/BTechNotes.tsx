@@ -179,8 +179,8 @@ const BTechNotes = () => {
             and important resources to help you excel in your engineering journey.
           </p>
           <div className="mt-4 flex flex-wrap gap-2">
-            <Badge variant="outline">✅ 1st-4th Semester Available</Badge>
-            <Badge variant="outline">⏳ More Semesters Coming Soon</Badge>
+            <Badge variant="outline" className="bg-green-100 text-green-700 border-green-300">✅ 1st-4th Semester Available</Badge>
+            <Badge variant="outline" className="bg-orange-100 text-orange-700 border-orange-300">⏳ More Semesters Coming Soon</Badge>
             <Badge variant="outline">📝 Student Contributions</Badge>
             <Badge variant="outline">🔍 Easy Search & Filter</Badge>
           </div>

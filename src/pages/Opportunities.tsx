@@ -14,11 +14,13 @@ const Opportunities = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [filterType, setFilterType] = useState('all');
   const [filterLocation, setFilterLocation] = useState('all');
-  const [activeTab, setActiveTab] = useState<'Internships' | 'Jobs' | 'Scholarships'>('Internships');
+  const [activeTab, setActiveTab] = useState<'Internships' | 'Jobs' | 'Scholarships' | 'Hackathons' | 'Competitions'>('Internships');
   const filters = {
     Internships: ['all', 'Technical', 'Non-technical', 'Online', 'Hybrid', 'Onsite'],
     Jobs: ['all', 'Full-time', 'Part-time', 'Remote', 'Hybrid', 'Onsite'],
-    Scholarships: ['all', 'Merit-based', 'Women-only', 'Merit-cum-Need Based','Open-for-all']
+    Scholarships: ['all', 'Merit-based', 'Women-only', 'Merit-cum-Need Based','Open-for-all'],
+    Hackathons: ['all', 'Web Development', 'AI/ML', 'Blockchain', 'Mobile App', 'Gaming'],
+    Competitions: ['all', 'Coding', 'Design', 'Innovation', 'Business', 'Technical']
   };
 
   const locations = ['all', 'Bangalore', 'Mumbai', 'Hyderabad', 'Delhi','Kanpur', 'Hybrid','Online' ];
@@ -290,6 +292,62 @@ const Opportunities = () => {
   postedDate: '2025-07-16',
   duration: '2 years'
 },
+    ],
+    Hackathons: [
+      {
+        id: 41,
+        title: 'Smart India Hackathon 2025',
+        company: 'Government of India',
+        type: 'Web Development',
+        location: 'Multiple Cities',
+        deadline: '2025-09-15',
+        eligibility: ['Engineering Students', 'Team of 6 members', 'Innovation mindset'],
+        description: 'Indias biggest hackathon to solve real-world problems using technology.',
+        applyLink: 'https://sih.gov.in/',
+        postedDate: '2025-07-01',
+        duration: '36 hours'
+      },
+      {
+        id: 42,
+        title: 'HackNUTH 2025',
+        company: 'NIT Hamirpur',
+        type: 'AI/ML',
+        location: 'Hamirpur, HP',
+        deadline: '2025-10-20',
+        eligibility: ['College Students', 'AI/ML knowledge', 'Team of 2-4'],
+        description: 'Annual hackathon focusing on AI and Machine Learning solutions.',
+        applyLink: 'https://hacknuth.com/',
+        postedDate: '2025-07-10',
+        duration: '24 hours'
+      }
+    ],
+    Competitions: [
+      {
+        id: 51,
+        title: 'CodeChef October Challenge',
+        company: 'CodeChef',
+        type: 'Coding',
+        location: 'Online',
+        deadline: '2025-10-31',
+        eligibility: ['Programming knowledge', 'Any level welcome'],
+        description: 'Monthly coding contest with exciting prizes and global rankings.',
+        applyLink: 'https://codechef.com/',
+        postedDate: '2025-08-01',
+        duration: '10 days'
+      },
+      {
+        id: 52,
+        title: 'Google Solution Challenge 2025',
+        company: 'Google',
+        type: 'Innovation',
+        location: 'Global',
+        deadline: '2025-12-01',
+        eligibility: ['University students', 'Team of 1-4', 'Google technologies'],
+        description: 'Build solutions for UN Sustainable Development Goals using Google tech.',
+        applyLink: 'https://developers.google.com/community/gdsc-solution-challenge',
+        postedDate: '2025-07-20',
+        duration: '3 months'
+      }
     ]
   };
 
@@ -324,8 +382,8 @@ const Opportunities = () => {
         </p>
 
         {/* Tabs */}
-        <div className="flex gap-2 mb-6 ">
-          {['Internships', 'Jobs', 'Scholarships'].map(tab => (
+        <div className="flex flex-wrap gap-2 mb-6">
+          {['Internships', 'Jobs', 'Scholarships', 'Hackathons', 'Competitions'].map(tab => (
             <Button
               key={tab}
               variant={activeTab === tab ? 'default' : 'outline'}
