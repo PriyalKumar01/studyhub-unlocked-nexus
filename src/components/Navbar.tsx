@@ -46,7 +46,6 @@ const Navbar = () => {
     { href: '/dashboard', label: 'Dashboard', icon: null },
     { href: '/view-notes', label: 'Notes', icon: null },
     { href: '/opportunities', label: 'Opportunities', icon: null },
-    { href: '/resume-builder', label: 'Resume', icon: null },
     { href: '/cgpa-calculator', label: 'CGPA', icon: null },
     { href: '/useful-ai-tools', label: 'AI Tools', icon: <Sparkles className="h-4 w-4" />  },
     { href: '/about', label: 'About', icon: null },
