@@ -5,7 +5,7 @@ import { Badge } from '@/components/ui/badge';
 import { ArrowLeft, BookOpen, GraduationCap } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import Navbar from '@/components/Navbar';
-import { ProtectedNotes } from '@/components/ProtectedNotes';   // ✅ yeh add kiya
+  
 
 const BTechNotes = () => {
   const navigate = useNavigate();
@@ -76,7 +76,7 @@ const BTechNotes = () => {
   };
 
   return (
-    <ProtectedNotes>
+    
       <div className="min-h-screen bg-gradient-hero">
         <Navbar />
         
@@ -189,7 +189,7 @@ const BTechNotes = () => {
           </motion.div>
         </div>
       </div>
-    </ProtectedNotes>
+    
   );
 };
 

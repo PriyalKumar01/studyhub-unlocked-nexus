@@ -6,13 +6,12 @@ import { Badge } from '@/components/ui/badge';
 import { Download, ArrowLeft, FileText } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import Navbar from '@/components/Navbar';
-import { useDownloadTracking } from '@/hooks/useDownloadTracking';
-import { ProtectedNotes } from '@/components/ProtectedNotes';
+
 
 const FourthSemesterNotes = () => {
   const navigate = useNavigate();
   const [selectedSubject, setSelectedSubject] = useState<string | null>(null);
-  const { trackDownload } = useDownloadTracking();
+  
   const subjects = [
     {
       id: 'em',
@@ -169,9 +168,8 @@ const FourthSemesterNotes = () => {
     url: 'https://drive.google.com/file/d/1Pj0S0G7EnEaFwQfBPndyIE_v37Z_P4pi/view?usp=drive_link'
   };
 
-  const handleDownload = async(url: string, title: string, subjectName?: string) => {
-    const canDownload = await trackDownload(title, url, '1st Semester', subjectName);
-    if (!canDownload) return;
+  const handleDownload = (url: string, title: string) => {
+    
     // Extract file ID from Google Drive URL
     const fileId = url.match(/\/d\/([a-zA-Z0-9-_]+)/)?.[1];
     if (fileId) {
@@ -187,7 +185,7 @@ const FourthSemesterNotes = () => {
     if (!subject) return null;
 
     return (
-      <ProtectedNotes>
+      
       <div className="min-h-screen bg-gradient-hero">
         <Navbar />
         
@@ -252,14 +250,14 @@ const FourthSemesterNotes = () => {
           </div>
         </div>
       </div>
-    </ProtectedNotes>
+    
 
     );
   }
 
   return (
   
-    <ProtectedNotes>
+    
     <div className="min-h-screen bg-gradient-hero">
       <Navbar />
       
@@ -353,7 +351,7 @@ const FourthSemesterNotes = () => {
         </div>
       </div>
     </div>
-  </ProtectedNotes>
+  
 
   );
 };

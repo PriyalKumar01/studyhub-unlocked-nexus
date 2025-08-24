@@ -6,13 +6,11 @@ import { Badge } from '@/components/ui/badge';
 import { Download, ArrowLeft, FileText, Play } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import Navbar from '@/components/Navbar';
-import { useDownloadTracking } from '@/hooks/useDownloadTracking';
-import { ProtectedNotes } from '@/components/ProtectedNotes';
 
 const FirstSemesterNotes = () => {
   const navigate = useNavigate();
   const [selectedSubject, setSelectedSubject] = useState<string | null>(null);
-  const { trackDownload } = useDownloadTracking();
+  
 
   const subjects = [
     {
@@ -181,9 +179,8 @@ const FirstSemesterNotes = () => {
     url: 'https://drive.google.com/file/d/1fZ_EtsAe94yc9-SM20b6P8-j_9pjdOkN/view?usp=drive_link'
   };
 
-  const handleDownload = async (url: string, title: string, subjectName?: string) => {
-    const canDownload = await trackDownload(title, url, '1st Semester', subjectName);
-    if (!canDownload) return;
+  const handleDownload = (url: string, title: string) => {
+    
 
     // Convert Google Drive view link to direct download link
     const fileId = url.match(/\/d\/([a-zA-Z0-9-_]+)/)?.[1];
@@ -200,7 +197,7 @@ const FirstSemesterNotes = () => {
     if (!subject) return null;
 
     return (
-      <ProtectedNotes>
+      
         <div className="min-h-screen bg-gradient-hero">
           <Navbar />
           
@@ -252,7 +249,7 @@ const FirstSemesterNotes = () => {
                   </CardHeader>
                   <CardContent>
                     <Button
-                      onClick={() => handleDownload(note.url, note.title, subject.name)}
+                      onClick={() => handleDownload(note.url, note.title)}
                       className="w-full btn-hero"
                     >
                       <Download className="h-4 w-4 mr-2" />
@@ -265,12 +262,12 @@ const FirstSemesterNotes = () => {
           </div>
         </div>
         </div>
-      </ProtectedNotes>
+      
     );
   }
 
   return (
-    <ProtectedNotes>
+    
       <div className="min-h-screen bg-gradient-hero">
         <Navbar />
       
@@ -317,7 +314,7 @@ const FirstSemesterNotes = () => {
             </CardHeader>
             <CardContent>
               <Button
-                onClick={() => handleDownload(syllabus.url, syllabus.title, 'Syllabus')}
+                onClick={() => handleDownload(syllabus.url, syllabus.title )}
                 className="btn-hero"
               >
                 <Download className="h-4 w-4 mr-2" />
@@ -380,7 +377,7 @@ const FirstSemesterNotes = () => {
         </div>
       </div>
       </div>
-    </ProtectedNotes>
+    
   );
 };
 
