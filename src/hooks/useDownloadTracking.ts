@@ -1,9 +1,9 @@
-import { useUser } from '@clerk/clerk-react';
+import { useAuth } from '@/contexts/AuthContext';
 import { supabase } from '@/integrations/supabase/client';
 import { useToast } from '@/hooks/use-toast';
 
 export const useDownloadTracking = () => {
-  const { user } = useUser();
+  const { user } = useAuth();
   const { toast } = useToast();
 
   const trackDownload = async (
@@ -22,12 +22,19 @@ export const useDownloadTracking = () => {
     }
 
     try {
+      // Get user profile for additional info
+      const { data: profile } = await supabase
+        .from('profiles')
+        .select('first_name, last_name')
+        .eq('user_id', user.id)
+        .single();
+
       const { error } = await supabase
         .from('note_downloads')
         .insert({
           user_id: user.id,
-          user_email: user.emailAddresses[0]?.emailAddress || '',
-          user_name: user.fullName || '',
+          user_email: user.email || '',
+          user_name: profile ? `${profile.first_name} ${profile.last_name}`.trim() : '',
           note_title: noteTitle,
           note_url: noteUrl,
           semester,

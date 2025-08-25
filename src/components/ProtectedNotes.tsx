@@ -1,4 +1,4 @@
-import { useUser } from '@clerk/clerk-react';
+import { useAuth } from '@/contexts/AuthContext';
 import { ReactNode } from 'react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -9,9 +9,9 @@ interface ProtectedNotesProps {
 }
 
 export const ProtectedNotes = ({ children }: ProtectedNotesProps) => {
-  const { isSignedIn, user } = useUser();
+  const { user } = useAuth();
 
-  if (!isSignedIn) {
+  if (!user) {
     return (
       <div className="min-h-screen bg-gradient-hero flex items-center justify-center p-4">
         <Card className="max-w-md w-full gradient-card">
@@ -32,7 +32,7 @@ export const ProtectedNotes = ({ children }: ProtectedNotesProps) => {
             </div>
             <Button 
               className="w-full btn-hero" 
-              onClick={() => window.location.href = '/'}
+              onClick={() => window.location.href = '/auth'}
             >
               <User className="h-4 w-4 mr-2" />
               Go to Sign In

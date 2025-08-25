@@ -6,11 +6,14 @@ import { Badge } from '@/components/ui/badge';
 import { Download, ArrowLeft, FileText } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import Navbar from '@/components/Navbar';
+import { useDownloadTracking } from '@/hooks/useDownloadTracking';
+import { ProtectedNotes } from '@/components/ProtectedNotes';
 
 
 const FourthSemesterNotes = () => {
   const navigate = useNavigate();
   const [selectedSubject, setSelectedSubject] = useState<string | null>(null);
+  const { trackDownload } = useDownloadTracking();
   
   const subjects = [
     {
@@ -168,7 +171,9 @@ const FourthSemesterNotes = () => {
     url: 'https://drive.google.com/file/d/1Pj0S0G7EnEaFwQfBPndyIE_v37Z_P4pi/view?usp=drive_link'
   };
 
-  const handleDownload = (url: string, title: string) => {
+  const handleDownload = async (url: string, title: string, subjectName?: string) => {
+    const canDownload = await trackDownload(title, url, '4th Semester', subjectName);
+    if (!canDownload) return;
     
     // Extract file ID from Google Drive URL
     const fileId = url.match(/\/d\/([a-zA-Z0-9-_]+)/)?.[1];
@@ -185,8 +190,8 @@ const FourthSemesterNotes = () => {
     if (!subject) return null;
 
     return (
-      
-      <div className="min-h-screen bg-gradient-hero">
+      <ProtectedNotes>
+        <div className="min-h-screen bg-gradient-hero">
         <Navbar />
         
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
@@ -249,19 +254,17 @@ const FourthSemesterNotes = () => {
             ))}
           </div>
         </div>
-      </div>
-    
-
+        </div>
+      </ProtectedNotes>
     );
   }
 
   return (
-  
-    
-    <div className="min-h-screen bg-gradient-hero">
-      <Navbar />
-      
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <ProtectedNotes>
+      <div className="min-h-screen bg-gradient-hero">
+        <Navbar />
+        
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -303,13 +306,13 @@ const FourthSemesterNotes = () => {
               </CardDescription>
             </CardHeader>
             <CardContent>
-              <Button
-                onClick={() => handleDownload(syllabus.url, syllabus.title)}
-                className="btn-hero"
-              >
-                <Download className="h-4 w-4 mr-2" />
-                Download Syllabus
-              </Button>
+            <Button
+              onClick={() => handleDownload(syllabus.url, syllabus.title, 'Syllabus')}
+              className="btn-hero"
+            >
+              <Download className="h-4 w-4 mr-2" />
+              Download Syllabus
+            </Button>
             </CardContent>
           </Card>
         </motion.div>
@@ -349,10 +352,9 @@ const FourthSemesterNotes = () => {
             </motion.div>
           ))}
         </div>
+        </div>
       </div>
-    </div>
-  
-
+    </ProtectedNotes>
   );
 };
 
