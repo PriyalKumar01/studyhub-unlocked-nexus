@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { useUser } from '@clerk/clerk-react';
+import { useAuth } from '@/contexts/AuthContext';
 import { motion } from 'framer-motion';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -14,7 +14,7 @@ import { useToast } from '@/hooks/use-toast';
 import Navbar from '@/components/Navbar';
 
 const AdminDashboard = () => {
-  const { user } = useUser();
+  const { user } = useAuth();
   const { toast } = useToast();
   const [isAdmin, setIsAdmin] = useState(false);
   const [loading, setLoading] = useState(true);
@@ -32,7 +32,7 @@ const AdminDashboard = () => {
       const { data, error } = await supabase
         .from('admin_roles')
         .select('*')
-        .eq('user_email', user?.emailAddresses[0]?.emailAddress)
+        .eq('user_email', user?.email)
         .single();
 
       if (error && error.code !== 'PGRST116') {

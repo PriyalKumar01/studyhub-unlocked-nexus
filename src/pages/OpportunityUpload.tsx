@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { useUser } from '@clerk/clerk-react';
+import { useAuth } from '@/contexts/AuthContext';
 import { motion } from 'framer-motion';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -14,7 +14,7 @@ import Navbar from '@/components/Navbar';
 import { useNavigate } from 'react-router-dom';
 
 const OpportunityUpload = () => {
-  const { user } = useUser();
+  const { user } = useAuth();
   const { toast } = useToast();
   const navigate = useNavigate();
   const [isAdmin, setIsAdmin] = useState(false);
@@ -44,7 +44,7 @@ const OpportunityUpload = () => {
       const { data, error } = await supabase
         .from('admin_roles')
         .select('*')
-        .eq('user_email', user?.emailAddresses[0]?.emailAddress)
+        .eq('user_email', user?.email)
         .single();
 
       if (error && error.code !== 'PGRST116') {
@@ -148,7 +148,7 @@ const OpportunityUpload = () => {
           deadline: formData.deadline || null,
           image_url: imageUrl,
           created_by: user.id,
-          user_name: user.fullName || user.firstName || 'Admin',
+          user_name: user.email?.split('@')[0] || 'Admin',
         });
 
       if (insertError) {

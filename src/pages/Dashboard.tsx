@@ -1,4 +1,4 @@
-import { useUser } from '@clerk/clerk-react';
+import { useAuth } from '@/contexts/AuthContext';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
@@ -7,7 +7,7 @@ import { FileText, Briefcase, BookOpen, PlusCircle, Calculator, Bot, Trophy, Spa
 import Navbar from '@/components/Navbar';
 
 const Dashboard = () => {
-  const { user } = useUser();
+  const { user } = useAuth();
 
   const quickActions = [
     {
@@ -74,7 +74,7 @@ const Dashboard = () => {
           className="mb-8"
         >
           <h1 className="text-3xl md:text-4xl font-bold text-foreground mb-2">
-            Welcome back, {user?.firstName || 'Student'}! 👋
+            Welcome back, {user?.email?.split('@')[0] || 'Student'}! 👋
           </h1>
           <p className="text-muted-foreground text-lg">
             Ready to continue your academic journey? Here's what you can do today.

@@ -3,13 +3,13 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { navItems } from "./nav-items";
-import ThemeProvider from "./providers/ThemeProvider";
+import { ThemeProvider } from "./providers/ThemeProvider";
 import { AuthProvider } from "./contexts/AuthContext";
 import CookieConsent from "./components/CookieConsent";
 import CustomCursor from "./components/CustomCursor";
 import WhatsAppButton from "./components/WhatsAppButton";
 import ScrollToTop from "./components/ScrollToTop";
-import Auth from "./pages/Auth";
+import AuthOTP from "./pages/AuthOTP";
 
 const queryClient = new QueryClient();
 
@@ -24,7 +24,7 @@ const App = () => {
               <ScrollToTop />
               <CustomCursor />
               <Routes>
-                <Route path="/auth" element={<Auth />} />
+                <Route path="/auth" element={<AuthOTP />} />
                 {navItems.map(({ to, page }) => (
                   <Route key={to} path={to} element={page} />
                 ))}

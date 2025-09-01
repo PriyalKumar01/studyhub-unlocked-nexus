@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { SignedIn, SignedOut, SignInButton } from '@clerk/clerk-react';
+import { useAuth } from '@/contexts/AuthContext';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
@@ -12,6 +12,7 @@ import Navbar from '@/components/Navbar';
 import AnimatedCounter from '@/components/AnimatedCounter';
 
 const Index = () => {
+  const { user } = useAuth();
   const features = [
     {
       icon: <BookOpen className="h-8 w-8" />,
@@ -123,22 +124,21 @@ const Index = () => {
               </p>
               
               <div className="flex flex-col sm:flex-row gap-4">
-                <SignedOut>
-                  <SignInButton>
-                    <Button className="btn-hero text-lg px-8 py-3">
-                      Get Started Free
-                      <ArrowRight className="ml-2 h-5 w-5" />
-                    </Button>
-                  </SignInButton>
-                </SignedOut>
-                <SignedIn>
+                {user ? (
                   <Link to="/dashboard">
                     <Button className="btn-hero text-lg px-8 py-3">
                       Go to Dashboard
                       <ArrowRight className="ml-2 h-5 w-5" />
                     </Button>
                   </Link>
-                </SignedIn>
+                ) : (
+                  <Link to="/auth">
+                    <Button className="btn-hero text-lg px-8 py-3">
+                      Get Started Free
+                      <ArrowRight className="ml-2 h-5 w-5" />
+                    </Button>
+                  </Link>
+                )}
                 
                 <Link to="/learning-platforms">
                   <Button variant="outline" className="text-lg px-8 py-3 border-2">
@@ -376,22 +376,21 @@ const Index = () => {
               Join thousands of students who are already benefiting from our comprehensive platform.
             </p>
             
-            <SignedOut>
-              <SignInButton>
-                <Button variant="secondary" className="text-lg px-8 py-3">
-                  Get Started Now - It's Free!
-                  <ArrowRight className="ml-2 h-5 w-5" />
-                </Button>
-              </SignInButton>
-            </SignedOut>
-            <SignedIn>
+            {user ? (
               <Link to="/dashboard">
                 <Button variant="secondary" className="text-lg px-8 py-3">
                   Continue to Dashboard
                   <ArrowRight className="ml-2 h-5 w-5" />
                 </Button>
               </Link>
-            </SignedIn>
+            ) : (
+              <Link to="/auth">
+                <Button variant="secondary" className="text-lg px-8 py-3">
+                  Get Started Now - It's Free!
+                  <ArrowRight className="ml-2 h-5 w-5" />
+                </Button>
+              </Link>
+            )}
           </motion.div>
         </div>
       </section>
