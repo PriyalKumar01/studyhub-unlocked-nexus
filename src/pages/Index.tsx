@@ -18,7 +18,7 @@ const Index = () => {
       icon: <BookOpen className="h-8 w-8" />,
       title: 'Premium Notes',
       description: 'Access thousands of quality notes for 1st-4th semester with sign-in protection.',
-      href: '/view-notes',
+      href: '/notes',
       gradient: 'bg-gradient-primary',
     },
     {
@@ -416,7 +416,7 @@ const Index = () => {
             <div>
               <h3 className="font-semibold mb-4">Quick Links</h3>
               <div className="space-y-2">
-                <Link to="/view-notes" className="block text-muted-foreground hover:text-foreground">Notes</Link>
+                <Link to="/notes" className="block text-muted-foreground hover:text-foreground">Notes</Link>
                 <Link to="/opportunities" className="block text-muted-foreground hover:text-foreground">Opportunities</Link>
                 <Link to="/cgpa-calculator" className="block text-muted-foreground hover:text-foreground">CGPA Calculator</Link>
                 <Link to="/about" className="block text-muted-foreground hover:text-foreground">About</Link>

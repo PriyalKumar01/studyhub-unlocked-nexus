@@ -26,7 +26,11 @@ interface SessionData {
 const AuthOTP = () => {
   const [authMode, setAuthMode] = useState<'email' | 'mobile'>('email');
   const [step, setStep] = useState<'form' | 'otp' | 'success'>('form');
-  const [isLogin, setIsLogin] = useState(true); // New state to differentiate login vs signup
+  
+  // Check URL params for mode
+  const urlParams = new URLSearchParams(window.location.search);
+  const initialMode = urlParams.get('mode') === 'signup' ? false : true;
+  const [isLogin, setIsLogin] = useState(initialMode);
   const [isLoading, setIsLoading] = useState(false);
   const [otp, setOtp] = useState('');
   const [sessionData, setSessionData] = useState<SessionData | null>(null);
@@ -154,9 +158,8 @@ const AuthOTP = () => {
     try {
       const contact = authMode === 'email' ? formData.email : `+91${formData.mobileNumber}`;
       
-      // Prepare user metadata for signup
+      // For signup, we need to create user with metadata
       const signUpOptions = isLogin ? {} : {
-        shouldCreateUser: true,
         data: {
           full_name: formData.fullName,
           username: formData.username,
@@ -166,7 +169,10 @@ const AuthOTP = () => {
       const { error } = await supabase.auth.signInWithOtp({
         email: authMode === 'email' ? contact : undefined,
         phone: authMode === 'mobile' ? contact : undefined,
-        options: signUpOptions
+        options: {
+          ...signUpOptions,
+          shouldCreateUser: !isLogin // Only create user for signup
+        }
       });
 
       if (error) {

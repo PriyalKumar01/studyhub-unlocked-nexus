@@ -1,6 +1,7 @@
 import Index from "./pages/Index";
 import About from "./pages/About";
 import BTechNotes from "./pages/BTechNotes";
+import NotesCategories from "./pages/NotesCategories";
 import CGPACalculator from "./pages/CGPACalculator";
 import CodingStudyMaterial from "./pages/CodingStudyMaterial";
 import DSANotes from "./pages/DSANotes";
@@ -31,6 +32,10 @@ export const navItems = [
   {
     to: "/btech-notes",
     page: <BTechNotes />,
+  },
+  {
+    to: "/notes",
+    page: <NotesCategories />,
   },
   {
     to: "/cgpa-calculator",

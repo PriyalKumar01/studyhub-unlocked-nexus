@@ -88,7 +88,7 @@ const BTechNotes = () => {
             className="mb-8"
           >
             <Button
-              onClick={() => navigate('/view-notes')}
+              onClick={() => navigate('/notes')}
               variant="outline"
               className="mb-4"
             >

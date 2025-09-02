@@ -1,6 +1,14 @@
 import { useState } from 'react';
 import { Menu, X, Moon, Sun, LogOut, User } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { 
+  DropdownMenu, 
+  DropdownMenuContent, 
+  DropdownMenuItem, 
+  DropdownMenuLabel, 
+  DropdownMenuSeparator, 
+  DropdownMenuTrigger 
+} from '@/components/ui/dropdown-menu';
 import { useTheme } from '@/providers/ThemeProvider';
 import { useAuth } from '@/contexts/AuthContext';
 import { Link, useLocation } from 'react-router-dom';
@@ -16,8 +24,8 @@ const Navbar = () => {
   const navItems = [
     { href: '/', label: 'Home', category: 'main' },
     { href: '/dashboard', label: 'Dashboard', category: 'main' },
-    { href: '/btech-notes', label: 'Notes', category: 'academic' },
-    { href: '/opportunities', label: 'Opportunities', category: 'academic' },
+    { href: '/notes', label: 'Notes', category: 'academic', animated: true },
+    { href: '/opportunities', label: 'Opportunities', category: 'academic', animated: true },
     { href: '/cgpa-calculator', label: 'CGPA', category: 'tools' },
     { href: '/useful-ai-tools', label: 'AI Tools', category: 'tools' },
     { href: '/about', label: 'About', category: 'main' }
@@ -49,7 +57,7 @@ const Navbar = () => {
                       isActive(item.href)
                         ? 'text-primary'
                         : 'text-foreground hover:text-primary'
-                    }`}
+                    } ${item.animated ? 'animate-pulse' : ''}`}
                   >
                     <span className="relative z-10">{item.label}</span>
                     <div 
@@ -71,21 +79,48 @@ const Navbar = () => {
           </Button>
           
           {user ? (
-            <div className="flex items-center gap-2">
-              <span className="text-sm text-muted-foreground hidden md:block">
-                Welcome, {user.email?.split('@')[0]}
-              </span>
-              <Button variant="ghost" size="sm" onClick={signOut}>
-                <LogOut className="h-4 w-4" />
-              </Button>
-            </div>
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Button variant="ghost" size="sm" className="relative">
+                  <User className="h-4 w-4 mr-2" />
+                  Profile
+                </Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="end" className="w-48">
+                <DropdownMenuLabel>My Account</DropdownMenuLabel>
+                <DropdownMenuSeparator />
+                <DropdownMenuItem asChild>
+                  <Link to="/dashboard">Dashboard</Link>
+                </DropdownMenuItem>
+                <DropdownMenuItem asChild>
+                  <Link to="/opportunity-upload">Upload Opportunity</Link>
+                </DropdownMenuItem>
+                <DropdownMenuSeparator />
+                <DropdownMenuItem onClick={signOut} className="text-red-600">
+                  Sign Out
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
           ) : (
-            <Link to="/auth">
-              <Button variant="ghost" size="sm">
-                <User className="h-4 w-4 mr-2" />
-                Sign In
-              </Button>
-            </Link>
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Button size="sm" className="btn-hero">
+                  Account
+                </Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="end" className="w-40 border-primary/20">
+                <DropdownMenuItem asChild>
+                  <Link to="/auth?mode=signup" className="cursor-pointer">
+                    Sign Up
+                  </Link>
+                </DropdownMenuItem>
+                <DropdownMenuItem asChild>
+                  <Link to="/auth?mode=login" className="cursor-pointer">
+                    Login
+                  </Link>
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
           )}
 
           <button
@@ -98,45 +133,60 @@ const Navbar = () => {
         </div>
 
         {isOpen && (
-          <div className="md:hidden">
-            <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+          <div className="md:hidden border-t border-primary/20">
+            <div className="px-4 pt-4 pb-6 space-y-3 bg-background/95">
               {navItems.map((item) => (
                 <Link
                   key={item.href}
                   to={item.href}
                   onClick={() => setIsOpen(false)}
-                  className={`block px-3 py-2 rounded-md text-base font-medium ${
+                  className={`block px-3 py-2 rounded-md text-base font-medium transition-colors ${
                     isActive(item.href)
                       ? 'bg-primary text-primary-foreground'
                       : 'text-foreground hover:bg-accent hover:text-accent-foreground'
-                  }`}
+                  } ${item.animated ? 'animate-pulse' : ''}`}
                 >
                   {item.label}
                 </Link>
               ))}
               
-              <Button variant="ghost" size="sm" onClick={toggleTheme}>
-                {theme === 'dark' ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
-              </Button>
-              
-              {user ? (
-                <div className="flex flex-col gap-2 pt-2 border-t">
-                  <span className="text-sm text-muted-foreground">
-                    Welcome, {user.email?.split('@')[0]}
-                  </span>
-                  <Button variant="ghost" size="sm" onClick={signOut} className="justify-start">
-                    <LogOut className="h-4 w-4 mr-2" />
-                    Sign Out
-                  </Button>
-                </div>
-              ) : (
-                <Link to="/auth">
-                  <Button variant="ghost" size="sm" className="justify-start w-full">
-                    <User className="h-4 w-4 mr-2" />
-                    Sign In
-                  </Button>
-                </Link>
-              )}
+              <div className="pt-4 mt-4 border-t border-primary/20 space-y-2">
+                <Button variant="ghost" size="sm" onClick={toggleTheme} className="w-full justify-start">
+                  {theme === 'dark' ? <Sun className="h-4 w-4 mr-2" /> : <Moon className="h-4 w-4 mr-2" />}
+                  {theme === 'dark' ? 'Light Mode' : 'Dark Mode'}
+                </Button>
+                
+                {user ? (
+                  <div className="space-y-2">
+                    <div className="text-sm text-muted-foreground px-2 py-1">
+                      Welcome, {user.email?.split('@')[0]}
+                    </div>
+                    <Link to="/dashboard" onClick={() => setIsOpen(false)}>
+                      <Button variant="ghost" size="sm" className="w-full justify-start">
+                        Dashboard
+                      </Button>
+                    </Link>
+                    <Link to="/opportunity-upload" onClick={() => setIsOpen(false)}>
+                      <Button variant="ghost" size="sm" className="w-full justify-start">
+                        Upload Opportunity
+                      </Button>
+                    </Link>
+                    <Button variant="ghost" size="sm" onClick={() => { signOut(); setIsOpen(false); }} className="w-full justify-start text-red-600">
+                      <LogOut className="h-4 w-4 mr-2" />
+                      Sign Out
+                    </Button>
+                  </div>
+                ) : (
+                  <div className="space-y-2">
+                    <Link to="/auth?mode=signup" onClick={() => setIsOpen(false)}>
+                      <Button className="w-full btn-hero">Sign Up</Button>
+                    </Link>
+                    <Link to="/auth?mode=login" onClick={() => setIsOpen(false)}>
+                      <Button variant="outline" className="w-full">Login</Button>
+                    </Link>
+                  </div>
+                )}
+              </div>
             </div>
           </div>
         )}
