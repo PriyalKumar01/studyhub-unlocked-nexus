@@ -8,6 +8,7 @@ import { useToast } from '@/hooks/use-toast';
 import { supabase } from '@/integrations/supabase/client';
 import { Mail, Phone, User, BookOpen, ArrowLeft, Loader2 } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
+import { StudyBackground } from '@/components/StudyBackground';
 
 interface FormData {
   fullName: string;
@@ -25,6 +26,7 @@ interface SessionData {
 const AuthOTP = () => {
   const [authMode, setAuthMode] = useState<'email' | 'mobile'>('email');
   const [step, setStep] = useState<'form' | 'otp' | 'success'>('form');
+  const [isLogin, setIsLogin] = useState(true); // New state to differentiate login vs signup
   const [isLoading, setIsLoading] = useState(false);
   const [otp, setOtp] = useState('');
   const [sessionData, setSessionData] = useState<SessionData | null>(null);
@@ -56,6 +58,43 @@ const AuthOTP = () => {
   };
 
   const validateForm = () => {
+    // For login mode, only validate the authentication field
+    if (isLogin) {
+      if (authMode === 'email' && !formData.email.trim()) {
+        toast({
+          title: "Email required",
+          description: "Please enter your email address",
+          variant: "destructive",
+        });
+        return false;
+      }
+      
+      if (authMode === 'mobile' && !formData.mobileNumber.trim()) {
+        toast({
+          title: "Mobile number required",
+          description: "Please enter your mobile number",
+          variant: "destructive",
+        });
+        return false;
+      }
+      
+      // Validate mobile number format for mobile login
+      if (authMode === 'mobile') {
+        const mobileRegex = /^[6-9]\d{9}$/;
+        if (!mobileRegex.test(formData.mobileNumber)) {
+          toast({
+            title: "Invalid Mobile Number",
+            description: "Please enter a valid 10-digit Indian mobile number",
+            variant: "destructive",
+          });
+          return false;
+        }
+      }
+      
+      return true;
+    }
+
+    // For signup mode, validate all required fields
     if (!formData.fullName.trim()) {
       toast({
         title: "Full Name required",
@@ -115,16 +154,19 @@ const AuthOTP = () => {
     try {
       const contact = authMode === 'email' ? formData.email : `+91${formData.mobileNumber}`;
       
+      // Prepare user metadata for signup
+      const signUpOptions = isLogin ? {} : {
+        shouldCreateUser: true,
+        data: {
+          full_name: formData.fullName,
+          username: formData.username,
+        }
+      };
+      
       const { error } = await supabase.auth.signInWithOtp({
         email: authMode === 'email' ? contact : undefined,
         phone: authMode === 'mobile' ? contact : undefined,
-        options: {
-          shouldCreateUser: true,
-          data: {
-            full_name: formData.fullName,
-            username: formData.username,
-          }
-        }
+        options: signUpOptions
       });
 
       if (error) {
@@ -193,19 +235,21 @@ const AuthOTP = () => {
       }
 
       if (data.session && data.user) {
-        // Upsert user profile
-        const { error: profileError } = await supabase
-          .from('profiles')
-          .upsert({
-            user_id: data.user.id,
-            email: authMode === 'email' ? formData.email : data.user.email,
-            first_name: formData.fullName.split(' ')[0],
-            last_name: formData.fullName.split(' ').slice(1).join(' ') || '',
-            mobile_number: authMode === 'mobile' ? `+91${formData.mobileNumber}` : null,
-          });
+        // Only upsert profile for new signups (not returning users)
+        if (!isLogin) {
+          const { error: profileError } = await supabase
+            .from('profiles')
+            .upsert({
+              user_id: data.user.id,
+              email: authMode === 'email' ? formData.email : data.user.email,
+              first_name: formData.fullName.split(' ')[0],
+              last_name: formData.fullName.split(' ').slice(1).join(' ') || '',
+              mobile_number: authMode === 'mobile' ? `+91${formData.mobileNumber}` : null,
+            });
 
-        if (profileError) {
-          console.error('Profile creation error:', profileError);
+          if (profileError) {
+            console.error('Profile creation error:', profileError);
+          }
         }
 
         setSessionData({
@@ -251,13 +295,24 @@ const AuthOTP = () => {
     setOtp('');
   };
 
+  const toggleMode = () => {
+    setIsLogin(!isLogin);
+    setFormData({
+      fullName: '',
+      username: '',
+      mobileNumber: '',
+      email: ''
+    });
+  };
+
   return (
-    <div className="min-h-screen bg-gradient-to-br from-primary/5 via-background to-accent/5 flex items-center justify-center p-4">
+    <div className="min-h-screen relative bg-gradient-to-br from-primary/5 via-background to-accent/5 flex items-center justify-center p-4">
+      <StudyBackground />
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
-        className="w-full max-w-md"
+        className="w-full max-w-md relative z-10"
       >
         <Card className="gradient-card border-0 shadow-lg">
           <CardHeader className="text-center pb-6">
@@ -274,10 +329,10 @@ const AuthOTP = () => {
               />
             </motion.div>
             <CardTitle className="text-2xl font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
-              Login to College Study
+              {isLogin ? 'Login to College Study' : 'Join College Study Hub'}
             </CardTitle>
             <CardDescription className="text-muted-foreground">
-              {step === 'form' && 'Enter your details to get started'}
+              {step === 'form' && (isLogin ? 'Enter your credentials to login' : 'Create your account to get started')}
               {step === 'otp' && `Enter the OTP sent to your ${authMode}`}
               {step === 'success' && 'Welcome! You are now logged in'}
             </CardDescription>
@@ -294,6 +349,29 @@ const AuthOTP = () => {
                   transition={{ duration: 0.3 }}
                   className="space-y-4"
                 >
+                  {/* Login/Signup Toggle */}
+                  <div className="text-center">
+                    <div className="flex items-center justify-center space-x-1 text-sm">
+                      <span className={isLogin ? 'font-medium text-primary' : 'text-muted-foreground'}>
+                        Login
+                      </span>
+                      <button
+                        type="button"
+                        onClick={toggleMode}
+                        className="relative inline-flex h-6 w-11 items-center rounded-full bg-muted transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
+                      >
+                        <span
+                          className={`inline-block h-4 w-4 transform rounded-full bg-primary transition-transform ${
+                            isLogin ? 'translate-x-1' : 'translate-x-6'
+                          }`}
+                        />
+                      </button>
+                      <span className={!isLogin ? 'font-medium text-primary' : 'text-muted-foreground'}>
+                        Signup
+                      </span>
+                    </div>
+                  </div>
+
                   {/* Authentication Mode Toggle */}
                   <div className="flex rounded-lg bg-muted p-1">
                     <Button
@@ -320,37 +398,42 @@ const AuthOTP = () => {
 
                   {/* Form Fields */}
                   <div className="space-y-4">
-                    <div className="space-y-2">
-                      <Label htmlFor="fullName">Full Name</Label>
-                      <div className="relative">
-                        <User className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
-                        <Input
-                          id="fullName"
-                          name="fullName"
-                          placeholder="Enter your full name"
-                          className="pl-10"
-                          value={formData.fullName}
-                          onChange={handleInputChange}
-                          required
-                        />
-                      </div>
-                    </div>
+                    {/* Show all fields for signup, only auth field for login */}
+                    {!isLogin && (
+                      <>
+                        <div className="space-y-2">
+                          <Label htmlFor="fullName">Full Name</Label>
+                          <div className="relative">
+                            <User className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
+                            <Input
+                              id="fullName"
+                              name="fullName"
+                              placeholder="Enter your full name"
+                              className="pl-10"
+                              value={formData.fullName}
+                              onChange={handleInputChange}
+                              required
+                            />
+                          </div>
+                        </div>
 
-                    <div className="space-y-2">
-                      <Label htmlFor="username">Username</Label>
-                      <div className="relative">
-                        <User className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
-                        <Input
-                          id="username"
-                          name="username"
-                          placeholder="Choose a unique username"
-                          className="pl-10"
-                          value={formData.username}
-                          onChange={handleInputChange}
-                          required
-                        />
-                      </div>
-                    </div>
+                        <div className="space-y-2">
+                          <Label htmlFor="username">Username</Label>
+                          <div className="relative">
+                            <User className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
+                            <Input
+                              id="username"
+                              name="username"
+                              placeholder="Choose a unique username"
+                              className="pl-10"
+                              value={formData.username}
+                              onChange={handleInputChange}
+                              required
+                            />
+                          </div>
+                        </div>
+                      </>
+                    )}
 
                     {authMode === 'mobile' && (
                       <div className="space-y-2">
@@ -362,7 +445,7 @@ const AuthOTP = () => {
                             id="mobileNumber"
                             name="mobileNumber"
                             type="tel"
-                            placeholder="10-digit mobile number"
+                            placeholder={isLogin ? "Your mobile number" : "10-digit mobile number"}
                             className="pl-16"
                             value={formData.mobileNumber}
                             onChange={handleInputChange}
@@ -382,7 +465,7 @@ const AuthOTP = () => {
                             id="email"
                             name="email"
                             type="email"
-                            placeholder="Enter your email"
+                            placeholder={isLogin ? "Your email address" : "Enter your email"}
                             className="pl-10"
                             value={formData.email}
                             onChange={handleInputChange}
@@ -404,7 +487,7 @@ const AuthOTP = () => {
                         Sending...
                       </>
                     ) : (
-                      'Send Verification Code'
+                      `${isLogin ? 'Send Login Code' : 'Send Verification Code'}`
                     )}
                   </Button>
                 </motion.div>

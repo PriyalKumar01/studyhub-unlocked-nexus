@@ -35,26 +35,30 @@ const Navbar = () => {
             />
           </Link>
 
-          <div className="hidden md:flex items-center space-x-1">
+          <div className="hidden md:flex items-center space-x-6">
             {navItems.map((item, index) => {
               const needsSeparator = index > 0 && navItems[index - 1].category !== item.category;
               return (
                 <div key={item.href} className="flex items-center">
                   {needsSeparator && (
-                    <div className="w-px h-4 bg-border mx-3 animate-fade-in" />
+                    <div className="w-px h-5 bg-border/60 mx-4 animate-fade-in" />
                   )}
                   <Link
                     to={item.href}
-                    className={`relative px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300 hover:scale-105 group ${
+                    className={`relative px-3 py-2 text-sm font-medium transition-all duration-300 hover:scale-105 group ${
                       isActive(item.href)
-                        ? 'bg-primary text-primary-foreground shadow-md'
-                        : 'text-foreground hover:bg-accent/50 hover:text-accent-foreground'
+                        ? 'text-primary'
+                        : 'text-foreground hover:text-primary'
                     }`}
                   >
                     <span className="relative z-10">{item.label}</span>
-                    {!isActive(item.href) && (
-                      <div className="absolute inset-0 bg-gradient-to-r from-primary/20 to-accent/20 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                    )}
+                    <div 
+                      className={`absolute bottom-0 left-0 h-0.5 bg-primary transition-all duration-300 ${
+                        isActive(item.href) 
+                          ? 'w-full' 
+                          : 'w-0 group-hover:w-full'
+                      }`} 
+                    />
                   </Link>
                 </div>
               );

@@ -7,7 +7,6 @@ import { Download, ArrowLeft, FileText } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import Navbar from '@/components/Navbar';
 import { useDownloadTracking } from '@/hooks/useDownloadTracking';
-import { ProtectedNotes } from '@/components/ProtectedNotes';
 
 
 const FourthSemesterNotes = () => {
@@ -190,7 +189,6 @@ const FourthSemesterNotes = () => {
     if (!subject) return null;
 
     return (
-      <ProtectedNotes>
         <div className="min-h-screen bg-gradient-hero">
         <Navbar />
         
@@ -255,12 +253,10 @@ const FourthSemesterNotes = () => {
           </div>
         </div>
         </div>
-      </ProtectedNotes>
     );
   }
 
   return (
-    <ProtectedNotes>
       <div className="min-h-screen bg-gradient-hero">
         <Navbar />
         
@@ -354,7 +350,6 @@ const FourthSemesterNotes = () => {
         </div>
         </div>
       </div>
-    </ProtectedNotes>
   );
 };
 

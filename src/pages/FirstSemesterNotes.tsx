@@ -7,7 +7,6 @@ import { Download, ArrowLeft, FileText, Play } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import Navbar from '@/components/Navbar';
 import { useDownloadTracking } from '@/hooks/useDownloadTracking';
-import { ProtectedNotes } from '@/components/ProtectedNotes';
 
 const FirstSemesterNotes = () => {
   const navigate = useNavigate();
@@ -201,27 +200,25 @@ const FirstSemesterNotes = () => {
     const subject = subjects.find(s => s.id === selectedSubject);
     if (!subject) return null;
 
-    return (
-      <ProtectedNotes>
-      
-        <div className="min-h-screen bg-gradient-hero">
-          <Navbar />
-          
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            className="mb-8"
+  return (
+      <div className="min-h-screen bg-gradient-hero">
+        <Navbar />
+        
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          className="mb-8"
+        >
+          <Button
+            onClick={() => setSelectedSubject(null)}
+            variant="outline"
+            className="mb-4"
           >
-            <Button
-              onClick={() => setSelectedSubject(null)}
-              variant="outline"
-              className="mb-4"
-            >
-              <ArrowLeft className="h-4 w-4 mr-2" />
-              Back to Subjects
-            </Button>
+            <ArrowLeft className="h-4 w-4 mr-2" />
+            Back to Subjects
+          </Button>
             
             <h1 className="text-3xl md:text-4xl font-bold text-foreground mb-2">
               {subject.name} 📚
@@ -268,12 +265,10 @@ const FirstSemesterNotes = () => {
           </div>
         </div>
         </div>
-      </ProtectedNotes>
     );
   }
 
   return (
-    <ProtectedNotes>
       <div className="min-h-screen bg-gradient-hero">
         <Navbar />
         
@@ -285,12 +280,12 @@ const FirstSemesterNotes = () => {
           className="mb-8"
         >
           <Button
-            onClick={() => navigate('/view-notes')}
+            onClick={() => navigate('/btech-notes')}
             variant="outline"
             className="mb-4"
           >
             <ArrowLeft className="h-4 w-4 mr-2" />
-            Back to All Notes
+            Back to B.Tech Notes
           </Button>
           
           <h1 className="text-3xl md:text-4xl font-bold text-foreground mb-2">
@@ -383,8 +378,6 @@ const FirstSemesterNotes = () => {
         </div>
       </div>
       </div>
-    </ProtectedNotes>
-    
   );
 };
 
