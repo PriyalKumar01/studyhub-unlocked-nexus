@@ -53,18 +53,18 @@ const Navbar = () => {
                   )}
                   <Link
                     to={item.href}
-                    className={`relative px-3 py-2 text-sm font-medium transition-all duration-300 hover:scale-105 group ${
+                    className={`relative px-4 py-2 text-sm font-medium transition-all duration-300 hover:scale-105 group ${
                       isActive(item.href)
                         ? 'text-primary'
                         : 'text-foreground hover:text-primary'
-                    } ${item.animated ? 'animate-pulse' : ''}`}
+                    } ${item.animated ? 'bg-gradient-to-r from-primary/5 to-secondary/5 hover:from-primary/10 hover:to-secondary/10 border border-primary/10 hover:border-primary/20 shadow-sm rounded-lg' : ''}`}
                   >
-                    <span className="relative z-10">{item.label}</span>
+                    <span className="relative z-10 font-semibold">{item.label}</span>
                     <div 
-                      className={`absolute bottom-0 left-0 h-0.5 bg-primary transition-all duration-300 ${
+                      className={`absolute bottom-1 left-1/2 transform -translate-x-1/2 h-0.5 bg-gradient-to-r from-primary to-secondary transition-all duration-300 ${
                         isActive(item.href) 
-                          ? 'w-full' 
-                          : 'w-0 group-hover:w-full'
+                          ? 'w-3/4' 
+                          : 'w-0 group-hover:w-3/4'
                       }`} 
                     />
                   </Link>
@@ -74,80 +74,40 @@ const Navbar = () => {
           </div>
 
           <div className="flex items-center space-x-4">
-          <Button variant="ghost" size="sm" onClick={toggleTheme}>
-            {theme === 'dark' ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
-          </Button>
-          
-          {user ? (
-            <DropdownMenu>
-              <DropdownMenuTrigger asChild>
-                <Button variant="ghost" size="sm" className="relative">
-                  <User className="h-4 w-4 mr-2" />
-                  Profile
-                </Button>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent align="end" className="w-48">
-                <DropdownMenuLabel>My Account</DropdownMenuLabel>
-                <DropdownMenuSeparator />
-                <DropdownMenuItem asChild>
-                  <Link to="/dashboard">Dashboard</Link>
-                </DropdownMenuItem>
-                <DropdownMenuItem asChild>
-                  <Link to="/opportunity-upload">Upload Opportunity</Link>
-                </DropdownMenuItem>
-                <DropdownMenuSeparator />
-                <DropdownMenuItem onClick={signOut} className="text-red-600">
-                  Sign Out
-                </DropdownMenuItem>
-              </DropdownMenuContent>
-            </DropdownMenu>
-          ) : (
-            <DropdownMenu>
-              <DropdownMenuTrigger asChild>
-                <Button size="sm" className="btn-hero">
-                  Account
-                </Button>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent align="end" className="w-40 border-primary/20">
-                <DropdownMenuItem asChild>
-                  <Link to="/auth?mode=signup" className="cursor-pointer">
-                    Sign Up
-                  </Link>
-                </DropdownMenuItem>
-                <DropdownMenuItem asChild>
-                  <Link to="/auth?mode=login" className="cursor-pointer">
-                    Login
-                  </Link>
-                </DropdownMenuItem>
-              </DropdownMenuContent>
-            </DropdownMenu>
-          )}
+            <Button variant="ghost" size="sm" onClick={toggleTheme}>
+              {theme === 'dark' ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
+            </Button>
 
-          <button
-            onClick={() => setIsOpen(!isOpen)}
-            className="md:hidden p-2 rounded-md"
-          >
-            {isOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
-          </button>
-        </div>
+            <button
+              onClick={() => setIsOpen(!isOpen)}
+              className="md:hidden p-2 rounded-md"
+            >
+              {isOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+            </button>
+          </div>
         </div>
 
         {isOpen && (
           <div className="md:hidden border-t border-primary/20">
             <div className="px-4 pt-4 pb-6 space-y-3 bg-background/95">
-              {navItems.map((item) => (
-                <Link
-                  key={item.href}
-                  to={item.href}
-                  onClick={() => setIsOpen(false)}
-                  className={`block px-3 py-2 rounded-md text-base font-medium transition-colors ${
-                    isActive(item.href)
-                      ? 'bg-primary text-primary-foreground'
-                      : 'text-foreground hover:bg-accent hover:text-accent-foreground'
-                  } ${item.animated ? 'animate-pulse' : ''}`}
-                >
-                  {item.label}
-                </Link>
+              {navItems.map((item, index) => (
+                <div key={item.href} className="relative">
+                  <Link
+                    to={item.href}
+                    onClick={() => setIsOpen(false)}
+                    className={`block px-3 py-2 rounded-md text-base font-medium transition-colors border ${
+                      isActive(item.href)
+                        ? 'bg-primary text-primary-foreground border-primary'
+                        : 'text-foreground hover:bg-accent hover:text-accent-foreground border-transparent hover:border-border/50'
+                    } ${item.animated ? 'bg-gradient-to-r from-primary/5 to-secondary/5 hover:from-primary/10 hover:to-secondary/10 border-primary/20 hover:border-primary/30 shadow-sm' : ''}`}
+                  >
+                    <span className={item.animated ? 'font-semibold' : ''}>{item.label}</span>
+                  </Link>
+                  
+                  {index < navItems.length - 1 && (
+                    <div className="mx-3 mt-2 h-px bg-border/30" />
+                  )}
+                </div>
               ))}
               
               <div className="pt-4 mt-4 border-t border-primary/20 space-y-2">
@@ -155,37 +115,6 @@ const Navbar = () => {
                   {theme === 'dark' ? <Sun className="h-4 w-4 mr-2" /> : <Moon className="h-4 w-4 mr-2" />}
                   {theme === 'dark' ? 'Light Mode' : 'Dark Mode'}
                 </Button>
-                
-                {user ? (
-                  <div className="space-y-2">
-                    <div className="text-sm text-muted-foreground px-2 py-1">
-                      Welcome, {user.email?.split('@')[0]}
-                    </div>
-                    <Link to="/dashboard" onClick={() => setIsOpen(false)}>
-                      <Button variant="ghost" size="sm" className="w-full justify-start">
-                        Dashboard
-                      </Button>
-                    </Link>
-                    <Link to="/opportunity-upload" onClick={() => setIsOpen(false)}>
-                      <Button variant="ghost" size="sm" className="w-full justify-start">
-                        Upload Opportunity
-                      </Button>
-                    </Link>
-                    <Button variant="ghost" size="sm" onClick={() => { signOut(); setIsOpen(false); }} className="w-full justify-start text-red-600">
-                      <LogOut className="h-4 w-4 mr-2" />
-                      Sign Out
-                    </Button>
-                  </div>
-                ) : (
-                  <div className="space-y-2">
-                    <Link to="/auth?mode=signup" onClick={() => setIsOpen(false)}>
-                      <Button className="w-full btn-hero">Sign Up</Button>
-                    </Link>
-                    <Link to="/auth?mode=login" onClick={() => setIsOpen(false)}>
-                      <Button variant="outline" className="w-full">Login</Button>
-                    </Link>
-                  </div>
-                )}
               </div>
             </div>
           </div>

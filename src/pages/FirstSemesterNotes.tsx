@@ -20,6 +20,32 @@ const FirstSemesterNotes = () => {
       name: 'Chemistry Notes',
       icon: '🧪',
       color: 'bg-green-500',
+      playlists: {
+        detailed: [
+          {
+            title: 'Engineering Chemistry Detailed Playlist 1',
+            url: 'https://youtube.com/playlist?list=PLT3bOBUU3L9jB7qJkp5qn35021QUBC8xP&si=kE_79WdmozBtD5ZS',
+            recommended: false
+          },
+          {
+            title: 'Engineering Chemistry Detailed Playlist 2',
+            url: 'https://youtube.com/playlist?list=PL-vEH_IPWrhBKXPlljxAHMCkdw7Lb_Qbn&si=4SmEbrEMClBJIb7M',
+            recommended: false
+          },
+          {
+            title: 'Engineering Chemistry Detailed Playlist 3 (Best)',
+            url: 'https://youtube.com/playlist?list=PLg2LVpcRrOF5BVVKG_DdYRPEaMx6C9XsW&si=wOvmSVvGHocZWco2',
+            recommended: true
+          }
+        ],
+        oneshot: [
+          {
+            title: 'Chemistry One Shot',
+            url: 'https://youtube.com/playlist?list=PL-vEH_IPWrhBKXPlljxAHMCkdw7Lb_Qbn&si=J_GtKZCpwqQCeZ42',
+            recommended: false
+          }
+        ]
+      },
       notes: [
         {
           title: 'Coordination & Compound',
@@ -48,6 +74,27 @@ const FirstSemesterNotes = () => {
       name: 'Civil Engineering Notes',
       icon: '🏗️',
       color: 'bg-orange-500',
+      playlists: {
+        detailed: [
+          {
+            title: 'Civil Engineering Detailed Playlist 1 (Best)',
+            url: 'https://youtube.com/playlist?list=PLEYBvmdYQH_Z3sFfITPeEv-qg3sgHVIqC&si=p7O3LMHX28BDkQxU',
+            recommended: true
+          },
+          {
+            title: 'Civil Engineering Detailed Playlist 2',
+            url: 'https://youtube.com/playlist?list=PLkEhI-YDhJ6xN7lsr6rc7d5awH5WTmpxG&si=HkRBgTvz96J5wbaH',
+            recommended: false
+          }
+        ],
+        oneshot: [
+          {
+            title: 'Civil Engineering One Shot',
+            url: 'https://youtu.be/o-oCyZtCqR0?si=tVpcOQdTAzSSz82u',
+            recommended: false
+          }
+        ]
+      },
       notes: [
         {
           title: 'Bitumen Notes',
@@ -124,6 +171,37 @@ const FirstSemesterNotes = () => {
       name: 'IET Handwritten Notes',
       icon: '⚡',
       color: 'bg-yellow-500',
+      playlists: {
+        detailed: [
+          {
+            title: 'IET Detailed Playlist 1 (Best)',
+            url: 'https://youtube.com/playlist?list=PL0c0N7xv8s06iL0pUc8VXGH_v-vbGOSv4&si=D7XeqGctlD86CpnA',
+            recommended: true
+          },
+          {
+            title: 'IET Detailed Playlist 2',
+            url: 'https://youtube.com/playlist?list=PL3qvHcrYGy1uF5KAGntUITTJ85Dm3Dtdy&si=1AvreP0F8uaS4Nyw',
+            recommended: false
+          }
+        ],
+        oneshot: [
+          {
+            title: 'Unit 3 One Shot',
+            url: 'https://youtu.be/wVL5X4DSVQo?si=VUANHiiHJpQnvDiu',
+            recommended: false
+          },
+          {
+            title: 'Unit 5 One Shot',
+            url: 'https://youtu.be/czUrC3t3zWM?si=rqLOu6D6XrbouDmb',
+            recommended: false
+          },
+          {
+            title: 'Digital Electronics Full One Shot (6 hrs)',
+            url: 'https://youtu.be/pHNbm-4reIc?si=vm26Px3CwVDjkaAZ',
+            recommended: false
+          }
+        ]
+      },
       notes: [
         {
           title: 'IET Notes',
@@ -136,6 +214,31 @@ const FirstSemesterNotes = () => {
       name: 'Workshop Notes',
       icon: '🔨',
       color: 'bg-red-500',
+      playlists: {
+        detailed: [
+          {
+            title: 'Foundry Workshop',
+            url: 'https://youtu.be/RIwEspSqY1s?si=CdRIS_VaiH1HOG7w',
+            recommended: false
+          },
+          {
+            title: 'Machine Workshop',
+            url: 'https://youtu.be/as-H6RX3lr8?si=yEUw-Z9jjijM_AsY',
+            recommended: false
+          },
+          {
+            title: 'Fitting Workshop',
+            url: 'https://youtu.be/g3f9m24cx0s?si=ZQEF31XxTZolfvwX',
+            recommended: false
+          },
+          {
+            title: 'Carpentry Workshop',
+            url: 'https://youtu.be/xCKK4l_q8vU?si=UxuRYis-lBCkcs0k',
+            recommended: false
+          }
+        ],
+        oneshot: []
+      },
       notes: [
         {
           title: 'Workshop File Part 1',
@@ -251,13 +354,60 @@ const FirstSemesterNotes = () => {
                     </CardDescription>
                   </CardHeader>
                   <CardContent>
-                    <Button
-                      onClick={() => handleDownload(note.url, note.title, subject.name)}
-                      className="w-full btn-hero"
-                    >
-                      <Download className="h-4 w-4 mr-2" />
-                      Download PDF
-                    </Button>
+                    <div className="space-y-3">
+                      <Button
+                        onClick={() => handleDownload(note.url, note.title, subject.name)}
+                        className="w-full btn-hero"
+                      >
+                        <Download className="h-4 w-4 mr-2" />
+                        Download PDF
+                      </Button>
+                      
+                      {/* YouTube Playlists for subject */}
+                      {subject.playlists && (subject.playlists.detailed?.length > 0 || subject.playlists.oneshot?.length > 0) && (
+                        <div className="pt-2 border-t space-y-2">
+                          <h5 className="text-xs font-medium text-muted-foreground flex items-center gap-1">
+                            <Play className="h-3 w-3" />
+                            Study Playlists
+                          </h5>
+                          
+                          {subject.playlists.detailed?.length > 0 && (
+                            <div className="space-y-1">
+                              <p className="text-xs font-medium">📚 Detailed Playlists:</p>
+                              {subject.playlists.detailed.slice(0, 2).map((playlist, idx) => (
+                                <Button
+                                  key={idx}
+                                  variant="outline"
+                                  size="sm"
+                                  className="w-full text-xs h-7 justify-start"
+                                  onClick={() => window.open(playlist.url, '_blank')}
+                                >
+                                  {playlist.recommended && '⭐ '}
+                                  {playlist.title.length > 30 ? playlist.title.substring(0, 30) + '...' : playlist.title}
+                                </Button>
+                              ))}
+                            </div>
+                          )}
+                          
+                          {subject.playlists.oneshot?.length > 0 && (
+                            <div className="space-y-1">
+                              <p className="text-xs font-medium">📺 One Shot Videos:</p>
+                              {subject.playlists.oneshot.slice(0, 1).map((playlist, idx) => (
+                                <Button
+                                  key={idx}
+                                  variant="outline"
+                                  size="sm"
+                                  className="w-full text-xs h-7 justify-start"
+                                  onClick={() => window.open(playlist.url, '_blank')}
+                                >
+                                  {playlist.title.length > 30 ? playlist.title.substring(0, 30) + '...' : playlist.title}
+                                </Button>
+                              ))}
+                            </div>
+                          )}
+                        </div>
+                      )}
+                    </div>
                   </CardContent>
                 </Card>
               </motion.div>
@@ -355,19 +505,45 @@ const FirstSemesterNotes = () => {
                       <Button variant="outline" size="sm">View Notes</Button>
                     </div>
                     
-                    {/* Best Playlist Section */}
+                    {/* YouTube Playlists Section */}
                     <div className="pt-2 border-t">
                       <h4 className="text-sm font-medium mb-2 flex items-center gap-2">
                         <Play className="h-4 w-4" />
-                        Best Study Playlists
+                        Study Playlists
                       </h4>
                       <div className="space-y-1">
-                        <Button variant="ghost" size="sm" className="w-full justify-start text-xs h-8" disabled>
-                          📺 One Shot Videos - Coming Soon
-                        </Button>
-                        <Button variant="ghost" size="sm" className="w-full justify-start text-xs h-8" disabled>
-                          📚 Detailed Playlist - Coming Soon
-                        </Button>
+                        {subject.playlists && subject.playlists.detailed && subject.playlists.detailed.length > 0 && (
+                          <Button 
+                            variant="ghost" 
+                            size="sm" 
+                            className="w-full justify-start text-xs h-8 hover:bg-primary/10" 
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              const bestPlaylist = subject.playlists.detailed.find(p => p.recommended) || subject.playlists.detailed[0];
+                              window.open(bestPlaylist.url, '_blank');
+                            }}
+                          >
+                            📚 Detailed Playlists ({subject.playlists.detailed.length})
+                          </Button>
+                        )}
+                        {subject.playlists && subject.playlists.oneshot && subject.playlists.oneshot.length > 0 && (
+                          <Button 
+                            variant="ghost" 
+                            size="sm" 
+                            className="w-full justify-start text-xs h-8 hover:bg-primary/10"
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              window.open(subject.playlists.oneshot[0].url, '_blank');
+                            }}
+                          >
+                            📺 One Shot Videos ({subject.playlists.oneshot.length})
+                          </Button>
+                        )}
+                        {(!subject.playlists || ((!subject.playlists.detailed || subject.playlists.detailed.length === 0) && (!subject.playlists.oneshot || subject.playlists.oneshot.length === 0))) && (
+                          <Button variant="ghost" size="sm" className="w-full justify-start text-xs h-8" disabled>
+                            📺 Playlists - Coming Soon
+                          </Button>
+                        )}
                       </div>
                     </div>
                   </div>

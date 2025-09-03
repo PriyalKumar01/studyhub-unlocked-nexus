@@ -230,12 +230,20 @@ const Index = () => {
                 whileHover={{ scale: 1.02 }}
               >
                 <Link to={feature.href}>
-                  <Card className="feature-card h-full cursor-pointer group">
+                  <Card className={`feature-card h-full cursor-pointer group ${
+                    feature.title === 'Premium Notes' || feature.title === 'Opportunities'
+                      ? 'bg-gradient-to-br from-primary/5 via-secondary/5 to-primary/5 border-primary/20 hover:border-primary/30 shadow-lg'
+                      : ''
+                  }`}>
                     <CardHeader>
                       <div className={`w-16 h-16 ${feature.gradient} rounded-xl flex items-center justify-center text-white mb-4 group-hover:scale-110 transition-transform duration-300`}>
                         {feature.icon}
                       </div>
-                      <CardTitle className="text-xl mb-2">{feature.title}</CardTitle>
+                      <CardTitle className={`text-xl mb-2 ${
+                        feature.title === 'Premium Notes' || feature.title === 'Opportunities'
+                          ? 'text-primary font-bold'
+                          : ''
+                      }`}>{feature.title}</CardTitle>
                       <CardDescription className="text-base leading-relaxed">
                         {feature.description}
                       </CardDescription>
