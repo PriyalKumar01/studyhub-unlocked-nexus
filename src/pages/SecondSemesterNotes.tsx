@@ -3,13 +3,45 @@ import { motion } from 'framer-motion';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
-import { Download, ArrowLeft, FileText } from 'lucide-react';
+import { Download, ArrowLeft, FileText, Play, ChevronDown, ChevronRight } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import Navbar from '@/components/Navbar';
+import { PlaylistModal } from '@/components/PlaylistModal';
 
 const SecondSemesterNotes = () => {
   const navigate = useNavigate();
   const [selectedSubject, setSelectedSubject] = useState<string | null>(null);
+  const [showPlaylistModal, setShowPlaylistModal] = useState(false);
+  const [selectedPlaylistType, setSelectedPlaylistType] = useState<'detailed' | 'oneshot' | 'workshop'>('detailed');
+  const [selectedSubjectForPlaylist, setSelectedSubjectForPlaylist] = useState<string>('');
+  const [expandedSubjects, setExpandedSubjects] = useState<string[]>([]);
+
+  const subjectPlaylists = {
+    math: {
+      detailed: [
+        { title: 'Engineering Mathematics-II Unit 1', url: 'https://youtube.com/playlist?list=PL5Dqs90qDljW1pwNMiPFDvR6zCbA9kRyd&si=eKIFeUwcRRvEW-iy' },
+        { title: 'Engineering Mathematics-II Unit 3', url: 'https://youtube.com/playlist?list=PL5Dqs90qDljWpJyo3QVVyY-o2xVCtxOfF&si=7l12sPrchJuFdEFB' },
+        { title: 'Fourier Series Playlist', url: 'https://youtube.com/playlist?list=PLT3bOBUU3L9garIMWIqgAJ6wqBUe4ckFm&si=sULV2V8F8CxNfLU7' },
+        { title: 'Complete Engineering Math-II (Best)', url: 'https://youtube.com/playlist?list=PLU6SqdYcYsfJljvy7Goi78EGwjPDQEnSw&si=dJ54yTQ9R4ZYmV7k', recommended: true },
+        { title: 'Engineering Math-II Advanced (Best)', url: 'https://youtube.com/playlist?list=PLU6SqdYcYsfKqa52m3wyMZb1KVWuZsA2T&si=MnC0WGH0egKRZkHx', recommended: true }
+      ],
+      oneshot: []
+    },
+    pc: {
+      detailed: [
+        { title: 'Professional Communication Complete', url: 'https://youtube.com/playlist?list=PL49mRA0Y_C8u7yPX99x1TCuyV4aWulD1X&si=lCMEpcKJ7uXmkBKp' }
+      ],
+      oneshot: []
+    },
+    ict: {
+      detailed: [],
+      oneshot: [
+        { title: 'ICT Introduction Video 1', url: 'https://youtu.be/6ptZr9VRxPs?si=IRMWuVFfR4-Yj6rM' },
+        { title: 'ICT Introduction Video 2', url: 'https://youtu.be/Pg_9kXV1lXg?si=Z-jfUI57nI_c8_2w' },
+        { title: 'ICT Introduction Video 3', url: 'https://youtu.be/mbdl-Fh5ALg?si=1JQlwxU9UroBsgL8' }
+      ]
+    }
+  };
 
   const subjects = [
     {
@@ -149,6 +181,28 @@ const SecondSemesterNotes = () => {
     url: 'https://drive.google.com/file/d/1TGhKLkREEFgTGkDLhn5m9pKWJo9soALy/view?usp=drive_link'
   };
 
+  const toggleSubjectExpansion = (subjectId: string) => {
+    setExpandedSubjects(prev => 
+      prev.includes(subjectId) 
+        ? prev.filter(id => id !== subjectId)
+        : [...prev, subjectId]
+    );
+  };
+
+  const handlePlaylistClick = (subjectId: string, type: 'detailed' | 'oneshot') => {
+    const playlistKey = subjectId as keyof typeof subjectPlaylists;
+    if (subjectPlaylists[playlistKey] && subjectPlaylists[playlistKey][type].length > 0) {
+      setSelectedSubjectForPlaylist(subjectId);
+      setSelectedPlaylistType(type);
+      setShowPlaylistModal(true);
+    }
+  };
+
+  const getSubjectPlaylists = (subjectId: string) => {
+    const playlistKey = subjectId as keyof typeof subjectPlaylists;
+    return subjectPlaylists[playlistKey] || { detailed: [], oneshot: [] };
+  };
+
   const handleDownload = (url: string, title: string) => {
     const fileId = url.match(/\/d\/([a-zA-Z0-9-_]+)/)?.[1];
     if (fileId) {
@@ -259,6 +313,30 @@ const SecondSemesterNotes = () => {
           </p>
         </motion.div>
 
+        {/* Important Information */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.1, duration: 0.5 }}
+          className="mb-8 p-6 bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-blue-900/20 dark:to-indigo-900/20 rounded-lg border-2 border-blue-200 dark:border-blue-800"
+        >
+          <div className="flex items-start gap-3">
+            <div className="flex-shrink-0 w-8 h-8 bg-blue-500 rounded-full flex items-center justify-center">
+              <span className="text-white text-sm font-bold">!</span>
+            </div>
+            <div>
+              <h3 className="text-lg font-semibold text-blue-800 dark:text-blue-200 mb-2">
+                📚 Important Branch Information
+              </h3>
+              <div className="space-y-2 text-sm text-blue-700 dark:text-blue-300">
+                <p><strong>✨ For Engineering branches (CSE, IT, EE, ET, CE, ME):</strong> The notes available under the 1st Semester section are applicable to your syllabus as well. Please refer to these for your studies.</p>
+                <p><strong>✨ For Technology branches (CHE, BS-MS, FT, PT, PL, BE, BioTech, OT, LT):</strong> Your syllabus is currently available under the 2nd Semester section. Kindly download and study from there.</p>
+                <p><strong>📋 Next semester:</strong> The syllabus will interchange between Engineering and Technology branches. Engineering students will follow the 2nd Semester materials, while Technology students will refer to the 1st Semester notes.</p>
+              </div>
+            </div>
+          </div>
+        </motion.div>
+
         {/* Syllabus Card */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -266,7 +344,7 @@ const SecondSemesterNotes = () => {
           transition={{ delay: 0.2, duration: 0.5 }}
           className="mb-8"
         >
-          <Card className="gradient-card">
+          <Card className="gradient-card border-2 border-primary/20 shadow-lg">
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
                 <FileText className="h-5 w-5" />
@@ -312,16 +390,81 @@ const SecondSemesterNotes = () => {
                   </CardDescription>
                 </CardHeader>
                 <CardContent>
-                  <div className="flex items-center justify-between">
+                  <div className="flex items-center justify-between mb-4">
                     <Badge variant="secondary">{subject.notes.length} Files</Badge>
                     <Button variant="outline" size="sm">View Notes</Button>
                   </div>
+                  
+                  {/* Study Playlists Section */}
+                  {subject.id !== 'assignments' && subject.id !== 'pyqs' && (
+                    <div className="border-t pt-4">
+                      <div 
+                        className="flex items-center justify-between cursor-pointer hover:bg-muted/50 rounded p-2 -m-2"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          toggleSubjectExpansion(subject.id);
+                        }}
+                      >
+                        <div className="flex items-center gap-2">
+                          <Play className="h-4 w-4 text-primary" />
+                          <span className="text-sm font-medium">Study Playlists</span>
+                        </div>
+                        {expandedSubjects.includes(subject.id) ? 
+                          <ChevronDown className="h-4 w-4" /> : 
+                          <ChevronRight className="h-4 w-4" />
+                        }
+                      </div>
+                      
+                      {expandedSubjects.includes(subject.id) && (
+                        <div className="mt-3 space-y-2 pl-2">
+                          {getSubjectPlaylists(subject.id).detailed.length > 0 && (
+                            <Button
+                              variant="ghost"
+                              size="sm"
+                              className="w-full justify-start text-xs h-8"
+                              onClick={(e) => {
+                                e.stopPropagation();
+                                handlePlaylistClick(subject.id, 'detailed');
+                              }}
+                            >
+                              📚 Detailed Playlists ({getSubjectPlaylists(subject.id).detailed.length})
+                            </Button>
+                          )}
+                          {getSubjectPlaylists(subject.id).oneshot.length > 0 && (
+                            <Button
+                              variant="ghost"
+                              size="sm"
+                              className="w-full justify-start text-xs h-8"
+                              onClick={(e) => {
+                                e.stopPropagation();
+                                handlePlaylistClick(subject.id, 'oneshot');
+                              }}
+                            >
+                              ⚡ One Shot Videos ({getSubjectPlaylists(subject.id).oneshot.length})
+                            </Button>
+                          )}
+                          {getSubjectPlaylists(subject.id).detailed.length === 0 && getSubjectPlaylists(subject.id).oneshot.length === 0 && (
+                            <p className="text-xs text-muted-foreground pl-2">Coming Soon...</p>
+                          )}
+                        </div>
+                      )}
+                    </div>
+                  )}
                 </CardContent>
               </Card>
             </motion.div>
           ))}
         </div>
       </div>
+      
+      {/* Playlist Modal */}
+      <PlaylistModal
+        isOpen={showPlaylistModal}
+        onClose={() => setShowPlaylistModal(false)}
+        title={subjects.find(s => s.id === selectedSubjectForPlaylist)?.name || ''}
+        playlists={getSubjectPlaylists(selectedSubjectForPlaylist)[selectedPlaylistType]}
+        type={selectedPlaylistType}
+      />
     </div>
   );
 };
