@@ -21,21 +21,21 @@ const Dashboard = () => {
       title: 'Internships',
       description: 'Find amazing internship opportunities',
       icon: <Briefcase className="h-6 w-6" />,
-      href: '/opportunities',
+      href: '/opportunities?tab=Internships',
       color: 'bg-blue-500',
     },
     {
       title: 'Jobs',
       description: 'Explore full-time job openings',
       icon: <Trophy className="h-6 w-6" />,
-      href: '/opportunities',
+      href: '/opportunities?tab=Jobs',
       color: 'bg-green-500',
     },
     {
       title: 'Scholarships',
       description: 'Apply for educational scholarships',
       icon: <Sparkles className="h-6 w-6" />,
-      href: '/opportunities',
+      href: '/opportunities?tab=Scholarships',
       color: 'bg-purple-500',
     },
     {
@@ -216,7 +216,7 @@ const Dashboard = () => {
                     AI Tools
                   </Button>
                 </Link>
-                <Link to="/opportunities">
+                <Link to="/opportunities?tab=Internships">
                   <Button variant="outline" className="w-full justify-start">
                     <Briefcase className="h-4 w-4 mr-2" />
                     Opportunities

@@ -48,12 +48,12 @@ const CodingStudyMaterial = () => {
           className="mb-8"
         >
           <Button
-            onClick={() => navigate('/view-notes')}
+            onClick={() => navigate('/notes-categories')}
             variant="outline"
             className="mb-4"
           >
             <ArrowLeft className="h-4 w-4 mr-2" />
-            Back to All Notes
+            Back to Notes
           </Button>
           
           <div className="flex items-center gap-3 mb-4">

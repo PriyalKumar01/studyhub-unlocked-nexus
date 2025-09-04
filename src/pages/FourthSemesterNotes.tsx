@@ -278,6 +278,28 @@ const FourthSemesterNotes = () => {
           </p>
         </motion.div>
 
+        {/* Important Information */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.1, duration: 0.5 }}
+          className="mb-8 p-6 bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-blue-900/20 dark:to-indigo-900/20 rounded-lg border-2 border-blue-200 dark:border-blue-800"
+        >
+          <div className="flex items-start gap-3">
+            <div className="flex-shrink-0 w-8 h-8 bg-blue-500 rounded-full flex items-center justify-center">
+              <span className="text-white text-sm font-bold">!</span>
+            </div>
+            <div>
+              <h3 className="text-lg font-semibold text-blue-800 dark:text-blue-200 mb-2">
+                📚 Important Branch Information
+              </h3>
+              <div className="space-y-2 text-sm text-blue-700 dark:text-blue-300">
+                <p><strong>✨ Only for CSE/IT students:</strong> These notes are specifically designed for Computer Science and Information Technology students.</p>
+              </div>
+            </div>
+          </div>
+        </motion.div>
+
         {/* Syllabus Card */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -296,13 +318,13 @@ const FourthSemesterNotes = () => {
               </CardDescription>
             </CardHeader>
             <CardContent>
-            <Button
-              onClick={() => handleDownload(syllabus.url, syllabus.title)}
-              className="btn-hero"
-            >
-              <Download className="h-4 w-4 mr-2" />
-              Download Syllabus
-            </Button>
+              <Button
+                onClick={() => handleDownload(syllabus.url, syllabus.title)}
+                className="btn-hero"
+              >
+                <Download className="h-4 w-4 mr-2" />
+                Download Syllabus
+              </Button>
             </CardContent>
           </Card>
         </motion.div>

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -9,12 +9,22 @@ import {
   Search, ExternalLink, Calendar, MapPin, Building, Clock, GraduationCap, Briefcase, School
 } from 'lucide-react';
 import Navbar from '@/components/Navbar';
+import { ShareButton } from '@/components/ShareButton';
 
 const Opportunities = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [filterType, setFilterType] = useState('all');
   const [filterLocation, setFilterLocation] = useState('all');
   const [activeTab, setActiveTab] = useState<'Internships' | 'Jobs' | 'Scholarships' | 'Hackathons' | 'Competitions'>('Internships');
+
+  // Check URL params to set active tab
+  useEffect(() => {
+    const urlParams = new URLSearchParams(window.location.search);
+    const tabParam = urlParams.get('tab');
+    if (tabParam && ['Internships', 'Jobs', 'Scholarships', 'Hackathons', 'Competitions'].includes(tabParam)) {
+      setActiveTab(tabParam as any);
+    }
+  }, []);
   const filters = {
     Internships: ['all', 'Technical', 'Non-technical', 'Online', 'Hybrid', 'Onsite'],
     Jobs: ['all', 'Full-time', 'Part-time', 'Remote', 'Hybrid', 'Onsite'],
@@ -450,13 +460,16 @@ const Opportunities = () => {
                 whileHover={{ scale: 1.02 }}
               >
                 <Card className="feature-card h-full relative">
-                  <CardHeader>
-                    <div className="flex justify-between items-start">
-                      <Badge variant="outline">{item.type}</Badge>
-                      <Badge className={expired ? 'bg-red-100 text-red-700' : 'bg-green-100 text-green-700'}>
-                        {expired ? 'Expired' : 'Ongoing'}
-                      </Badge>
-                    </div>
+                   <CardHeader>
+                     <div className="flex justify-between items-start">
+                       <Badge variant="outline">{item.type}</Badge>
+                       <div className="flex items-center gap-2">
+                         <ShareButton title={item.title} url={item.id.toString()} />
+                         <Badge className={expired ? 'bg-red-100 text-red-700' : 'bg-green-100 text-green-700'}>
+                           {expired ? 'Expired' : 'Ongoing'}
+                         </Badge>
+                       </div>
+                     </div>
                     <CardTitle className="text-xl mt-2">{item.title}</CardTitle>
                     <CardDescription className="flex gap-4 mt-1 text-sm">
                       <span className="flex items-center gap-1">
