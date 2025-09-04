@@ -245,7 +245,7 @@ const ThirdSemesterNotes = () => {
             3rd Semester B.Tech Notes 📖
           </h1>
           <p className="text-muted-foreground text-lg">
-            Complete collection of 3rd semester study materials for all subjects
+            <strong>Only for CSE/IT students</strong>
           </p>
         </motion.div>
 

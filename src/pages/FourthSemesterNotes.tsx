@@ -6,13 +6,10 @@ import { Badge } from '@/components/ui/badge';
 import { Download, ArrowLeft, FileText } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import Navbar from '@/components/Navbar';
-import { useDownloadTracking } from '@/hooks/useDownloadTracking';
-
 
 const FourthSemesterNotes = () => {
   const navigate = useNavigate();
   const [selectedSubject, setSelectedSubject] = useState<string | null>(null);
-  const { trackDownload } = useDownloadTracking();
   
   const subjects = [
     {
@@ -170,10 +167,7 @@ const FourthSemesterNotes = () => {
     url: 'https://drive.google.com/file/d/1Pj0S0G7EnEaFwQfBPndyIE_v37Z_P4pi/view?usp=drive_link'
   };
 
-  const handleDownload = async (url: string, title: string, subjectName?: string) => {
-    const canDownload = await trackDownload(title, url, '4th Semester', subjectName);
-    if (!canDownload) return;
-    
+  const handleDownload = (url: string, title: string) => {
     // Extract file ID from Google Drive URL
     const fileId = url.match(/\/d\/([a-zA-Z0-9-_]+)/)?.[1];
     if (fileId) {
@@ -279,8 +273,8 @@ const FourthSemesterNotes = () => {
           <h1 className="text-3xl md:text-4xl font-bold text-foreground mb-2">
             4th Semester B.Tech Notes 📖
           </h1>
-          <p className="text-muted-foreground text-lg">
-            Complete collection of 4th semester study materials for all subjects
+          <p className="text-muted-foreground text-lg mb-6 text-center">
+            <strong>Only for CSE/IT students</strong>
           </p>
         </motion.div>
 
@@ -303,7 +297,7 @@ const FourthSemesterNotes = () => {
             </CardHeader>
             <CardContent>
             <Button
-              onClick={() => handleDownload(syllabus.url, syllabus.title, 'Syllabus')}
+              onClick={() => handleDownload(syllabus.url, syllabus.title)}
               className="btn-hero"
             >
               <Download className="h-4 w-4 mr-2" />

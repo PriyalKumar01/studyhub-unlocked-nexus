@@ -53,13 +53,17 @@ const Navbar = () => {
                   )}
                   <Link
                     to={item.href}
-                    className={`relative px-4 py-2 text-sm font-medium transition-all duration-300 hover:scale-105 group ${
-                      isActive(item.href)
-                        ? 'text-primary'
-                        : 'text-foreground hover:text-primary'
-                    } ${item.animated ? 'bg-gradient-to-r from-primary/5 to-secondary/5 hover:from-primary/10 hover:to-secondary/10 border border-primary/10 hover:border-primary/20 shadow-sm rounded-lg' : ''}`}
-                  >
-                    <span className="relative z-10 font-semibold">{item.label}</span>
+                   className={`relative px-4 py-2 text-sm font-medium transition-all duration-300 hover:scale-105 group ${
+                     isActive(item.href)
+                       ? 'text-primary'
+                       : 'text-foreground hover:text-primary'
+                   } ${item.animated ? 'relative' : ''}`}
+                 >
+                   <span className="relative z-10 font-semibold flex items-center gap-1">
+                     {item.animated && <span className="text-yellow-400 animate-bounce">✨</span>}
+                     {item.label}
+                     {item.animated && <span className="text-xs bg-yellow-100 text-yellow-800 px-1 rounded-full">New</span>}
+                   </span>
                     <div 
                       className={`absolute bottom-1 left-1/2 transform -translate-x-1/2 h-0.5 bg-gradient-to-r from-primary to-secondary transition-all duration-300 ${
                         isActive(item.href) 
@@ -95,13 +99,17 @@ const Navbar = () => {
                   <Link
                     to={item.href}
                     onClick={() => setIsOpen(false)}
-                    className={`block px-3 py-2 rounded-md text-base font-medium transition-colors border ${
-                      isActive(item.href)
-                        ? 'bg-primary text-primary-foreground border-primary'
-                        : 'text-foreground hover:bg-accent hover:text-accent-foreground border-transparent hover:border-border/50'
-                    } ${item.animated ? 'bg-gradient-to-r from-primary/5 to-secondary/5 hover:from-primary/10 hover:to-secondary/10 border-primary/20 hover:border-primary/30 shadow-sm' : ''}`}
-                  >
-                    <span className={item.animated ? 'font-semibold' : ''}>{item.label}</span>
+                   className={`block px-3 py-2 rounded-md text-base font-medium transition-colors border-b border-border/30 ${
+                     isActive(item.href)
+                       ? 'bg-primary text-primary-foreground border-primary'
+                       : 'text-foreground hover:bg-accent hover:text-accent-foreground border-transparent hover:border-border/50'
+                   }`}
+                 >
+                   <span className="flex items-center gap-2">
+                     {item.animated && <span className="text-yellow-400">✨</span>}
+                     {item.label}
+                     {item.animated && <span className="text-xs bg-yellow-100 text-yellow-800 px-1 rounded-full">New</span>}
+                   </span>
                   </Link>
                   
                   {index < navItems.length - 1 && (

@@ -6,12 +6,17 @@ import { Badge } from '@/components/ui/badge';
 import { Download, ArrowLeft, FileText, Play } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import Navbar from '@/components/Navbar';
-import { useDownloadTracking } from '@/hooks/useDownloadTracking';
+import { PlaylistModal } from '@/components/PlaylistModal';
 
 const FirstSemesterNotes = () => {
   const navigate = useNavigate();
   const [selectedSubject, setSelectedSubject] = useState<string | null>(null);
-  const { trackDownload } = useDownloadTracking();
+  const [playlistModal, setPlaylistModal] = useState<{
+    isOpen: boolean;
+    title: string;
+    playlists: any[];
+    type: 'detailed' | 'oneshot' | 'workshop';
+  }>({ isOpen: false, title: '', playlists: [], type: 'detailed' });
   
 
   const subjects = [
@@ -284,11 +289,7 @@ const FirstSemesterNotes = () => {
     url: 'https://drive.google.com/file/d/1fZ_EtsAe94yc9-SM20b6P8-j_9pjdOkN/view?usp=drive_link'
   };
 
-  const handleDownload = async (url: string, title: string, subjectName?: string) => {
-    const canDownload = await trackDownload(title, url, '1st Semester', subjectName);
-    if (!canDownload) return;
-    
-
+  const handleDownload = (url: string, title: string) => {
     // Convert Google Drive view link to direct download link
     const fileId = url.match(/\/d\/([a-zA-Z0-9-_]+)/)?.[1];
     if (fileId) {
@@ -356,7 +357,7 @@ const FirstSemesterNotes = () => {
                   <CardContent>
                     <div className="space-y-3">
                       <Button
-                        onClick={() => handleDownload(note.url, note.title, subject.name)}
+                        onClick={() => handleDownload(note.url, note.title)}
                         className="w-full btn-hero"
                       >
                         <Download className="h-4 w-4 mr-2" />
@@ -372,38 +373,60 @@ const FirstSemesterNotes = () => {
                           </h5>
                           
                           {subject.playlists.detailed?.length > 0 && (
-                            <div className="space-y-1">
-                              <p className="text-xs font-medium">📚 Detailed Playlists:</p>
-                              {subject.playlists.detailed.slice(0, 2).map((playlist, idx) => (
-                                <Button
-                                  key={idx}
-                                  variant="outline"
-                                  size="sm"
-                                  className="w-full text-xs h-7 justify-start"
-                                  onClick={() => window.open(playlist.url, '_blank')}
-                                >
-                                  {playlist.recommended && '⭐ '}
-                                  {playlist.title.length > 30 ? playlist.title.substring(0, 30) + '...' : playlist.title}
-                                </Button>
-                              ))}
-                            </div>
+                            <Button
+                              variant="outline"
+                              size="sm"
+                              className="w-full text-xs h-7"
+                              onClick={(e) => {
+                                e.stopPropagation();
+                                setPlaylistModal({
+                                  isOpen: true,
+                                  title: subject.name,
+                                  playlists: subject.playlists.detailed,
+                                  type: 'detailed'
+                                });
+                              }}
+                            >
+                              📚 View All Detailed Playlists ({subject.playlists.detailed.length})
+                            </Button>
                           )}
                           
                           {subject.playlists.oneshot?.length > 0 && (
-                            <div className="space-y-1">
-                              <p className="text-xs font-medium">📺 One Shot Videos:</p>
-                              {subject.playlists.oneshot.slice(0, 1).map((playlist, idx) => (
-                                <Button
-                                  key={idx}
-                                  variant="outline"
-                                  size="sm"
-                                  className="w-full text-xs h-7 justify-start"
-                                  onClick={() => window.open(playlist.url, '_blank')}
-                                >
-                                  {playlist.title.length > 30 ? playlist.title.substring(0, 30) + '...' : playlist.title}
-                                </Button>
-                              ))}
-                            </div>
+                            <Button
+                              variant="outline"
+                              size="sm"
+                              className="w-full text-xs h-7"
+                              onClick={(e) => {
+                                e.stopPropagation();
+                                setPlaylistModal({
+                                  isOpen: true,
+                                  title: subject.name,
+                                  playlists: subject.playlists.oneshot,
+                                  type: 'oneshot'
+                                });
+                              }}
+                            >
+                              📺 View All One Shot Videos ({subject.playlists.oneshot.length})
+                            </Button>
+                          )}
+
+                          {subject.id === 'workshop' && subject.playlists?.detailed?.length > 0 && (
+                            <Button
+                              variant="outline"
+                              size="sm"
+                              className="w-full text-xs h-7"
+                              onClick={(e) => {
+                                e.stopPropagation();
+                                setPlaylistModal({
+                                  isOpen: true,
+                                  title: subject.name,
+                                  playlists: subject.playlists.detailed,
+                                  type: 'workshop'
+                                });
+                              }}
+                            >
+                              🔨 View All Workshop Videos ({subject.playlists.detailed.length})
+                            </Button>
                           )}
                         </div>
                       )}
@@ -465,7 +488,7 @@ const FirstSemesterNotes = () => {
             </CardHeader>
             <CardContent>
               <Button
-                onClick={() => handleDownload(syllabus.url, syllabus.title, 'Syllabus')}
+                onClick={() => handleDownload(syllabus.url, syllabus.title)}
                 className="btn-hero"
               >
                 <Download className="h-4 w-4 mr-2" />
@@ -519,8 +542,12 @@ const FirstSemesterNotes = () => {
                             className="w-full justify-start text-xs h-8 hover:bg-primary/10" 
                             onClick={(e) => {
                               e.stopPropagation();
-                              const bestPlaylist = subject.playlists.detailed.find(p => p.recommended) || subject.playlists.detailed[0];
-                              window.open(bestPlaylist.url, '_blank');
+                              setPlaylistModal({
+                                isOpen: true,
+                                title: subject.name,
+                                playlists: subject.playlists.detailed,
+                                type: 'detailed'
+                              });
                             }}
                           >
                             📚 Detailed Playlists ({subject.playlists.detailed.length})
@@ -533,10 +560,33 @@ const FirstSemesterNotes = () => {
                             className="w-full justify-start text-xs h-8 hover:bg-primary/10"
                             onClick={(e) => {
                               e.stopPropagation();
-                              window.open(subject.playlists.oneshot[0].url, '_blank');
+                              setPlaylistModal({
+                                isOpen: true,
+                                title: subject.name,
+                                playlists: subject.playlists.oneshot,
+                                type: 'oneshot'
+                              });
                             }}
                           >
                             📺 One Shot Videos ({subject.playlists.oneshot.length})
+                          </Button>
+                        )}
+                        {subject.id === 'workshop' && subject.playlists?.detailed?.length > 0 && (
+                          <Button 
+                            variant="ghost" 
+                            size="sm" 
+                            className="w-full justify-start text-xs h-8 hover:bg-primary/10"
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              setPlaylistModal({
+                                isOpen: true,
+                                title: subject.name,
+                                playlists: subject.playlists.detailed,
+                                type: 'workshop'
+                              });
+                            }}
+                          >
+                            🔨 Workshop Videos ({subject.playlists.detailed.length})
                           </Button>
                         )}
                         {(!subject.playlists || ((!subject.playlists.detailed || subject.playlists.detailed.length === 0) && (!subject.playlists.oneshot || subject.playlists.oneshot.length === 0))) && (
@@ -553,6 +603,14 @@ const FirstSemesterNotes = () => {
           ))}
         </div>
       </div>
+
+      <PlaylistModal 
+        isOpen={playlistModal.isOpen}
+        onClose={() => setPlaylistModal({ isOpen: false, title: '', playlists: [], type: 'detailed' })}
+        title={playlistModal.title}
+        playlists={playlistModal.playlists}
+        type={playlistModal.type}
+      />
       </div>
   );
 };
