@@ -48,7 +48,7 @@ const CodingStudyMaterial = () => {
           className="mb-8"
         >
           <Button
-            onClick={() => navigate('/notes-categories')}
+            onClick={() => navigate('/notes')}
             variant="outline"
             className="mb-4"
           >

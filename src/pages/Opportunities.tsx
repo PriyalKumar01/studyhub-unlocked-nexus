@@ -39,7 +39,7 @@ const Opportunities = () => {
     //1-10 id is reserve for Internships, 11-20 for Jobs, 21-40 for Scholarships
     Internships: [
      {
-  id: 1,
+  id: 1-1,
   title: 'Full Stack Developer Internship',
   company: 'Bootcoding Pvt. Ltd.',
   type: 'Technical',
@@ -52,7 +52,7 @@ const Opportunities = () => {
   duration: '3 months'
 },
 {
-  id: 2,
+  id: 1-2,
   title: 'Data Scientist Internship',
   company: 'FlatUIUX',
   type: 'Technical',
@@ -66,7 +66,7 @@ const Opportunities = () => {
 },
 
 {
-        id: 10,
+        id: 1-3,
         title: 'Content Writing Intern',
         company: 'EduBlogs',
         type: 'Non-technical',
@@ -81,7 +81,7 @@ const Opportunities = () => {
     ],
     Jobs: [
       {
-        id: 11,
+        id: 2-1,
         title: 'Backend Developer',
         company: 'TechNova',
         type: 'Full-time',
@@ -94,7 +94,7 @@ const Opportunities = () => {
         duration: 'Permanent'
       },
       {
-        id: 12,
+        id: 2-2,
         title: 'Customer Support (Remote)',
         company: 'QuickHelp',
         type: 'Part-time',
@@ -110,7 +110,7 @@ const Opportunities = () => {
     Scholarships: [
       
         {
-  id: 21,
+  id: 3-1,
   title: '🎓 UP Scholarship 2025',
   company: 'Government of Uttar Pradesh',
   type: 'Open-for-all',
@@ -127,7 +127,7 @@ const Opportunities = () => {
   duration: '1 Year'
 },
 {
-  id: 22,
+  id: 3-2,
   title: '✍️ Plagiarism Search Scholarship 2025',
   company: 'PlagiarismSearch',
   type: 'Merit-based',
@@ -143,26 +143,27 @@ const Opportunities = () => {
   postedDate: '2025-07-16',
   duration: 'One-time'
 },
-{
-  id: 23,
-  title: '🎯 Satya Scholarship Program 2025',
-  company: 'Nehru Sidhant Kender Trust',
-  type: 'Merit-based',
-  location: 'Ludhiana District, Punjab',
-  deadline: '2025-08-31',
+      {
+  id: 3-3,
+  title: 'Reliance Foundation Undergraduate Scholarship 2025-26',
+  company: 'Reliance Foundation',
+  type: 'Scholarship',
+  location: 'India',
+  deadline: '2025-10-04',
   eligibility: [
-    'Class 12 passed with at least 60% from Ludhiana district',
-    'Annual family income ≤ ₹5 Lakhs',
-    'Enrolled in 1st-year UG or integrated course in Commerce, Engineering, or Medical fields',
-    'Preference to girls, athletes, PwD, orphans, single-parent students'
+    'Resident Indian citizen',
+    'Passed Class 12 with minimum 60%',
+    'Enrolled in 1st year full-time UG degree (any stream)',
+    'Household income < ₹15 Lakhs (preference < ₹2.5 Lakhs)',
+    'Mandatory Aptitude Test'
   ],
-  description: 'Full tuition fee support for UG/integrated courses at selected colleges in Ludhiana; preference to underrepresented groups.',
-  applyLink: 'https://www.buddy4study.com/page/satya-scholarship-program',
-  postedDate: '2025-07-16',
-  duration: 'Up to 5 Years'
+  description: 'The Reliance Foundation Undergraduate Scholarship supports up to 5,000 first-year UG students across all streams with financial assistance, networking opportunities, and leadership development. Selected scholars may receive up to ₹2 Lakhs over the duration of their degree programme on a merit-cum-means basis.',
+  applyLink: 'https://tinyurl.com/RelianceScholarship',
+  postedDate: '2025-09-01',
+  duration: 'Full UG Degree (3-5 years)',
 },
 {
-  id: 24,
+  id: 3-4,
   title: '🏦 HDFC Bank Parivartan\'s ECSS Scholarship 2025-26',
   company: 'HDFC Bank',
   type: 'Merit-cum-Need Based',
@@ -181,7 +182,7 @@ const Opportunities = () => {
   duration: '1 Year (renewable)'
 },
 {
-  id: 25,
+  id: 3-5,
   title: '🚀 Aspire Scholarship Program 2025-26',
   company: 'SWAYAM Charitable Trust',
   type: 'Open-for-all',
@@ -198,7 +199,7 @@ const Opportunities = () => {
   duration: '4 Years (renewable annually)'
 },
 {
-  id: 26,
+  id: 3-6,
   title: '🌍 Global Scholar Challenge – Powered by TOEFL 2025',
   company: 'TOEFL',
   type: 'Open-for-all',
@@ -216,7 +217,7 @@ const Opportunities = () => {
   duration: 'One-time prize'
 },
 {
-  id: 27,
+  id: 3-7,
   title: '🎓 Infosys Foundation STEM Stars Scholarship 2025-26',
   company: 'Infosys Foundation',
   type: 'Women-only',
@@ -234,7 +235,7 @@ const Opportunities = () => {
   duration: '4 years'
 },
 {
-  id: 28,
+  id: 3-8,
   title: '💼 Raman Kant Munjal Scholarships 2025-26',
   company: 'Raman Kant Munjal Foundation',
   type: 'Finance UG',
@@ -251,7 +252,7 @@ const Opportunities = () => {
   duration: '3 years'
 },
 {
-  id: 29,
+  id: 3-9,
   title: '📡 Bharti Airtel Scholarship Program 2025-26',
   company: 'Bharti Airtel Foundation',
   type: 'Open-for-all',
@@ -269,7 +270,7 @@ const Opportunities = () => {
   duration: 'Up to 5 years'
 },
 {
-  id: 30,
+  id: 3-10,
   title: '🔧 HOPE Engineering Scholarship by Schaeffler India 2025',
   company: 'Schaeffler India',
   type: 'Women-only',
@@ -286,7 +287,7 @@ const Opportunities = () => {
   duration: 'One-time prize'
 },
 {
-  id: 31,
+  id: 3-11,
   title: '🏢 HSB MBA Scholarship-cum-Admission Seat 2025-26',
   company: 'Hari Shankar Singhania School of Business',
   type: 'merit-based',
@@ -302,10 +303,11 @@ const Opportunities = () => {
   postedDate: '2025-07-16',
   duration: '2 years'
 },
+
     ],
     Hackathons: [
       {
-        id: 41,
+        id: 4-1,
         title: 'Smart India Hackathon 2025',
         company: 'Government of India',
         type: 'Web Development',
@@ -318,7 +320,7 @@ const Opportunities = () => {
         duration: '36 hours'
       },
       {
-        id: 42,
+        id: 4-2,
         title: 'HackNUTH 2025',
         company: 'NIT Hamirpur',
         type: 'AI/ML',
@@ -333,7 +335,7 @@ const Opportunities = () => {
     ],
     Competitions: [
       {
-        id: 51,
+        id: 5-1,
         title: 'CodeChef October Challenge',
         company: 'CodeChef',
         type: 'Coding',
@@ -346,7 +348,7 @@ const Opportunities = () => {
         duration: '10 days'
       },
       {
-        id: 52,
+        id: 5-2,
         title: 'Google Solution Challenge 2025',
         company: 'Google',
         type: 'Innovation',
