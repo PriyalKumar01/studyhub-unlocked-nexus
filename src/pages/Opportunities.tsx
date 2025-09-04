@@ -128,22 +128,27 @@ const Opportunities = () => {
 },
 {
   id: 3-2,
-  title: '✍️ Plagiarism Search Scholarship 2025',
-  company: 'PlagiarismSearch',
-  type: 'Merit-based',
-  location: 'Online',
-  deadline: '2025-12-20',
+  title: 'Siemens Scholarship Program 2025-26',
+  company: 'Siemens India',
+  type: 'Scholarship',
+  location: 'India',
+  deadline: '2025-09-31', // approximate, update when exact deadline announced
   eligibility: [
-    'Must be at least 18 years old',
-    'Currently enrolled or planning to enroll in college in 2025',
-    'Submit a 500–700 word essay in English on one of the listed topics'
+    'First-year students of Government Engineering Colleges (excluding IITs)',
+    'Streams: Mechanical, Production, Electrical, Electronics, Electronics & Telecommunication, Computer Science, IT, Instrumentation',
+    'Age: Up to 20 years',
+    'SSC: Minimum 60% aggregate',
+    'HSC or equivalent: Minimum 50% aggregate & 60% PCM aggregate',
+    'Annual family income ≤ ₹2 Lakhs'
   ],
-  description: 'A one-time $1,000 scholarship for students with strong writing skills, awarded through an online essay competition.',
-  applyLink: 'https://www.buddy4study.com/scholarship/plagiarism-search-scholarship',
-  postedDate: '2025-07-16',
-  duration: 'One-time'
-},
-      {
+  description: 'Siemens Scholarship Program supports meritorious first-year engineering students from government colleges with financial aid, skill development, and industry exposure. Apply ASAP , deadline is not announced yet',
+  applyLink: 'https://www.ssp-india.co.in/scholarship/apply',
+  postedDate: '2025-09-04',
+  duration: 'Full Engineering Degree (4 years)',
+
+}
+,
+{
   id: 3-3,
   title: 'Reliance Foundation Undergraduate Scholarship 2025-26',
   company: 'Reliance Foundation',
@@ -183,20 +188,20 @@ const Opportunities = () => {
 },
 {
   id: 3-5,
-  title: '🚀 Aspire Scholarship Program 2025-26',
-  company: 'SWAYAM Charitable Trust',
-  type: 'Open-for-all',
+  title: '✍️ Plagiarism Search Scholarship 2025',
+  company: 'PlagiarismSearch',
+  type: 'Merit-based',
   location: 'Online',
-  deadline: '2025-08-01',
+  deadline: '2025-12-20',
   eligibility: [
-    'Admitted to 1st-year B.Tech at one of 11 listed premier institutions',
-    'Annual family income ≤ ₹6 Lakh',
-    'Not receiving any other scholarship (self-declaration required)'
+    'Must be at least 18 years old',
+    'Currently enrolled or planning to enroll in college in 2025',
+    'Submit a 500–700 word essay in English on one of the listed topics'
   ],
-  description: 'Full academic cost coverage (tuition, hostel, food) for B.Tech students at premier institutions like IITs, IIITs, and more.',
-  applyLink: 'https://www.buddy4study.com/page/aspire-scholarship-program',
+  description: 'A one-time $1,000 scholarship for students with strong writing skills, awarded through an online essay competition.',
+  applyLink: 'https://www.buddy4study.com/scholarship/plagiarism-search-scholarship',
   postedDate: '2025-07-16',
-  duration: '4 Years (renewable annually)'
+  duration: 'One-time'
 },
 {
   id: 3-6,
