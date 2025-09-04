@@ -38,7 +38,7 @@ const FirstSemesterNotes = () => {
             recommended: false
           },
           {
-            title: 'Engineering Chemistry Detailed Playlist 3 (Best)',
+            title: 'Engineering Chemistry Detailed Playlist 3',
             url: 'https://youtube.com/playlist?list=PLg2LVpcRrOF5BVVKG_DdYRPEaMx6C9XsW&si=wOvmSVvGHocZWco2',
             recommended: true
           }
