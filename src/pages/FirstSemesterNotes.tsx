@@ -463,7 +463,7 @@ const FirstSemesterNotes = () => {
                           {getSubjectPlaylists(subject.id).detailed.length === 0 && 
                            getSubjectPlaylists(subject.id).oneshot.length === 0 && 
                            (!getSubjectPlaylists(subject.id).workshop || getSubjectPlaylists(subject.id).workshop.length === 0) && (
-                            <p className="text-xs text-muted-foreground pl-2">Coming Soon...</p>
+                            <p className="text-xs text-muted-foreground pl-2">Not available...</p>
                           )}
                         </div>
                       )}
