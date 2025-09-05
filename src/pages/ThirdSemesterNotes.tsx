@@ -3,13 +3,100 @@ import { motion } from 'framer-motion';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
-import { Download, ArrowLeft, FileText } from 'lucide-react';
+import { Download, ArrowLeft, FileText, Play, ChevronDown, ChevronRight } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import Navbar from '@/components/Navbar';
+import { PlaylistModal } from '@/components/PlaylistModal';
 
 const ThirdSemesterNotes = () => {
   const navigate = useNavigate();
   const [selectedSubject, setSelectedSubject] = useState<string | null>(null);
+  const [showPlaylistModal, setShowPlaylistModal] = useState(false);
+  const [selectedPlaylistType, setSelectedPlaylistType] = useState<'detailed' | 'oneshot' | 'workshop'>('detailed');
+  const [selectedSubjectForPlaylist, setSelectedSubjectForPlaylist] = useState<string>('');
+  const [expandedSubjects, setExpandedSubjects] = useState<string[]>([]);
+
+  const subjectPlaylists = {
+    co: {
+      detailed: [
+        { title: 'Computer Organization Complete', url: 'https://youtube.com/playlist?list=PLxCzCOWd7aiHMonh3G6QNKq53C6oNXGrX&si=DIFQTSm2C9CeKCSW' }
+      ],
+      oneshot: [
+        { title: 'Computer Organization One Shot 1', url: 'https://youtu.be/DsK35f8wyUw?si=txkw3jBfvMrPRHI9' },
+        { title: 'Computer Organization One Shot 2', url: 'https://youtu.be/nezosHntjPg?si=b07dVQUqLYcwXAak' }
+      ]
+    },
+    dsuc: {
+      detailed: [
+        { title: 'DSUC Complete Playlist', url: 'https://youtube.com/playlist?list=PLdo5W4Nhv31bbKJzrsKfMpo_grxuLl8LU&si=ywuxQFLJq-6kBNBz' },
+        { title: 'DSUC Advanced Playlist', url: 'https://youtube.com/playlist?list=PLVlQHNRLflP_OxF1QJoGBwH_TnZszHR_j&si=UoNjnrMNLqIyMOJ7' }
+      ],
+      oneshot: [
+        { title: 'DSUC One Shot Complete', url: 'https://youtu.be/MdG0Vw9f1A4?si=l-gk-33QAWwbhSeC' }
+      ]
+    },
+    de: {
+      detailed: [
+        { title: 'Digital Electronics Complete (Best)', url: 'https://youtube.com/playlist?list=PL0c0N7xv8s06alYrdpsYjGXBs1IqIU8QS&si=YrMsDIvKhqS3pAjx', recommended: true },
+        { title: 'Digital Electronics Advanced', url: 'https://youtube.com/playlist?list=PLgwJf8NK-2e7nYSG31YWEUfwgAp2uIOBY&si=gjuY7Q3o8GBTfdR3' }
+      ],
+      oneshot: [
+        { title: 'Digital Electronics One Shot 1', url: 'https://youtu.be/pHNbm-4reIc?si=BAIqs2C-Ga8NRzPJ' },
+        { title: 'Digital Electronics One Shot 2', url: 'https://youtu.be/9Tn9M98yER8?si=Mubongdz8rnHGTaz' }
+      ]
+    },
+    python: {
+      detailed: [
+        { title: 'Python Programming Complete', url: 'https://youtube.com/playlist?list=PLvu-LC7buiaVdESLhxGj0BDQMjSLIEiSL&si=_GpcglKz_pZ78pt_' }
+      ],
+      oneshot: [
+        { title: 'Python Programming One Shot', url: 'https://youtube.com/playlist?list=PL49mRA0Y_C8vu2RWHdPsuRNRAcd89-eaz&si=dTvCvGhRbf7esBPJ' }
+      ]
+    },
+    math2: {
+      detailed: [
+        { title: 'Engineering Mathematics-II Unit 1', url: 'https://youtube.com/playlist?list=PL5Dqs90qDljW1pwNMiPFDvR6zCbA9kRyd&si=eKIFeUwcRRvEW-iy' },
+        { title: 'Engineering Mathematics-II Unit 3', url: 'https://youtube.com/playlist?list=PL5Dqs90qDljWpJyo3QVVyY-o2xVCtxOfF&si=7l12sPrchJuFdEFB' },
+        { title: 'Fourier Series Playlist', url: 'https://youtube.com/playlist?list=PLT3bOBUU3L9garIMWIqgAJ6wqBUe4ckFm&si=sULV2V8F8CxNfLU7' },
+        { title: 'Engineering Math-II Playlist 1', url: 'https://youtube.com/playlist?list=PLhSp9OSVmeyLke5_cby8i8ZhK8FHpw3qs&si=EXY9L4AxKVg58a-8' },
+        { title: 'Engineering Math-II Playlist 2', url: 'https://youtube.com/playlist?list=PLhSp9OSVmeyJoNnAqghUK-Lit3qBgfa6o&si=RfESwXzHT7mFK_DG' },
+        { title: 'Complete Engineering Math-II (Best)', url: 'https://youtube.com/playlist?list=PLU6SqdYcYsfJljvy7Goi78EGwjPDQEnSw&si=dJ54yTQ9R4ZYmV7k', recommended: true },
+        { title: 'Engineering Math-II Advanced', url: 'https://youtube.com/playlist?list=PLhSp9OSVmeyJCwFXRDW8KmDlBFGRAxnAu&si=Vi9_HhLL2K5r15gn' },
+        { title: 'Engineering Math-II Advanced (Best)', url: 'https://youtube.com/playlist?list=PLU6SqdYcYsfKqa52m3wyMZb1KVWuZsA2T&si=MnC0WGH0egKRZkHx', recommended: true }
+      ],
+      oneshot: []
+    },
+    itetiict: {
+      detailed: [],
+      oneshot: [
+        { title: 'ICT Introduction Video 1', url: 'https://youtu.be/6ptZr9VRxPs?si=IRMWuVFfR4-Yj6rM' },
+        { title: 'ICT Introduction Video 2', url: 'https://youtu.be/Pg_9kXV1lXg?si=Z-jfUI57nI_c8_2w' },
+        { title: 'ICT Introduction Video 3', url: 'https://youtu.be/mbdl-Fh5ALg?si=1JQlwxU9UroBsgL8' }
+      ]
+    }
+  };
+
+  const toggleSubjectExpansion = (subjectId: string) => {
+    setExpandedSubjects(prev => 
+      prev.includes(subjectId) 
+        ? prev.filter(id => id !== subjectId)
+        : [...prev, subjectId]
+    );
+  };
+
+  const handlePlaylistClick = (subjectId: string, type: 'detailed' | 'oneshot') => {
+    const playlistKey = subjectId as keyof typeof subjectPlaylists;
+    if (subjectPlaylists[playlistKey] && subjectPlaylists[playlistKey][type].length > 0) {
+      setSelectedSubjectForPlaylist(subjectId);
+      setSelectedPlaylistType(type);
+      setShowPlaylistModal(true);
+    }
+  };
+
+  const getSubjectPlaylists = (subjectId: string) => {
+    const playlistKey = subjectId as keyof typeof subjectPlaylists;
+    return subjectPlaylists[playlistKey] || { detailed: [], oneshot: [] };
+  };
 
   const subjects = [
     {
@@ -288,29 +375,114 @@ const ThirdSemesterNotes = () => {
               transition={{ delay: (index + 1) * 0.1, duration: 0.5 }}
               whileHover={{ scale: 1.02 }}
             >
-              <Card 
-                className="feature-card h-full cursor-pointer transition-all duration-300"
-                onClick={() => setSelectedSubject(subject.id)}
-              >
+              <Card className="feature-card h-full transition-all duration-300">
                 <CardHeader>
-                  <div className={`w-16 h-16 ${subject.color} rounded-full flex items-center justify-center text-white text-2xl mb-4 mx-auto`}>
-                    {subject.icon}
+                  <div className="flex items-center justify-between mb-3">
+                    <div className={`w-16 h-16 ${subject.color} rounded-full flex items-center justify-center text-white text-2xl`}>
+                      {subject.icon}
+                    </div>
+                    {(getSubjectPlaylists(subject.id).detailed.length > 0 || getSubjectPlaylists(subject.id).oneshot.length > 0) && (
+                      <Button
+                        variant="ghost"
+                        size="sm"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          toggleSubjectExpansion(subject.id);
+                        }}
+                        className="p-2 hover:bg-primary/10"
+                      >
+                        {expandedSubjects.includes(subject.id) ? (
+                          <ChevronDown className="h-4 w-4" />
+                        ) : (
+                          <ChevronRight className="h-4 w-4" />
+                        )}
+                      </Button>
+                    )}
                   </div>
-                  <CardTitle className="text-lg text-center">{subject.name}</CardTitle>
+                  <CardTitle className="text-lg text-center mb-2">{subject.name}</CardTitle>
                   <CardDescription className="text-center">
                     {subject.notes.length} notes available
                   </CardDescription>
+                  
+                  {(getSubjectPlaylists(subject.id).detailed.length > 0 || getSubjectPlaylists(subject.id).oneshot.length > 0) && (
+                    <div className="mt-3 text-center">
+                      <Button
+                        variant="ghost"
+                        size="sm"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          toggleSubjectExpansion(subject.id);
+                        }}
+                        className="text-xs text-primary hover:bg-primary/10"
+                      >
+                        <Play className="h-3 w-3 mr-1" />
+                        Study Playlists
+                      </Button>
+                    </div>
+                  )}
                 </CardHeader>
                 <CardContent>
-                  <div className="flex items-center justify-between">
-                    <Badge variant="secondary">{subject.notes.length} Files</Badge>
-                    <Button variant="outline" size="sm">View Notes</Button>
+                  <div className="flex flex-col gap-3">
+                    {/* Study Playlists Section */}
+                    {(expandedSubjects.includes(subject.id) && (getSubjectPlaylists(subject.id).detailed.length > 0 || getSubjectPlaylists(subject.id).oneshot.length > 0)) && (
+                      <div className="space-y-2">
+                        <div className="flex items-center gap-2">
+                          <Play className="h-4 w-4 text-primary" />
+                          <span className="text-sm font-medium text-primary">Study Playlists Available</span>
+                        </div>
+                        
+                        <div className="flex gap-2">
+                          {getSubjectPlaylists(subject.id).detailed.length > 0 && (
+                            <Button
+                              variant="outline"
+                              size="sm"
+                              onClick={() => handlePlaylistClick(subject.id, 'detailed')}
+                              className="text-xs"
+                            >
+                              <Play className="h-3 w-3 mr-1" />
+                              Detailed Playlist
+                            </Button>
+                          )}
+                          {getSubjectPlaylists(subject.id).oneshot.length > 0 && (
+                            <Button
+                              variant="outline"
+                              size="sm"
+                              onClick={() => handlePlaylistClick(subject.id, 'oneshot')}
+                              className="text-xs"
+                            >
+                              <Play className="h-3 w-3 mr-1" />
+                              One Shot
+                            </Button>
+                          )}
+                        </div>
+                      </div>
+                    )}
+                    
+                    <div className="flex items-center justify-between">
+                      <Badge variant="secondary">{subject.notes.length} Files</Badge>
+                      <Button 
+                        variant="outline" 
+                        size="sm"
+                        onClick={() => setSelectedSubject(subject.id)}
+                      >
+                        View Notes
+                      </Button>
+                    </div>
                   </div>
                 </CardContent>
               </Card>
             </motion.div>
           ))}
         </div>
+        
+        {/* Playlist Modal */}
+        <PlaylistModal
+          isOpen={showPlaylistModal}
+          onClose={() => setShowPlaylistModal(false)}
+          title={subjects.find(s => s.id === selectedSubjectForPlaylist)?.name || ''}
+          playlists={selectedSubjectForPlaylist ? getSubjectPlaylists(selectedSubjectForPlaylist)[selectedPlaylistType] : []}
+          type={selectedPlaylistType}
+        />
       </div>
     </div>
   );

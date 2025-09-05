@@ -21,6 +21,16 @@ const NotesCategories = () => {
       count: '1st-4th Sem Available'
     },
     {
+      id: 'placement',
+      title: 'Placement Preparation',
+      description: 'Complete placement guide, resume building, and career tips',
+      icon: <Sparkles className="h-8 w-8" />,
+      route: '/placement-preparation',
+      gradient: 'bg-gradient-to-br from-green-500 to-blue-500',
+      available: true,
+      count: 'Career Success Guide'
+    },
+    {
       id: 'dsa',
       title: 'DSA Notes',
       description: 'Data Structures and Algorithms comprehensive guide',
@@ -79,7 +89,7 @@ const NotesCategories = () => {
         </motion.div>
 
         {/* Categories Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
           {noteCategories.map((category, index) => (
             <motion.div
               key={category.id}
@@ -90,17 +100,23 @@ const NotesCategories = () => {
               className="group"
             >
               <Link to={category.route}>
-                <Card className="feature-card h-full cursor-pointer transition-all duration-300 hover:shadow-xl overflow-hidden">
+                <Card className={`feature-card h-full cursor-pointer transition-all duration-300 hover:shadow-xl overflow-hidden ${
+                  category.id === 'placement' ? 'border-2 border-green-200 dark:border-green-800 bg-gradient-to-br from-green-50 to-blue-50 dark:from-green-950/20 dark:to-blue-950/20' : ''
+                }`}>
                   <CardHeader className="relative">
                     <div className="flex items-center justify-between mb-4">
                       <div className={`w-16 h-16 ${category.gradient} rounded-xl flex items-center justify-center text-white shadow-lg group-hover:scale-110 transition-transform duration-300`}>
                         {category.icon}
                       </div>
-                      <Badge variant="secondary" className="bg-primary/10 text-primary">
+                      <Badge variant="secondary" className={`${
+                        category.id === 'placement' ? 'bg-green-100 text-green-700 border-green-300' : 'bg-primary/10 text-primary'
+                      }`}>
                         {category.count}
                       </Badge>
                     </div>
-                    <CardTitle className="text-2xl mb-2 group-hover:text-primary transition-colors">
+                    <CardTitle className={`text-2xl mb-2 group-hover:text-primary transition-colors ${
+                      category.id === 'placement' ? 'text-green-700 dark:text-green-300' : ''
+                    }`}>
                       {category.title}
                     </CardTitle>
                     <CardDescription className="text-base leading-relaxed">

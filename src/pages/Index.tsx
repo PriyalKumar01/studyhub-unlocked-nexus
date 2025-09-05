@@ -124,21 +124,12 @@ const Index = () => {
               </p>
               
               <div className="flex flex-col sm:flex-row gap-4">
-                {user ? (
-                  <Link to="/dashboard">
-                    <Button className="btn-hero text-lg px-8 py-3">
-                      Go to Dashboard
-                      <ArrowRight className="ml-2 h-5 w-5" />
-                    </Button>
-                  </Link>
-                ) : (
-                  <Link to="/auth">
-                    <Button className="btn-hero text-lg px-8 py-3">
-                      Get Started Free
-                      <ArrowRight className="ml-2 h-5 w-5" />
-                    </Button>
-                  </Link>
-                )}
+                <Link to="/notes">
+                  <Button className="btn-hero text-lg px-8 py-3">
+                    Get Started Free
+                    <ArrowRight className="ml-2 h-5 w-5" />
+                  </Button>
+                </Link>
                 
                 <Link to="/learning-platforms">
                   <Button variant="outline" className="text-lg px-8 py-3 border-2">

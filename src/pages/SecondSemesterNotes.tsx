@@ -17,12 +17,66 @@ const SecondSemesterNotes = () => {
   const [expandedSubjects, setExpandedSubjects] = useState<string[]>([]);
 
   const subjectPlaylists = {
+    physics: {
+      detailed: [
+        { title: 'Engineering Physics Complete (Best)', url: 'https://youtube.com/playlist?list=PL3qvHcrYGy1u112gfsHycdWaLTVRt8ame&si=3MrtW-X9PPCjeexh', recommended: true },
+        { title: 'Engineering Physics Comprehensive', url: 'https://youtube.com/playlist?list=PLg2LVpcRrOF4prkeAuDqOkHYubzW4meNs&si=3uUy122XB8m4ehot' },
+        { title: 'Engineering Physics Advanced', url: 'https://youtube.com/playlist?list=PLEYBvmdYQH_b3GqXdz2Z377qWNUTOQPCC&si=Zx9BNaMlGapFSC8N' }
+      ],
+      oneshot: [
+        { title: 'Engineering Physics One Shot (Best)', url: 'https://youtube.com/playlist?list=PLkojphh8hBnah-09sz2BzQo4PpjKmZeii&si=hoEBYHozo_qWmu5f', recommended: true },
+        { title: 'LASER Topic One Shot', url: 'https://youtu.be/Xy67j-KZytY?si=pIp14jVwhdOfZL5W' }
+      ]
+    },
+    graphics: {
+      detailed: [
+        { title: 'Engineering Graphics Complete', url: 'https://youtube.com/playlist?list=PL9RcWoqXmzaJT-fliqTSwUjWU4zCX_H2A&si=7Nqyi7RZvzTG4FDx' },
+        { title: 'Plane Scale', url: 'https://youtube.com/playlist?list=PLDN15nk5uLiDHez0vbl2L-BlxvOh7LKbC&si=C21LkKsmpznrnRXe' },
+        { title: 'Projection of Straight Line', url: 'https://youtube.com/playlist?list=PLDN15nk5uLiC9wFOTiDp8ekWAf40BwSct&si=wXPd0mqkRJnPObY1' },
+        { title: 'Orthographic Projection', url: 'https://youtube.com/playlist?list=PLDN15nk5uLiBpnIOK5r3KXdfFOVzGHJSt&si=T6Bdal3q7No8wIAH' },
+        { title: 'Projection of Solid', url: 'https://youtube.com/playlist?list=PLDN15nk5uLiA9qy-OWuoEYoXsu7lsSaE9&si=2JhDN_Sdjn60mS-y' },
+        { title: 'Projection of Plane', url: 'https://youtube.com/playlist?list=PLDN15nk5uLiBVR22X01vcnvVCuQIklXGx&si=1xN1LyxHTM-GtzvY' },
+        { title: 'Isometric View', url: 'https://youtube.com/playlist?list=PLDN15nk5uLiCf-raL06kSCeqR8h61eYIC&si=xd00ke4OruPzCLu1' },
+        { title: 'Section of Solid', url: 'https://youtube.com/playlist?list=PLDN15nk5uLiBrAkdOhEvkmVPs2UtwfGao&si=LVKO8cnvQO0JVmOZ' },
+        { title: 'Parabola', url: 'https://youtube.com/playlist?list=PLDN15nk5uLiBeWnVOMzE43WvHttggwr9C&si=McxrA0WQVn_TO6rM' }
+      ],
+      oneshot: []
+    },
+    mechanics: {
+      detailed: [
+        { title: 'Friction (Best)', url: 'https://youtube.com/playlist?list=PLDN15nk5uLiAcwK1Fz4n7KVF7yUlBlqaC&si=vDV-TMhH1k2QKl4N', recommended: true },
+        { title: 'Equilibrium (Best)', url: 'https://youtube.com/playlist?list=PLDN15nk5uLiAAqXRqpIPTEgf_KcblFrPx&si=FHwwoufHVAl6jxIv', recommended: true },
+        { title: 'Beam (Best)', url: 'https://youtube.com/playlist?list=PLDN15nk5uLiCAnu7Rjta7vvNhoJZv_gAt&si=FDtaMcLkqDY-mDgk', recommended: true },
+        { title: 'Truss (Best)', url: 'https://youtube.com/playlist?list=PLDN15nk5uLiBwwGZKmNzKJIRh4E0G9cfx&si=gdrUdACUxxxP9fdQ', recommended: true },
+        { title: 'Centroid and Center of Gravity (Best)', url: 'https://youtube.com/playlist?list=PLDN15nk5uLiBVYBMlotEZiS6ivj147brP&si=qMEyTHCEvwRosEaS', recommended: true },
+        { title: 'Lami\'s Theorem (Best)', url: 'https://youtube.com/playlist?list=PLDN15nk5uLiDEfVIPV-IsxlZGh55cxL2J&si=lDjE-PrMTbELnfU2', recommended: true },
+        { title: 'Moment & Couple (Best)', url: 'https://youtube.com/playlist?list=PLDN15nk5uLiB8ys9x_dWnPLqhuI3T2nTG&si=SQKM4cbUDlaW129h', recommended: true },
+        { title: 'Impact and Impulse', url: 'https://youtube.com/playlist?list=PLDN15nk5uLiCT6GSB-7AZvsTqVstHyPGD&si=PzWE8m3K_zSZ7cSh' },
+        { title: 'Moment of Inertia (Best)', url: 'https://youtube.com/playlist?list=PLDN15nk5uLiCfqJSWygjzY_EjSJeoEJ2x&si=rbv12__4tamLxC1Q', recommended: true },
+        { title: 'Product of Inertia', url: 'https://youtube.com/playlist?list=PLDN15nk5uLiD23ld8GO7BHJ1nT_NWmkCP&si=kP-aDJXhR2dLh_4Y' },
+        { title: '2D Face System (Best)', url: 'https://youtube.com/playlist?list=PLDN15nk5uLiB4wJ9KwN9LzBCawifVEKc4&si=RU2-a5UxL8AG86fV', recommended: true }
+      ],
+      oneshot: []
+    },
+    electrical: {
+      detailed: [
+        { title: 'Electrical Engineering Complete (Best)', url: 'https://youtube.com/playlist?list=PL3qvHcrYGy1v2kJX4SSsurE3_GdVe0ZD5&si=LN9LSPXI_zFjSjXS', recommended: true },
+        { title: 'Electrical Engineering Comprehensive (Best)', url: 'https://youtube.com/playlist?list=PLDN15nk5uLiCSOqr7-rUz6-GtdTAjlvul&si=dJR9but1DQvKc9sC', recommended: true },
+        { title: 'Electrical Engineering Advanced', url: 'https://youtube.com/playlist?list=PL9RcWoqXmzaLTYUdnzKhF4bYug3GjGcEc&si=yZMlK1LpsZk6L3Eo' }
+      ],
+      oneshot: [
+        { title: 'Electrical Engineering One Shot', url: 'https://youtube.com/playlist?list=PL-vEH_IPWrhD41z0I7qFs1jcr1K40IGsy&si=f2nvJs_Zg1OCthgE' }
+      ]
+    },
     math: {
       detailed: [
         { title: 'Engineering Mathematics-II Unit 1', url: 'https://youtube.com/playlist?list=PL5Dqs90qDljW1pwNMiPFDvR6zCbA9kRyd&si=eKIFeUwcRRvEW-iy' },
         { title: 'Engineering Mathematics-II Unit 3', url: 'https://youtube.com/playlist?list=PL5Dqs90qDljWpJyo3QVVyY-o2xVCtxOfF&si=7l12sPrchJuFdEFB' },
         { title: 'Fourier Series Playlist', url: 'https://youtube.com/playlist?list=PLT3bOBUU3L9garIMWIqgAJ6wqBUe4ckFm&si=sULV2V8F8CxNfLU7' },
+        { title: 'Engineering Math-II Playlist 1', url: 'https://youtube.com/playlist?list=PLhSp9OSVmeyLke5_cby8i8ZhK8FHpw3qs&si=EXY9L4AxKVg58a-8' },
+        { title: 'Engineering Math-II Playlist 2', url: 'https://youtube.com/playlist?list=PLhSp9OSVmeyJoNnAqghUK-Lit3qBgfa6o&si=RfESwXzHT7mFK_DG' },
         { title: 'Complete Engineering Math-II (Best)', url: 'https://youtube.com/playlist?list=PLU6SqdYcYsfJljvy7Goi78EGwjPDQEnSw&si=dJ54yTQ9R4ZYmV7k', recommended: true },
+        { title: 'Engineering Math-II Advanced', url: 'https://youtube.com/playlist?list=PLhSp9OSVmeyJCwFXRDW8KmDlBFGRAxnAu&si=Vi9_HhLL2K5r15gn' },
         { title: 'Engineering Math-II Advanced (Best)', url: 'https://youtube.com/playlist?list=PLU6SqdYcYsfKqa52m3wyMZb1KVWuZsA2T&si=MnC0WGH0egKRZkHx', recommended: true }
       ],
       oneshot: []

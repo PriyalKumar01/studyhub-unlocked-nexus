@@ -3,13 +3,108 @@ import { motion } from 'framer-motion';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
-import { Download, ArrowLeft, FileText } from 'lucide-react';
+import { Download, ArrowLeft, FileText, Play, ChevronDown, ChevronRight } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import Navbar from '@/components/Navbar';
+import { PlaylistModal } from '@/components/PlaylistModal';
 
 const FourthSemesterNotes = () => {
   const navigate = useNavigate();
   const [selectedSubject, setSelectedSubject] = useState<string | null>(null);
+  const [showPlaylistModal, setShowPlaylistModal] = useState(false);
+  const [selectedPlaylistType, setSelectedPlaylistType] = useState<'detailed' | 'oneshot' | 'workshop'>('detailed');
+  const [selectedSubjectForPlaylist, setSelectedSubjectForPlaylist] = useState<string>('');
+  const [expandedSubjects, setExpandedSubjects] = useState<string[]>([]);
+  
+  const subjectPlaylists = {
+    ppl: {
+      detailed: [
+        { title: 'Principal of Programming Language 1', url: 'https://youtube.com/playlist?list=PL-JvKqQx2AtdIkEFDrqsHyKWzb5PWniI1&si=UAZUusqLpaAJZDPk' },
+        { title: 'Principal of Programming Language 2', url: 'https://youtube.com/playlist?list=PLbWkMgLvWbDF3bErg6Ejo8d1QtTSqtWwN&si=1Z2lbiTm8JClSOEa' },
+        { title: 'Principal of Programming Language 3', url: 'https://youtube.com/playlist?list=PLwheXbz_XBtltsxCn00Hkdc2Dqa9t6wNd&si=WQ5lH-A5EQB1sW_Z' },
+        { title: 'Principal of Programming Language 4', url: 'https://youtube.com/playlist?list=PLTo1TmBz2ekof8VsYaoTxP-9VgJ9P-dTO&si=55vMVnCXKNwTVDnp' }
+      ],
+      oneshot: []
+    },
+    se: {
+      detailed: [
+        { title: 'Software Engineering Complete (Best)', url: 'https://youtube.com/playlist?list=PLxCzCOWd7aiEed7SKZBnC6ypFDWYLRvB2&si=V_wg1F_QDMAzhqbJ', recommended: true },
+        { title: 'Software Engineering Advanced', url: 'https://youtube.com/playlist?list=PLvu-LC7buiaXLZ6P6ePiAhAI1uTWfyVXZ&si=68I7AzesTJAQhrGc' },
+        { title: 'Software Engineering Comprehensive', url: 'https://youtube.com/playlist?list=PLqcuf9-ILPYA-OGMephZ0U9c8JvdefE0X&si=o6yJSSIx9o4kvaKL' }
+      ],
+      oneshot: [
+        { title: 'Software Engineering One Shot', url: 'https://youtu.be/NlLM3sVF8wY?si=z9MHr4P7KoiPxX5-' }
+      ]
+    },
+    wt: {
+      detailed: [
+        { title: 'Web Technology Complete', url: 'https://youtube.com/playlist?list=PLrjkTql3jnm8d1ddpVKifXO_fPjSKATCp&si=mK0fsnBGAZaW8hYN' },
+        { title: 'Web Technology Advanced', url: 'https://youtube.com/playlist?list=PL49mRA0Y_C8u2dOqXa-f9KSoSx9XICZ1E&si=lv0RPacby30ubHRf' }
+      ],
+      oneshot: [
+        { title: 'Web Technology One Shot', url: 'https://youtube.com/playlist?list=PLR5USSocuZ5eMnOLgS57Uuemx6bGV2lan&si=dazqDSAIkgHk0XPm' }
+      ]
+    },
+    os: {
+      detailed: [
+        { title: 'Operating System Complete (Best)', url: 'https://youtube.com/playlist?list=PLxCzCOWd7aiGz9donHRrE9I3Mwn6XdP8p&si=Q37KNf4AAP4Qk8oq', recommended: true },
+        { title: 'Operating System Advanced', url: 'https://youtube.com/playlist?list=PLBlnK6fEyqRiVhbXDGLXDk_OQAeuVcp2O&si=qbZZeUys9gnBM8_7' },
+        { title: 'Operating System Comprehensive', url: 'https://youtube.com/playlist?list=PLG9aCp4uE-s17rFjWM8KchGlffXgOzzVP&si=23zhPsNlTjwU4OGV' }
+      ],
+      oneshot: [
+        { title: 'Operating System One Shot (Best)', url: 'https://youtu.be/xw_OuOhjauw?si=MzjKrv7cY2vswkg5', recommended: true },
+        { title: 'Operating System One Shot 2', url: 'https://youtu.be/009FHqBo87Q?si=1SzNKk9iZR8TAZms' }
+      ]
+    },
+    em: {
+      detailed: [
+        { title: 'Economics and Management Complete (Best)', url: 'https://youtube.com/playlist?list=PLsh2FvSr3n7cjVNULjFnVvI_DMVoMYG9o&si=iQiHHTspvuH4MEOy', recommended: true },
+        { title: 'Economics and Management Advanced', url: 'https://youtube.com/playlist?list=PLaAhQ2ofZZRC1OFxHoa8qGyFHDgk7PyUN&si=5HtscWYDIA3f9qae' }
+      ],
+      oneshot: []
+    },
+    math3: {
+      detailed: [
+        { title: 'Engineering Mathematics-III Complete (Best)', url: 'https://youtube.com/playlist?list=PLhSp9OSVmeyITz_e6F9YiyongjaCryasK&si=xhAnYIkAQTe5jAw-', recommended: true },
+        { title: 'Engineering Mathematics-III Advanced (Best)', url: 'https://youtube.com/playlist?list=PL5Dqs90qDljVCPXMA2wwA9oIV3blxLLQ6&si=zRcZEv8D7dK-CP2M', recommended: true },
+        { title: 'Engineering Mathematics-III Unit 3 (Best)', url: 'https://youtube.com/playlist?list=PL5Dqs90qDljWlvUJ-YmjMsjkAANOagCk7&si=o7JtHhGSY40pDjWY', recommended: true },
+        { title: 'Engineering Mathematics-III Unit 4 (Best)', url: 'https://youtube.com/playlist?list=PLU6SqdYcYsfL1Mrdj7bs2A6bQOU7FMqKX&si=wFlWnVRj-HEH7qAw', recommended: true },
+        { title: 'Engineering Mathematics-III Unit 5 (Best)', url: 'https://youtube.com/playlist?list=PLhSp9OSVmeyLB62_-fT9VNbjRkDEzJzzp&si=FE8RI4spBCakwAgh', recommended: true },
+        { title: 'Engineering Mathematics-III General 1', url: 'https://youtube.com/playlist?list=PLNKD1qB9pptvgPP_zrKXa64SPYtKQpy-C&si=mOUPo8QHIhN5w9md' },
+        { title: 'Engineering Mathematics-III General 2', url: 'https://youtube.com/playlist?list=PL5Dqs90qDljVF5-HxU829qWUMRFwDAu3v&si=YqbaDiSVfO_BQrlN' },
+        { title: 'Engineering Mathematics-III General 3', url: 'https://youtube.com/playlist?list=PLT3bOBUU3L9ibhrkzWki0_tfrugS4rvnJ&si=fOLiA6fhcpYafFnO' },
+        { title: 'Engineering Mathematics-III General 4 (Best)', url: 'https://youtube.com/playlist?list=PLT3bOBUU3L9jr5vb-zUd4GUFaexGDiRc9&si=uMG3aPDDGVRo_QOQ', recommended: true },
+        { title: 'Engineering Mathematics-III General 5 (Best)', url: 'https://youtube.com/playlist?list=PL5Dqs90qDljWze2qPIgZv-CtBJYHEIvqa&si=yrKbGQpWpqNZeDwi', recommended: true },
+        { title: 'Engineering Mathematics-III General 6', url: 'https://youtube.com/playlist?list=PLT3bOBUU3L9iHqXEfSTmpmOpEkUmj-Qay&si=xiSCdE-W81UTMxg6' },
+        { title: 'Engineering Mathematics-III General 7', url: 'https://youtube.com/playlist?list=PLU6SqdYcYsfK_FysPwDqaoUKhTqms_aEg&si=4iqfG5zjBHpBMQU_' }
+      ],
+      oneshot: [
+        { title: 'Engineering Mathematics-III One Shot', url: 'https://youtu.be/_Hjp6aFJO40?si=L8tp3IgTfCBFhxEz' }
+      ]
+    }
+  };
+
+  const toggleSubjectExpansion = (subjectId: string) => {
+    setExpandedSubjects(prev => 
+      prev.includes(subjectId) 
+        ? prev.filter(id => id !== subjectId)
+        : [...prev, subjectId]
+    );
+  };
+
+  const handlePlaylistClick = (subjectId: string, type: 'detailed' | 'oneshot') => {
+    const playlistKey = subjectId as keyof typeof subjectPlaylists;
+    if (subjectPlaylists[playlistKey] && subjectPlaylists[playlistKey][type].length > 0) {
+      setSelectedSubjectForPlaylist(subjectId);
+      setSelectedPlaylistType(type);
+      setShowPlaylistModal(true);
+    }
+  };
+
+  const getSubjectPlaylists = (subjectId: string) => {
+    const playlistKey = subjectId as keyof typeof subjectPlaylists;
+    return subjectPlaylists[playlistKey] || { detailed: [], oneshot: [] };
+  };
   
   const subjects = [
     {
