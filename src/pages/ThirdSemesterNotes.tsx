@@ -424,39 +424,61 @@ const ThirdSemesterNotes = () => {
                 <CardContent>
                   <div className="flex flex-col gap-3">
                     {/* Study Playlists Section */}
-                    {(expandedSubjects.includes(subject.id) && (getSubjectPlaylists(subject.id).detailed.length > 0 || getSubjectPlaylists(subject.id).oneshot.length > 0)) && (
-                      <div className="space-y-2">
+                    {subject.id !== 'pyqs' && subject.id !== "assignments" &&(
+                    <div className="border-t pt-4">
+                      <div 
+                        className="flex items-center justify-between cursor-pointer hover:bg-muted/50 rounded p-2 -m-2"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          toggleSubjectExpansion(subject.id);
+                        }}
+                      >
                         <div className="flex items-center gap-2">
                           <Play className="h-4 w-4 text-primary" />
-                          <span className="text-sm font-medium text-primary">Study Playlists Available</span>
+                          <span className="text-sm font-medium">Study Playlists</span>
                         </div>
-                        
-                        <div className="flex gap-2">
+                        {expandedSubjects.includes(subject.id) ? 
+                          <ChevronDown className="h-4 w-4" /> : 
+                          <ChevronRight className="h-4 w-4" />
+                        }
+                      </div>
+                      
+                      {expandedSubjects.includes(subject.id) && (
+                        <div className="mt-3 space-y-2 pl-2">
                           {getSubjectPlaylists(subject.id).detailed.length > 0 && (
                             <Button
-                              variant="outline"
+                              variant="ghost"
                               size="sm"
-                              onClick={() => handlePlaylistClick(subject.id, 'detailed')}
-                              className="text-xs"
+                              className="w-full justify-start text-xs h-8"
+                              onClick={(e) => {
+                                e.stopPropagation();
+                                handlePlaylistClick(subject.id, 'detailed');
+                              }}
                             >
-                              <Play className="h-3 w-3 mr-1" />
-                              Detailed Playlist
+                              📚 Detailed Playlists ({getSubjectPlaylists(subject.id).detailed.length})
                             </Button>
                           )}
                           {getSubjectPlaylists(subject.id).oneshot.length > 0 && (
                             <Button
-                              variant="outline"
+                              variant="ghost"
                               size="sm"
-                              onClick={() => handlePlaylistClick(subject.id, 'oneshot')}
-                              className="text-xs"
+                              className="w-full justify-start text-xs h-8"
+                              onClick={(e) => {
+                                e.stopPropagation();
+                                handlePlaylistClick(subject.id, 'oneshot');
+                              }}
                             >
-                              <Play className="h-3 w-3 mr-1" />
-                              One Shot
+                              ⚡ One Shot Videos ({getSubjectPlaylists(subject.id).oneshot.length})
                             </Button>
                           )}
+                          {getSubjectPlaylists(subject.id).detailed.length === 0 && 
+                           getSubjectPlaylists(subject.id).oneshot.length === 0 && (
+                            <p className="text-xs text-muted-foreground pl-2">Not available...</p>
+                          )}
                         </div>
-                      </div>
-                    )}
+                      )}
+                    </div>
+                  )}
                     
                     <div className="flex items-center justify-between">
                       <Badge variant="secondary">{subject.notes.length} Files</Badge>

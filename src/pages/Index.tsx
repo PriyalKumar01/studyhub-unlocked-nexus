@@ -4,13 +4,11 @@ import { useAuth } from '@/contexts/AuthContext';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
-import { 
-  BookOpen, Upload, UserCheck, Briefcase, Users, Award, 
+import { BookOpen, Layers, Rocket, Upload, UserCheck, Briefcase, Users, Award, 
   TrendingUp, Download, GraduationCap, Star, ArrowRight 
 } from 'lucide-react';
 import Navbar from '@/components/Navbar';
 import AnimatedCounter from '@/components/AnimatedCounter';
-
 const Index = () => {
   const { user } = useAuth();
   const features = [
@@ -53,7 +51,7 @@ const Index = () => {
       icon: <Users className="h-8 w-8" />,
     },
     {
-      end: 10000,
+      end: 1000,
       suffix: '+',
       title: 'Notes Downloaded',
       description: 'Study materials shared by Us',
@@ -62,7 +60,7 @@ const Index = () => {
     {
       end: 1200,
       suffix: '+',
-      title: 'Certificates Issued',
+      title: 'Positive Reviews',
       description: 'Recognition certificates awarded',
       icon: <Award className="h-8 w-8" />,
     },
@@ -275,18 +273,18 @@ const Index = () => {
             {[
               {
                 step: '1',
-                title: 'Sign Up',
-                description: 'Create your account with your HBTU email and complete your profile with branch and semester details.',
+                title: 'Access Notes Instantly',
+                description: 'Open semester-wise notes, assignments, and study playlists without any login hassle.',
               },
               {
                 step: '2',
-                title: 'Explore & Share',
-                description: 'Browse notes from your branch or share your own study materials to help fellow students succeed.',
+                title: 'Explore Resources & Learn',
+                description: 'Find previous year papers, CGPA calculators, AI tools, and placement materials to boost your preparation.',
               },
               {
                 step: '3',
-                title: 'Excel & Succeed',
-                description: 'Calculate your CGPA, explore career opportunities, and utilize AI tools to boost your academic performance.',
+                title: 'Opportunities Ahead & Succeed',
+                description: 'Discover internships, career guidance, and skill resources to stay ahead in academics and beyond.',
               },
             ].map((step, index) => (
               <motion.div
@@ -383,7 +381,7 @@ const Index = () => {
                 </Button>
               </Link>
             ) : (
-              <Link to="/auth">
+              <Link to="/dashboard">
                 <Button variant="secondary" className="text-lg px-8 py-3">
                   Get Started Now - It's Free!
                   <ArrowRight className="ml-2 h-5 w-5" />

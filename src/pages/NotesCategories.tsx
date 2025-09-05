@@ -21,16 +21,6 @@ const NotesCategories = () => {
       count: '1st-4th Sem Available'
     },
     {
-      id: 'placement',
-      title: 'Placement Preparation',
-      description: 'Complete placement guide, resume building, and career tips',
-      icon: <Sparkles className="h-8 w-8" />,
-      route: '/placement-preparation',
-      gradient: 'bg-gradient-to-br from-green-500 to-blue-500',
-      available: true,
-      count: 'Career Success Guide'
-    },
-    {
       id: 'dsa',
       title: 'DSA Notes',
       description: 'Data Structures and Algorithms comprehensive guide',
@@ -59,6 +49,16 @@ const NotesCategories = () => {
       gradient: 'bg-gradient-to-br from-orange-500 to-orange-600',
       available: true,
       count: 'Complete Stack'
+    },
+    {
+      id: 'placement',
+      title: 'Placement Preparation',
+      description: 'Complete placement guide, resume building, and career tips',
+      icon: <Sparkles className="h-8 w-8" />,
+      route: '/placement-preparation',
+      gradient: 'bg-gradient-to-br from-green-500 to-blue-500',
+      available: true,
+      count: 'Career Success Guide'
     }
   ];
 

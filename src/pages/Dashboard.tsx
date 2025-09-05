@@ -14,7 +14,7 @@ const Dashboard = () => {
       title: 'Browse Notes',
       description: 'Access thousands of quality notes',
       icon: <FileText className="h-6 w-6" />,
-      href: '/view-notes',
+      href: '/notes',
       color: 'bg-gradient-secondary',
     },
     {
@@ -55,10 +55,10 @@ const Dashboard = () => {
   ];
 
   const recentStats = [
-    { label: 'Notes Downloaded', value: '89', change: '+15 this week' },
-    { label: 'Opportunities', value: '45', change: '+8 this week' },
-    { label: 'Study Hours', value: '23', change: '+5 this week' },
-    { label: 'CGPA Points', value: '8.5', change: '+0.2 this sem' },
+    { label: 'Notes Downloaded', value: '578+', change: '+77 this week' },
+    { label: 'Opportunities', value: '45+', change: '+8 this week' },
+    { label: 'Coding Material Available', value: '53+', change: '+15 this week' },
+    { label: 'AI Tools', value: '105+', change: '+16 this week' },
   ];
 
   return (
@@ -86,7 +86,7 @@ const Dashboard = () => {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.2, duration: 0.5 }}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-6 mb-8"
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8"
         >
           {quickActions.map((action, index) => (
             <motion.div
@@ -98,7 +98,7 @@ const Dashboard = () => {
               className="group"
             >
               <Link to={action.href}>
-                <Card className="feature-card h-full cursor-pointer border-0">
+                <Card className="feature-card h-full cursor-pointer border-0 ">
                   <CardHeader className="text-center pb-4">
                     <div className={`w-12 h-12 rounded-full ${action.color} flex items-center justify-center text-white mb-4 mx-auto group-hover:scale-110 transition-transform duration-300`}>
                       {action.icon}
@@ -121,7 +121,7 @@ const Dashboard = () => {
         >
           <Card className="gradient-card border-orange-200 bg-orange-50 dark:bg-orange-950 dark:border-orange-800">
             <CardHeader>
-              <CardTitle className="flex items-center gap-2 text-orange-700 dark:text-orange-300">
+              <CardTitle className="flex items-center gap-2 text-orange-700 dark:text-orange-300 ">
                 <BookOpen className="h-5 w-5" />
                 🚨 Upcoming Exams Alert!
               </CardTitle>
@@ -171,9 +171,9 @@ const Dashboard = () => {
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
                   <BookOpen className="h-5 w-5" />
-                  Your Statistics
+                  Website Statistics
                 </CardTitle>
-                <CardDescription>Track your academic progress</CardDescription>
+                <CardDescription>See How We’re Growing day by day ...</CardDescription>
               </CardHeader>
               <CardContent>
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
