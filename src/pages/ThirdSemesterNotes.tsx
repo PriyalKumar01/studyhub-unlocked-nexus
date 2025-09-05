@@ -381,45 +381,11 @@ const ThirdSemesterNotes = () => {
                     <div className={`w-16 h-16 ${subject.color} rounded-full flex items-center justify-center text-white text-2xl`}>
                       {subject.icon}
                     </div>
-                    {(getSubjectPlaylists(subject.id).detailed.length > 0 || getSubjectPlaylists(subject.id).oneshot.length > 0) && (
-                      <Button
-                        variant="ghost"
-                        size="sm"
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          toggleSubjectExpansion(subject.id);
-                        }}
-                        className="p-2 hover:bg-primary/10"
-                      >
-                        {expandedSubjects.includes(subject.id) ? (
-                          <ChevronDown className="h-4 w-4" />
-                        ) : (
-                          <ChevronRight className="h-4 w-4" />
-                        )}
-                      </Button>
-                    )}
                   </div>
                   <CardTitle className="text-lg text-center mb-2">{subject.name}</CardTitle>
                   <CardDescription className="text-center">
                     {subject.notes.length} notes available
                   </CardDescription>
-                  
-                  {(getSubjectPlaylists(subject.id).detailed.length > 0 || getSubjectPlaylists(subject.id).oneshot.length > 0) && (
-                    <div className="mt-3 text-center">
-                      <Button
-                        variant="ghost"
-                        size="sm"
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          toggleSubjectExpansion(subject.id);
-                        }}
-                        className="text-xs text-primary hover:bg-primary/10"
-                      >
-                        <Play className="h-3 w-3 mr-1" />
-                        Study Playlists
-                      </Button>
-                    </div>
-                  )}
                 </CardHeader>
                 <CardContent>
                   <div className="flex flex-col gap-3">
