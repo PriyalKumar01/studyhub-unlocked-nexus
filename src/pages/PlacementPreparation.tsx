@@ -6,11 +6,33 @@ import { ArrowLeft, Target, Play, ExternalLink, Star, TrendingUp, Users, BookOpe
 import { useNavigate } from 'react-router-dom';
 import Navbar from '@/components/Navbar';
 
+// Import coding platform images
+import leetcodeLogo from '@/assets/leetcode-logo.jpg';
+import codechefLogo from '@/assets/codechef-logo.jpg';
+import codeforcesLogo from '@/assets/codeforces-logo.jpg';
+import atcoderLogo from '@/assets/atcoder-logo.jpg';
+import code360Logo from '@/assets/code360-logo.jpg';
+import geeksforgeeksLogo from '@/assets/geeksforgeeks-logo.jpg';
+
+// Import resume template images
+import microsoftResume from '@/assets/microsoft-resume.jpg';
+import canvaResume from '@/assets/canva-resume.jpg';
+import resumeioTemplate from '@/assets/resumeio-template.jpg';
+import jobscanTemplate from '@/assets/jobscan-template.jpg';
+import millionResume from '@/assets/1million-resume.jpg';
+import overleafTemplate from '@/assets/overleaf-template.jpg';
+
 const PlacementPreparation = () => {
   const navigate = useNavigate();
 
   const handleVideoClick = (url: string) => {
     window.open(url, '_blank');
+  };
+
+  // Helper function to get YouTube thumbnail
+  const getYouTubeThumbnail = (url: string) => {
+    const videoId = url.match(/(?:youtu\.be\/|youtube\.com\/(?:.*v\/|.*v=|.*\/))([^?&"'>]+)/)?.[1];
+    return videoId ? `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg` : '';
   };
 
   const importantGuidelines = [
@@ -67,74 +89,82 @@ const PlacementPreparation = () => {
       name: 'LeetCode',
       url: 'https://leetcode.com/',
       description: 'Most popular platform for coding interviews preparation',
-      color: 'bg-yellow-500',
-      icon: '💻'
+      image: leetcodeLogo
     },
     {
       name: 'CodeChef',
       url: 'https://www.codechef.com/',
       description: 'Great for competitive programming and contests',
-      color: 'bg-brown-500',
-      icon: '👨‍🍳'
+      image: codechefLogo
     },
     {
       name: 'Codeforces',
       url: 'https://codeforces.com/',
       description: 'Competitive programming platform with regular contests',
-      color: 'bg-red-500',
-      icon: '🏆'
+      image: codeforcesLogo
     },
     {
       name: 'AtCoder',
       url: 'https://atcoder.jp/',
       description: 'High-quality competitive programming contests',
-      color: 'bg-green-500',
-      icon: '🎯'
+      image: atcoderLogo
     },
     {
       name: 'Code360',
       url: 'https://www.naukri.com/code360/',
       description: 'Coding Ninjas platform for interview preparation',
-      color: 'bg-orange-500',
-      icon: '🚀'
+      image: code360Logo
     },
     {
       name: 'GeeksforGeeks',
       url: 'https://www.geeksforgeeks.org/',
       description: 'Comprehensive resource for coding and algorithms',
-      color: 'bg-green-600',
-      icon: '📚'
+      image: geeksforgeeksLogo
     }
   ];
 
   const resumeTemplates = [
     {
-      name: 'ATS-Friendly Resume Template',
-      url: 'https://www.canva.com/design/DAFB7M4CUzM/share/preview?token=XqM6hT-jE2w6z3PQagrEMA&role=EDITOR&utm_content=DAFB7M4CUzM&utm_campaign=designshare&utm_medium=link&utm_source=sharebutton',
-      platform: 'Canva',
-      description: 'Clean, professional template optimized for ATS systems',
-      color: 'bg-blue-500'
+      name: 'Microsoft ATS Resume Templates',
+      url: 'https://create.microsoft.com/en-us/templates/ats-resumes',
+      platform: 'Microsoft',
+      description: 'Professional ATS-friendly templates from Microsoft',
+      image: microsoftResume
     },
     {
-      name: 'Tech Resume Template',
-      url: 'https://www.canva.com/design/DAE_DLqfEgE/share/preview?token=YpZ8rJ3VcRw6x8AQXhBKLQ&role=EDITOR&utm_content=DAE_DLqfEgE&utm_campaign=designshare&utm_medium=link&utm_source=sharebutton',
+      name: 'Canva ATS Resume Collection',
+      url: 'https://www.canva.com/p/wisscreative/collections/AYv3Dp1Oo-Ewpyjtj32DVw',
       platform: 'Canva',
-      description: 'Modern template designed specifically for tech professionals',
-      color: 'bg-purple-500'
+      description: 'Wide selection of ATS-optimized resume templates',
+      image: canvaResume
     },
     {
-      name: 'CS Graduate Resume',
-      url: 'https://www.overleaf.com/latex/templates/software-engineer-resume/gqxmqsvsbdjf',
+      name: 'Resume.io ATS Templates',
+      url: 'https://resume.io/resume-templates/ats',
+      platform: 'Resume.io',
+      description: 'Modern ATS-friendly resume templates',
+      image: resumeioTemplate
+    },
+    {
+      name: 'JobScan ATS Templates',
+      url: 'https://www.jobscan.co/resume-templates/ats-templates',
+      platform: 'JobScan',
+      description: 'Templates designed to pass ATS screening',
+      image: jobscanTemplate
+    },
+    {
+      name: '1 Million Resume Templates',
+      url: 'https://1millionresume.com/resume-templates/ats',
+      platform: '1MillionResume',
+      description: 'High-quality ATS resume templates',
+      image: millionResume
+    },
+    {
+      name: 'Overleaf LaTeX Template',
+      url: 'https://www.overleaf.com/latex/templates/70-plus-ats-rating-resume-template/ssprfsctyddz',
       platform: 'Overleaf',
-      description: 'LaTeX template for computer science graduates',
-      color: 'bg-green-500'
-    },
-    {
-      name: 'Student Resume Template',
-      url: 'https://novoresume.com/resume-templates/student',
-      platform: 'NovoResume',
-      description: 'Perfect for students and entry-level positions',
-      color: 'bg-orange-500'
+      description: '70+ ATS rating LaTeX resume template',
+      image: overleafTemplate
     }
   ];
 
@@ -227,13 +257,25 @@ const PlacementPreparation = () => {
               >
                 <Card className="feature-card h-full cursor-pointer" onClick={() => handleVideoClick(video.url)}>
                   <CardHeader>
-                    <div className="flex items-center gap-3 mb-2">
-                      <div className="w-10 h-10 bg-red-500 rounded-full flex items-center justify-center text-white">
-                        <Play className="h-5 w-5" />
+                    <div className="w-full h-40 rounded-lg overflow-hidden mb-4">
+                      <img 
+                        src={getYouTubeThumbnail(video.url)} 
+                        alt={video.title}
+                        className="w-full h-full object-cover"
+                        onError={(e) => {
+                          e.currentTarget.src = 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzIwIiBoZWlnaHQ9IjE4MCIgdmlld0JveD0iMCAwIDMyMCAxODAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIzMjAiIGhlaWdodD0iMTgwIiBmaWxsPSIjZmY0NDQ0Ii8+CjxwYXRoIGQ9Ik0xMjggNjBMMTkyIDEwMEwxMjggMTQwVjYwWiIgZmlsbD0id2hpdGUiLz4KPHN2Zz4K';
+                        }}
+                      />
+                      <div className="absolute inset-0 flex items-center justify-center">
+                        <div className="w-12 h-12 bg-red-500 rounded-full flex items-center justify-center text-white shadow-lg">
+                          <Play className="h-6 w-6 ml-1" />
+                        </div>
                       </div>
+                    </div>
+                    <div className="flex items-center gap-2 mb-3">
                       <Badge variant="secondary">Video Guide</Badge>
                     </div>
-                    <CardTitle className="text-lg leading-tight">{video.title}</CardTitle>
+                    <CardTitle className="text-lg leading-tight mb-2">{video.title}</CardTitle>
                     <CardDescription>
                       {video.description}
                     </CardDescription>
@@ -274,8 +316,12 @@ const PlacementPreparation = () => {
                 <Card className="feature-card h-full cursor-pointer" onClick={() => window.open(platform.url, '_blank')}>
                   <CardHeader>
                     <div className="flex items-center gap-3 mb-2">
-                      <div className={`w-10 h-10 ${platform.color} rounded-full flex items-center justify-center text-white text-lg`}>
-                        {platform.icon}
+                      <div className="w-16 h-16 rounded-lg overflow-hidden flex-shrink-0">
+                        <img 
+                          src={platform.image} 
+                          alt={`${platform.name} logo`}
+                          className="w-full h-full object-cover"
+                        />
                       </div>
                       <Badge variant="secondary">Platform</Badge>
                     </div>
@@ -320,8 +366,12 @@ const PlacementPreparation = () => {
                 <Card className="feature-card h-full cursor-pointer" onClick={() => window.open(template.url, '_blank')}>
                   <CardHeader>
                     <div className="flex items-center gap-3 mb-2">
-                      <div className={`w-10 h-10 ${template.color} rounded-full flex items-center justify-center text-white`}>
-                        <FileText className="h-5 w-5" />
+                      <div className="w-16 h-16 rounded-lg overflow-hidden flex-shrink-0">
+                        <img 
+                          src={template.image} 
+                          alt={`${template.name} preview`}
+                          className="w-full h-full object-cover"
+                        />
                       </div>
                       <Badge variant="secondary">{template.platform}</Badge>
                     </div>
@@ -334,50 +384,6 @@ const PlacementPreparation = () => {
                     <Button className="w-full btn-hero">
                       <ExternalLink className="h-4 w-4 mr-2" />
                       Use Template
-                    </Button>
-                  </CardContent>
-                </Card>
-              </motion.div>
-            ))}
-          </div>
-        </motion.div>
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.4, duration: 0.5 }}
-          className="mb-8"
-        >
-          <h2 className="text-2xl font-bold text-foreground mb-6 flex items-center gap-2">
-            <Play className="h-6 w-6 text-primary" />
-            Essential Video Resources
-          </h2>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {videos.map((video, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.5 + index * 0.1, duration: 0.5 }}
-                whileHover={{ scale: 1.02 }}
-              >
-                <Card className="feature-card h-full cursor-pointer" onClick={() => handleVideoClick(video.url)}>
-                  <CardHeader>
-                    <div className="flex items-center gap-3 mb-2">
-                      <div className="w-10 h-10 bg-red-500 rounded-full flex items-center justify-center text-white">
-                        <Play className="h-5 w-5" />
-                      </div>
-                      <Badge variant="secondary">Video Guide</Badge>
-                    </div>
-                    <CardTitle className="text-lg leading-tight">{video.title}</CardTitle>
-                    <CardDescription>
-                      {video.description}
-                    </CardDescription>
-                  </CardHeader>
-                  <CardContent>
-                    <Button className="w-full btn-hero">
-                      <ExternalLink className="h-4 w-4 mr-2" />
-                      Watch on YouTube
                     </Button>
                   </CardContent>
                 </Card>
@@ -452,6 +458,9 @@ const PlacementPreparation = () => {
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Button className="btn-hero" onClick={() => navigate('/dsa-notes')}>
                   Start with DSA Notes
+                </Button>
+                <Button variant="outline" onClick={() => navigate('/web-development-notes')}>
+                  Development Notes
                 </Button>
                 <Button variant="outline" onClick={() => navigate('/cgpa-calculator')}>
                   Calculate Your CGPA
