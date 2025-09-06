@@ -12,6 +12,7 @@ import LearningPlatforms from "./pages/LearningPlatforms";
 import NotFound from "./pages/NotFound";
 import Opportunities from "./pages/Opportunities";
 import OpportunityUpload from "./pages/OpportunityUpload";
+import PlacementPreparation from "./pages/PlacementPreparation";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 import SecondSemesterNotes from "./pages/SecondSemesterNotes";
 import TermsOfService from "./pages/TermsOfService";
@@ -72,6 +73,10 @@ export const navItems = [
   {
     to: "/opportunity-upload",
     page: <OpportunityUpload />,
+  },
+  {
+    to: "/placement-preparation",
+    page: <PlacementPreparation />,
   },
   {
     to: "/privacy-policy",

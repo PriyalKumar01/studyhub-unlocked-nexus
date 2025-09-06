@@ -2,7 +2,7 @@ import { motion } from 'framer-motion';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
-import { ArrowLeft, Target, Play, ExternalLink, Star, TrendingUp, Users, BookOpen } from 'lucide-react';
+import { ArrowLeft, Target, Play, ExternalLink, Star, TrendingUp, Users, BookOpen, FileText } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import Navbar from '@/components/Navbar';
 
@@ -59,6 +59,82 @@ const PlacementPreparation = () => {
       title: 'How to create Great linkedin Profile',
       url: 'https://youtu.be/lzuiuRgwwrc?si=XqCQI8g8U_Jjt6Qq',
       description: 'Build a professional LinkedIn profile that attracts recruiters'
+    }
+  ];
+
+  const codingPlatforms = [
+    {
+      name: 'LeetCode',
+      url: 'https://leetcode.com/',
+      description: 'Most popular platform for coding interviews preparation',
+      color: 'bg-yellow-500',
+      icon: '💻'
+    },
+    {
+      name: 'CodeChef',
+      url: 'https://www.codechef.com/',
+      description: 'Great for competitive programming and contests',
+      color: 'bg-brown-500',
+      icon: '👨‍🍳'
+    },
+    {
+      name: 'Codeforces',
+      url: 'https://codeforces.com/',
+      description: 'Competitive programming platform with regular contests',
+      color: 'bg-red-500',
+      icon: '🏆'
+    },
+    {
+      name: 'AtCoder',
+      url: 'https://atcoder.jp/',
+      description: 'High-quality competitive programming contests',
+      color: 'bg-green-500',
+      icon: '🎯'
+    },
+    {
+      name: 'Code360',
+      url: 'https://www.naukri.com/code360/',
+      description: 'Coding Ninjas platform for interview preparation',
+      color: 'bg-orange-500',
+      icon: '🚀'
+    },
+    {
+      name: 'GeeksforGeeks',
+      url: 'https://www.geeksforgeeks.org/',
+      description: 'Comprehensive resource for coding and algorithms',
+      color: 'bg-green-600',
+      icon: '📚'
+    }
+  ];
+
+  const resumeTemplates = [
+    {
+      name: 'ATS-Friendly Resume Template',
+      url: 'https://www.canva.com/design/DAFB7M4CUzM/share/preview?token=XqM6hT-jE2w6z3PQagrEMA&role=EDITOR&utm_content=DAFB7M4CUzM&utm_campaign=designshare&utm_medium=link&utm_source=sharebutton',
+      platform: 'Canva',
+      description: 'Clean, professional template optimized for ATS systems',
+      color: 'bg-blue-500'
+    },
+    {
+      name: 'Tech Resume Template',
+      url: 'https://www.canva.com/design/DAE_DLqfEgE/share/preview?token=YpZ8rJ3VcRw6x8AQXhBKLQ&role=EDITOR&utm_content=DAE_DLqfEgE&utm_campaign=designshare&utm_medium=link&utm_source=sharebutton',
+      platform: 'Canva',
+      description: 'Modern template designed specifically for tech professionals',
+      color: 'bg-purple-500'
+    },
+    {
+      name: 'CS Graduate Resume',
+      url: 'https://www.overleaf.com/latex/templates/software-engineer-resume/gqxmqsvsbdjf',
+      platform: 'Overleaf',
+      description: 'LaTeX template for computer science graduates',
+      color: 'bg-green-500'
+    },
+    {
+      name: 'Student Resume Template',
+      url: 'https://novoresume.com/resume-templates/student',
+      platform: 'NovoResume',
+      description: 'Perfect for students and entry-level positions',
+      color: 'bg-orange-500'
     }
   ];
 
@@ -174,11 +250,147 @@ const PlacementPreparation = () => {
           </div>
         </motion.div>
 
-        {/* Success Statistics */}
+        {/* Coding Platforms */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.8, duration: 0.5 }}
+          className="mb-8"
+        >
+          <h2 className="text-2xl font-bold text-foreground mb-6 flex items-center gap-2">
+            <Target className="h-6 w-6 text-primary" />
+            Essential Coding Platforms
+          </h2>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {codingPlatforms.map((platform, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.9 + index * 0.1, duration: 0.5 }}
+                whileHover={{ scale: 1.02 }}
+              >
+                <Card className="feature-card h-full cursor-pointer" onClick={() => window.open(platform.url, '_blank')}>
+                  <CardHeader>
+                    <div className="flex items-center gap-3 mb-2">
+                      <div className={`w-10 h-10 ${platform.color} rounded-full flex items-center justify-center text-white text-lg`}>
+                        {platform.icon}
+                      </div>
+                      <Badge variant="secondary">Platform</Badge>
+                    </div>
+                    <CardTitle className="text-lg leading-tight">{platform.name}</CardTitle>
+                    <CardDescription>
+                      {platform.description}
+                    </CardDescription>
+                  </CardHeader>
+                  <CardContent>
+                    <Button className="w-full btn-hero">
+                      <ExternalLink className="h-4 w-4 mr-2" />
+                      Visit Platform
+                    </Button>
+                  </CardContent>
+                </Card>
+              </motion.div>
+            ))}
+          </div>
+        </motion.div>
+
+        {/* Resume Templates */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 1.0, duration: 0.5 }}
+          className="mb-8"
+        >
+          <h2 className="text-2xl font-bold text-foreground mb-6 flex items-center gap-2">
+            <FileText className="h-6 w-6 text-primary" />
+            Resume Templates & Resources
+          </h2>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {resumeTemplates.map((template, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 1.1 + index * 0.1, duration: 0.5 }}
+                whileHover={{ scale: 1.02 }}
+              >
+                <Card className="feature-card h-full cursor-pointer" onClick={() => window.open(template.url, '_blank')}>
+                  <CardHeader>
+                    <div className="flex items-center gap-3 mb-2">
+                      <div className={`w-10 h-10 ${template.color} rounded-full flex items-center justify-center text-white`}>
+                        <FileText className="h-5 w-5" />
+                      </div>
+                      <Badge variant="secondary">{template.platform}</Badge>
+                    </div>
+                    <CardTitle className="text-lg leading-tight">{template.name}</CardTitle>
+                    <CardDescription>
+                      {template.description}
+                    </CardDescription>
+                  </CardHeader>
+                  <CardContent>
+                    <Button className="w-full btn-hero">
+                      <ExternalLink className="h-4 w-4 mr-2" />
+                      Use Template
+                    </Button>
+                  </CardContent>
+                </Card>
+              </motion.div>
+            ))}
+          </div>
+        </motion.div>
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.4, duration: 0.5 }}
+          className="mb-8"
+        >
+          <h2 className="text-2xl font-bold text-foreground mb-6 flex items-center gap-2">
+            <Play className="h-6 w-6 text-primary" />
+            Essential Video Resources
+          </h2>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {videos.map((video, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.5 + index * 0.1, duration: 0.5 }}
+                whileHover={{ scale: 1.02 }}
+              >
+                <Card className="feature-card h-full cursor-pointer" onClick={() => handleVideoClick(video.url)}>
+                  <CardHeader>
+                    <div className="flex items-center gap-3 mb-2">
+                      <div className="w-10 h-10 bg-red-500 rounded-full flex items-center justify-center text-white">
+                        <Play className="h-5 w-5" />
+                      </div>
+                      <Badge variant="secondary">Video Guide</Badge>
+                    </div>
+                    <CardTitle className="text-lg leading-tight">{video.title}</CardTitle>
+                    <CardDescription>
+                      {video.description}
+                    </CardDescription>
+                  </CardHeader>
+                  <CardContent>
+                    <Button className="w-full btn-hero">
+                      <ExternalLink className="h-4 w-4 mr-2" />
+                      Watch on YouTube
+                    </Button>
+                  </CardContent>
+                </Card>
+              </motion.div>
+            ))}
+          </div>
+        </motion.div>
+
+        {/* Success Statistics */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 1.2, duration: 0.5 }}
           className="mb-8"
         >
           <Card className="gradient-card">
@@ -226,7 +438,7 @@ const PlacementPreparation = () => {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 1, duration: 0.5 }}
+          transition={{ delay: 1.4, duration: 0.5 }}
           className="text-center"
         >
           <Card className="gradient-card border-primary/20 bg-primary/5">
