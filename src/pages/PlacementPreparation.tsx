@@ -247,49 +247,57 @@ const PlacementPreparation = () => {
           </h2>
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {videos.map((video, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.5 + index * 0.1, duration: 0.5 }}
-                whileHover={{ scale: 1.02 }}
-              >
-                <Card className="feature-card h-full cursor-pointer" >
-                  <CardHeader>
-                    <div className="w-full h-40 rounded-lg overflow-hidden mb-4">
-                      <img 
-                        src={getYouTubeThumbnail(video.url)} 
-                        alt={video.title}
-                        className="w-full h-full object-cover"
-                        onError={(e) => {
-                          e.currentTarget.src = 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzIwIiBoZWlnaHQ9IjE4MCIgdmlld0JveD0iMCAwIDMyMCAxODAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIzMjAiIGhlaWdodD0iMTgwIiBmaWxsPSIjZmY0NDQ0Ii8+CjxwYXRoIGQ9Ik0xMjggNjBMMTkyIDEwMEwxMjggMTQwVjYwWiIgZmlsbD0id2hpdGUiLz4KPHN2Zz4K';
-                        }}
-                      />
-                      <div className="absolute inset-0 flex items-center justify-center">
-                        <div className="w-12 h-12 bg-red-500 rounded-full flex items-center justify-center text-white shadow-lg">
-                          <Play className="h-6 w-6 ml-1" />
-                        </div>
-                      </div>
-                    </div>
-                    <div className="flex items-center gap-2 mb-3">
-                      <Badge variant="secondary">Video Guide</Badge>
-                    </div>
-                    <CardTitle className="text-lg leading-tight mb-2">{video.title}</CardTitle>
-                    <CardDescription>
-                      {video.description}
-                    </CardDescription>
-                  </CardHeader>
-                  <CardContent>
-                    <Button className="w-full btn-hero">
-                      <ExternalLink className="h-4 w-4 mr-2" />
-                      Watch on YouTube
-                    </Button>
-                  </CardContent>
-                </Card>
-              </motion.div>
-            ))}
+  {videos.map((video, index) => (
+    <motion.div
+      key={index}
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ delay: 0.5 + index * 0.1, duration: 0.5 }}
+      whileHover={{ scale: 1.02 }}
+    >
+      <Card
+        className="feature-card h-full cursor-pointer"
+        onClick={() => handleVideoClick(video.url)}   // 🔥 added this line
+      >
+        <CardHeader>
+          <div className="w-full h-40 rounded-lg overflow-hidden mb-4">
+            <img 
+              src={getYouTubeThumbnail(video.url)} 
+              alt={video.title}
+              className="w-full h-full object-cover"
+              onError={(e) => {
+                e.currentTarget.src =
+                  'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzIwIiBoZWlnaHQ9IjE4MCIgdmlld0JveD0iMCAwIDMyMCAxODAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIzMjAiIGhlaWdodD0iMTgwIiBmaWxsPSIjZmY0NDQ0Ii8+CjxwYXRoIGQ9Ik0xMjggNjBMMTkyIDEwMEwxMjggMTQwVjYwWiIgZmlsbD0id2hpdGUiLz4KPHN2Zz4K';
+              }}
+            />
           </div>
+          <div className="flex items-center gap-2 mb-3">
+            <Badge variant="secondary">Video Guide</Badge>
+          </div>
+          <CardTitle className="text-lg leading-tight mb-2">
+            {video.title}
+          </CardTitle>
+          <CardDescription>
+            {video.description}
+          </CardDescription>
+        </CardHeader>
+        <CardContent>
+          <Button
+            className="w-full btn-hero"
+            onClick={(e) => {
+              e.stopPropagation();              // ✅ prevent double triggering
+              handleVideoClick(video.url);
+            }}
+          >
+            <ExternalLink className="h-4 w-4 mr-2" />
+            Watch on YouTube
+          </Button>
+        </CardContent>
+      </Card>
+    </motion.div>
+  ))}
+</div>
+
         </motion.div>
 
         {/* Coding Platforms */}
