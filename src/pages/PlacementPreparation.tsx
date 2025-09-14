@@ -64,7 +64,7 @@ const PlacementPreparation = () => {
     },
     {
       title: 'What should I Choose C++ Or Java',
-      url: 'https://youtu.be/9VwXq6a4Gt4?si=k25Ejd7V7OKDWoyh',
+      url: 'https://youtu.be/9VwXq6a4Gt4?si=GVWxwd07wKka2Bef',
       description: 'Decide between C++ and Java for competitive programming and placements'
     },
     {
@@ -255,7 +255,7 @@ const PlacementPreparation = () => {
                 transition={{ delay: 0.5 + index * 0.1, duration: 0.5 }}
                 whileHover={{ scale: 1.02 }}
               >
-                <Card className="feature-card h-full cursor-pointer" onClick={() => handleVideoClick(video.url)}>
+                <Card className="feature-card h-full cursor-pointer" >
                   <CardHeader>
                     <div className="w-full h-40 rounded-lg overflow-hidden mb-4">
                       <img 
