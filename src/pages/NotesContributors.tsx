@@ -124,10 +124,10 @@ const NotesContributors = () => {
             Top Contributors
           </h1>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto mb-4">
-            Recognizing students who have contributed valuable notes to help the community
-          </p>
+           <i> This leaderboard recognizes the students who have gone beyond personal learning & selflessly contributed their valuable notes. Their efforts are making studies easier and accessible for everyone in the community.
+         </i>   </p>
           <div className="flex items-center justify-center gap-2 text-sm text-muted-foreground">
-            <Coins className="h-4 w-4 text-yellow-500" />
+            {/* <Coins className="h-4 w-4 text-yellow-500" /> */}
             {/* <span>1 Note = 1000 Coins 🪙</span> */}
           </div>
         </motion.div>
@@ -194,9 +194,19 @@ const NotesContributors = () => {
               <p className="text-muted-foreground mb-4">
                 Share your notes and help fellow students. Earn coins and get recognized!
               </p>
-              <Button className="btn-hero" onClick={() => navigate("/dashboard")}>
-                Start Contributing
-              </Button>
+<Button 
+  className="btn-hero " 
+  onClick={() => {
+    window.open(
+      "https://wa.me/918957221543?text=Respected%20Priyal%20Sir%2C%20I%20would%20like%20to%20share%20my%20notes%20to%20help%20other%20students.%20I%E2%80%99ll%20send%20the%20maximum%20possible%20PDFs%20so%20they%20can%20be%20uploaded%20and%20make%20learning%20easier%20and%20more%20accessible%20for%20everyone.",
+      "_blank"
+    );
+  }}
+>
+  Start Contributing
+</Button>
+
+
             </CardContent>
           </Card>
         </motion.div>
