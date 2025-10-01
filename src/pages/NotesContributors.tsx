@@ -53,10 +53,18 @@ const NotesContributors = () => {
       branch: "ME",
       batch: "28",
      
+      coins: 70,
+    },
+     {
+      rank: 5,
+      name: "Kanchan Upadhyay",
+      branch: "PT",
+      batch: "28",
+     
       coins: 67,
     },
     {
-      rank: 5,
+      rank: 6,
       name: "Soni Rawat",
       branch: "ME",
       batch: "28",
@@ -65,7 +73,7 @@ const NotesContributors = () => {
       
     },
     {
-      rank: 6,
+      rank: 7,
       name: "Kanishtha Mishra",
       branch: "LFT",
       batch: "28",
