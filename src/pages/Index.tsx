@@ -132,7 +132,7 @@ const Index = () => {
                 <Button
                   size="lg"
                   className="btn-hero text-lg px-8 py-6 w-full sm:w-auto"
-                  onClick={() => navigate(user ? "/dashboard" : "/auth")}
+                  onClick={() => navigate("/dashboard")}
                 >
                   Get Started Free
                   <ArrowRight className="ml-2 h-5 w-5" />
@@ -403,7 +403,7 @@ const Index = () => {
             <Button 
               variant="secondary" 
               className="text-lg px-8 py-3"
-              onClick={() => navigate(user ? "/dashboard" : "/auth")}
+              onClick={() => navigate("/dashboard")}
             >
               {user ? "Continue to Dashboard" : "Get Started Now - It's Free!"}
               <ArrowRight className="ml-2 h-5 w-5" />
