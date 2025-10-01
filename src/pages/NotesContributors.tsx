@@ -11,7 +11,7 @@ interface Contributor {
   name: string;
   branch: string;
   batch: string;
-  notesCount: number;
+  
   coins: number;
   medal?: "gold" | "silver" | "bronze";
 }
@@ -25,8 +25,8 @@ const NotesContributors = () => {
       name: "Rahul Singh",
       branch: "CHE",
       batch: "27",
-      notesCount: 78,
-      coins: 78000,
+     
+      coins: 87,
       medal: "gold",
     },
     {
@@ -34,8 +34,8 @@ const NotesContributors = () => {
       name: "Tanishka Gupta",
       branch: "ET",
       batch: "28",
-      notesCount: 74,
-      coins: 72000,
+      
+      coins: 74,
       medal: "silver", 
     },
     {
@@ -43,8 +43,8 @@ const NotesContributors = () => {
       name: "Smriti Dwivedi",
       branch: "CE",
       batch: "28",
-      notesCount: 72,
-      coins: 72000,
+      
+      coins: 72,
       medal: "bronze",
     },
     {
@@ -52,16 +52,16 @@ const NotesContributors = () => {
       name: "Vrishti Chauhan",
       branch: "ME",
       batch: "28",
-      notesCount: 67,
-      coins: 67000,
+     
+      coins: 67,
     },
     {
       rank: 5,
       name: "Soni Rawat",
       branch: "ME",
       batch: "28",
-      notesCount: 2,
-      coins: 2000,
+      
+      coins: 2,
       
     },
     {
@@ -69,8 +69,8 @@ const NotesContributors = () => {
       name: "Kanishtha Mishra",
       branch: "LFT",
       batch: "28",
-      notesCount: 2,
-      coins: 2000,
+     
+      coins: 2,
     },
   ];
 
@@ -172,7 +172,7 @@ const NotesContributors = () => {
                         {contributor.coins.toLocaleString()}
                       </div>
                       <p className="text-sm text-muted-foreground">
-                        {contributor.notesCount} notes contributed
+                         Notes contributed
                       </p>
                     </div>
                   </div>
