@@ -36,6 +36,7 @@ const NotesContributors = () => {
       batch: "2028",
       notesCount: 74,
       coins: 72000,
+      medal: "silver", 
     },
     {
       rank: 3,
@@ -61,7 +62,7 @@ const NotesContributors = () => {
       batch: "2028",
       notesCount: 2,
       coins: 2000,
-      medal: "silver",
+      
     },
     {
       rank: 6,
