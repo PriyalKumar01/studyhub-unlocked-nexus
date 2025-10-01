@@ -1,16 +1,18 @@
 import { motion } from 'framer-motion';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useAuth } from '@/contexts/AuthContext';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
-import { BookOpen, Layers, Rocket, Upload, UserCheck, Briefcase, Users, Award, 
-  TrendingUp, Download, GraduationCap, Star, ArrowRight 
+import { BookOpen, Briefcase, UserCheck, TrendingUp, Users, Award, 
+  GraduationCap, Star, ArrowRight 
 } from 'lucide-react';
 import Navbar from '@/components/Navbar';
 import AnimatedCounter from '@/components/AnimatedCounter';
 const Index = () => {
   const { user } = useAuth();
+  const navigate = useNavigate();
+
   const features = [
     {
       icon: <BookOpen className="h-8 w-8" />,
@@ -121,20 +123,45 @@ const Index = () => {
                 and academic resources. Join thousands of students already benefiting from our platform.
               </p>
               
-              <div className="flex flex-col sm:flex-row gap-4">
-                <Link to="/notes">
-                  <Button className="btn-hero text-lg px-8 py-3">
-                    Get Started Free
-                    <ArrowRight className="ml-2 h-5 w-5" />
-                  </Button>
-                </Link>
-                
-                <Link to="/learning-platforms">
-                  <Button variant="outline" className="text-lg px-8 py-3 border-2">
-                    Explore Integrated Platforms
-                  </Button>
-                </Link>
-              </div>
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.2, duration: 0.8 }}
+                className="flex flex-col sm:flex-row gap-4 justify-center items-center"
+              >
+                <Button
+                  size="lg"
+                  className="btn-hero text-lg px-8 py-6 w-full sm:w-auto"
+                  onClick={() => navigate(user ? "/dashboard" : "/auth")}
+                >
+                  Get Started Free
+                  <ArrowRight className="ml-2 h-5 w-5" />
+                </Button>
+                <Button
+                  size="lg"
+                  variant="outline"
+                  className="text-lg px-8 py-6 w-full sm:w-auto border-2"
+                  onClick={() => navigate("/learning-platforms")}
+                >
+                  Explore Integrated Platforms
+                </Button>
+              </motion.div>
+
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.3, duration: 0.8 }}
+                className="mt-6"
+              >
+                <Button
+                  size="lg"
+                  variant="secondary"
+                  className="text-lg px-8 py-6 w-full sm:w-auto"
+                  onClick={() => navigate("/notes-contributors")}
+                >
+                  Notes Contributor's list
+                </Button>
+              </motion.div>
             </motion.div>
             
             <motion.div
@@ -218,8 +245,8 @@ const Index = () => {
                 viewport={{ once: true }}
                 whileHover={{ scale: 1.02 }}
               >
-                <Link to={feature.href}>
-                  <Card className={`feature-card h-full cursor-pointer group ${
+                <div onClick={() => navigate(feature.href)} className="cursor-pointer">
+                  <Card className={`feature-card h-full group ${
                     feature.title === 'Premium Notes' || feature.title === 'Opportunities'
                       ? 'bg-gradient-to-br from-primary/5 via-secondary/5 to-primary/5 border-primary/20 hover:border-primary/30 shadow-lg'
                       : ''
@@ -244,7 +271,7 @@ const Index = () => {
                       </div>
                     </CardContent>
                   </Card>
-                </Link>
+                </div>
               </motion.div>
             ))}
           </div>
@@ -373,21 +400,14 @@ const Index = () => {
               Join thousands of students who are already benefiting from our comprehensive platform.
             </p>
             
-            {user ? (
-              <Link to="/dashboard">
-                <Button variant="secondary" className="text-lg px-8 py-3">
-                  Continue to Dashboard
-                  <ArrowRight className="ml-2 h-5 w-5" />
-                </Button>
-              </Link>
-            ) : (
-              <Link to="/dashboard">
-                <Button variant="secondary" className="text-lg px-8 py-3">
-                  Get Started Now - It's Free!
-                  <ArrowRight className="ml-2 h-5 w-5" />
-                </Button>
-              </Link>
-            )}
+            <Button 
+              variant="secondary" 
+              className="text-lg px-8 py-3"
+              onClick={() => navigate(user ? "/dashboard" : "/auth")}
+            >
+              {user ? "Continue to Dashboard" : "Get Started Now - It's Free!"}
+              <ArrowRight className="ml-2 h-5 w-5" />
+            </Button>
           </motion.div>
         </div>
       </section>
@@ -413,10 +433,10 @@ const Index = () => {
             <div>
               <h3 className="font-semibold mb-4">Quick Links</h3>
               <div className="space-y-2">
-                <Link to="/notes" className="block text-muted-foreground hover:text-foreground">Notes</Link>
-                <Link to="/opportunities" className="block text-muted-foreground hover:text-foreground">Opportunities</Link>
-                <Link to="/cgpa-calculator" className="block text-muted-foreground hover:text-foreground">CGPA Calculator</Link>
-                <Link to="/about" className="block text-muted-foreground hover:text-foreground">About</Link>
+                <div className="block text-muted-foreground hover:text-foreground cursor-pointer" onClick={() => navigate("/notes")}>Notes</div>
+                <div className="block text-muted-foreground hover:text-foreground cursor-pointer" onClick={() => navigate("/opportunities")}>Opportunities</div>
+                <div className="block text-muted-foreground hover:text-foreground cursor-pointer" onClick={() => navigate("/cgpa-calculator")}>CGPA Calculator</div>
+                <div className="block text-muted-foreground hover:text-foreground cursor-pointer" onClick={() => navigate("/about")}>About</div>
               </div>
             </div>
             

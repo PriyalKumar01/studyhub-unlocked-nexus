@@ -1,12 +1,17 @@
 import Index from "./pages/Index";
 import About from "./pages/About";
-import BTechNotes from "./pages/BTechNotes";
+import BTechYears from "./pages/BTechYears";
+import FirstYearNotes from "./pages/FirstYearNotes";
+import BTechSemesters from "./pages/BTechSemesters";
+import BTechBranches from "./pages/BTechBranches";
 import NotesCategories from "./pages/NotesCategories";
 import CGPACalculator from "./pages/CGPACalculator";
 import CodingStudyMaterial from "./pages/CodingStudyMaterial";
 import DSANotes from "./pages/DSANotes";
 import Dashboard from "./pages/Dashboard";
 import FirstSemesterNotes from "./pages/FirstSemesterNotes";
+import SecondSemesterNotes from "./pages/SecondSemesterNotes";
+import ThirdSemesterNotes from "./pages/ThirdSemesterNotes";
 import FourthSemesterNotes from "./pages/FourthSemesterNotes";
 import LearningPlatforms from "./pages/LearningPlatforms";
 import NotFound from "./pages/NotFound";
@@ -14,12 +19,11 @@ import Opportunities from "./pages/Opportunities";
 import OpportunityUpload from "./pages/OpportunityUpload";
 import PlacementPreparation from "./pages/PlacementPreparation";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
-import SecondSemesterNotes from "./pages/SecondSemesterNotes";
 import TermsOfService from "./pages/TermsOfService";
-import ThirdSemesterNotes from "./pages/ThirdSemesterNotes";
 import UsefulAITools from "./pages/UsefulAITools";
 import ViewNotes from "./pages/ViewNotes";
 import WebDevelopmentNotes from "./pages/WebDevelopmentNotes";
+import NotesContributors from "./pages/NotesContributors";
 
 export const navItems = [
   {
@@ -32,7 +36,19 @@ export const navItems = [
   },
   {
     to: "/btech-notes",
-    page: <BTechNotes />,
+    page: <BTechYears />,
+  },
+  {
+    to: "/btech-notes/first-year",
+    page: <FirstYearNotes />,
+  },
+  {
+    to: "/btech-notes/:year",
+    page: <BTechSemesters />,
+  },
+  {
+    to: "/btech-notes/:year/:semester",
+    page: <BTechBranches />,
   },
   {
     to: "/notes",
@@ -55,11 +71,19 @@ export const navItems = [
     page: <Dashboard />,
   },
   {
-    to: "/first-semester-notes",
+    to: "/first-semester",
     page: <FirstSemesterNotes />,
   },
   {
-    to: "/fourth-semester-notes",
+    to: "/second-semester",
+    page: <SecondSemesterNotes />,
+  },
+  {
+    to: "/third-semester",
+    page: <ThirdSemesterNotes />,
+  },
+  {
+    to: "/fourth-semester",
     page: <FourthSemesterNotes />,
   },
   {
@@ -83,16 +107,8 @@ export const navItems = [
     page: <PrivacyPolicy />,
   },
   {
-    to: "/second-semester-notes",
-    page: <SecondSemesterNotes />,
-  },
-  {
     to: "/terms-of-service",
     page: <TermsOfService />,
-  },
-  {
-    to: "/third-semester-notes",
-    page: <ThirdSemesterNotes />,
   },
   {
     to: "/useful-ai-tools",
@@ -105,6 +121,10 @@ export const navItems = [
   {
     to: "/web-development-notes",
     page: <WebDevelopmentNotes />,
+  },
+  {
+    to: "/notes-contributors",
+    page: <NotesContributors />,
   },
   {
     to: "*",

@@ -1,0 +1,181 @@
+import { useNavigate, useParams } from "react-router-dom";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { ArrowLeft, BookOpen } from "lucide-react";
+import { Badge } from "@/components/ui/badge";
+import Navbar from "@/components/Navbar";
+import { motion } from "framer-motion";
+import cseItImg from "@/assets/cse-it-thumbnail.jpg";
+import meImg from "@/assets/me-thumbnail.jpg";
+import ceImg from "@/assets/ce-thumbnail.jpg";
+import cheImg from "@/assets/che-thumbnail.jpg";
+import etImg from "@/assets/et-thumbnail.jpg";
+import eeImg from "@/assets/ee-thumbnail.jpg";
+import beImg from "@/assets/be-thumbnail.jpg";
+import lftImg from "@/assets/lft-thumbnail.jpg";
+
+const BTechBranches = () => {
+  const navigate = useNavigate();
+  const { year, semester } = useParams<{ year: string; semester: string }>();
+
+  const branches = [
+    {
+      name: "CSE/IT",
+      fullName: "Computer Science & Information Technology",
+      description: "Software development, algorithms, and computing systems",
+      available: true,
+      thumbnail: cseItImg,
+      route: semester === "semester-3" ? "/third-semester" : "/fourth-semester",
+    },
+    {
+      name: "ME",
+      fullName: "Mechanical Engineering",
+      description: "Machines, thermodynamics, and manufacturing",
+      available: false,
+      thumbnail: meImg,
+      route: "#",
+    },
+    {
+      name: "CE",
+      fullName: "Civil Engineering",
+      description: "Infrastructure, construction, and structural design",
+      available: false,
+      thumbnail: ceImg,
+      route: "#",
+    },
+    {
+      name: "CHE",
+      fullName: "Chemical Engineering",
+      description: "Chemical processes and material transformation",
+      available: false,
+      thumbnail: cheImg,
+      route: "#",
+    },
+    {
+      name: "ET",
+      fullName: "Electronics Technology",
+      description: "Electronic circuits, devices, and communication",
+      available: false,
+      thumbnail: etImg,
+      route: "#",
+    },
+    {
+      name: "EE",
+      fullName: "Electrical Engineering",
+      description: "Power systems, motors, and electrical networks",
+      available: false,
+      thumbnail: eeImg,
+      route: "#",
+    },
+    {
+      name: "BE",
+      fullName: "Biomedical Engineering",
+      description: "Medical devices and healthcare technology",
+      available: false,
+      thumbnail: beImg,
+      route: "#",
+    },
+    {
+      name: "LFT",
+      fullName: "Leather & Footwear Technology",
+      description: "Leather processing and footwear manufacturing",
+      available: false,
+      thumbnail: lftImg,
+      route: "#",
+    },
+  ];
+
+  const semesterName = semester?.replace("semester-", "");
+  const yearName = year?.replace("-", " ");
+
+  const handleBranchClick = (branch: any) => {
+    if (branch.available) {
+      navigate(branch.route);
+    }
+  };
+
+  return (
+    <div className="min-h-screen bg-gradient-to-br from-background via-background to-primary/5">
+      <Navbar />
+      
+      <div className="container mx-auto px-4 pt-24 pb-12">
+        <Button
+          variant="ghost"
+          onClick={() => navigate(`/btech-notes/${year}`)}
+          className="mb-6 hover:bg-primary/10"
+        >
+          <ArrowLeft className="h-4 w-4 mr-2" />
+          Back to Semesters
+        </Button>
+
+        <motion.div
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          className="text-center mb-12"
+        >
+          <h1 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-primary via-purple-500 to-pink-500 bg-clip-text text-transparent">
+            {semesterName} Semester - Select Branch
+          </h1>
+          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+            Choose your engineering branch to access specialized study materials
+          </p>
+        </motion.div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-7xl mx-auto">
+          {branches.map((branch, index) => (
+            <motion.div
+              key={branch.name}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: index * 0.1, duration: 0.5 }}
+            >
+              <Card
+                className={`feature-card h-full ${
+                  branch.available ? "cursor-pointer" : "opacity-60"
+                } transition-all duration-300`}
+                onClick={() => handleBranchClick(branch)}
+              >
+                <CardHeader>
+                  <div className="w-full h-40 rounded-lg overflow-hidden mb-4">
+                    <img
+                      src={branch.thumbnail}
+                      alt={branch.name}
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                  <div className="flex items-center justify-between mb-3">
+                    <Badge variant={branch.available ? "default" : "secondary"}>
+                      {branch.available ? "Available" : "Coming Soon"}
+                    </Badge>
+                    <BookOpen className="h-5 w-5 text-primary" />
+                  </div>
+                  <CardTitle className="text-xl mb-1">{branch.name}</CardTitle>
+                  <p className="text-sm font-medium text-muted-foreground mb-2">
+                    {branch.fullName}
+                  </p>
+                  <CardDescription className="text-sm">
+                    {branch.description}
+                  </CardDescription>
+                </CardHeader>
+                <CardContent>
+                  {branch.available ? (
+                    <Button className="w-full btn-hero">
+                      View Notes
+                    </Button>
+                  ) : (
+                    <Button className="w-full" variant="secondary" disabled>
+                      Coming Soon
+                    </Button>
+                  )}
+                </CardContent>
+              </Card>
+            </motion.div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default BTechBranches;
