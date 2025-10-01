@@ -128,7 +128,7 @@ const NotesContributors = () => {
           </p>
           <div className="flex items-center justify-center gap-2 text-sm text-muted-foreground">
             <Coins className="h-4 w-4 text-yellow-500" />
-            <span>1 Note = 1000 Coins 🪙</span>
+            {/* <span>1 Note = 1000 Coins 🪙</span> */}
           </div>
         </motion.div>
 
