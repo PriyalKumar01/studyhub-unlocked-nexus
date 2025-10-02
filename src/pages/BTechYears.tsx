@@ -55,14 +55,14 @@ const BTechYears = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-background via-background to-primary/5">
+    <div className="min-h-screen bg-gradient-hero">
       <Navbar />
       
-      <div className="container mx-auto px-4 pt-20 pb-12">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <Button
-          variant="ghost"
-          onClick={() => navigate(-1)}
-          className="mb-6 hover:bg-primary/10"
+          variant="outline"
+          onClick={() => navigate("/notes")}
+          className="mb-4"
         >
           <ArrowLeft className="h-4 w-4 mr-2" />
           Back to Notes

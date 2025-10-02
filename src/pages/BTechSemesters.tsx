@@ -82,7 +82,7 @@ const BTechSemesters = () => {
     <div className="min-h-screen bg-gradient-to-br from-background via-background to-primary/5">
       <Navbar />
       
-      <div className="container mx-auto px-4 pt-24 pb-12">
+      <div className="cmax-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <Button
           variant="ghost"
           onClick={() => navigate("/btech-notes")}

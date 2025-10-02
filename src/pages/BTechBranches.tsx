@@ -28,6 +28,14 @@ const BTechBranches = () => {
       route: semester === "semester-3" ? "/third-semester-cse" : "/fourth-semester-cse",
     },
     {
+      name: "CHE",
+      fullName: "Chemical Engineering",
+      description: "Chemical processes and material transformation",
+      available: semester === "semester-3" ? true : false,
+      thumbnail: cheImg,
+      route: semester === "semester-3" ? "/third-semester-che" : "#",
+    },
+    {
       name: "ME",
       fullName: "Mechanical Engineering",
       description: "Machines, thermodynamics, and manufacturing",
@@ -43,15 +51,7 @@ const BTechBranches = () => {
       thumbnail: ceImg,
       route: "#",
     },
-    {
-      name: "CHE",
-      fullName: "Chemical Engineering",
-      description: "Chemical processes and material transformation",
-      available: semester === "semester-3" ? true : false,
-      thumbnail: cheImg,
-      route: semester === "semester-3" ? "/third-semester-che" : "#",
-    },
-    {
+ {
       name: "ET",
       fullName: "Electronics Technology",
       description: "Electronic circuits, devices, and communication",
@@ -119,14 +119,14 @@ const BTechBranches = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-background via-background to-primary/5">
+    <div className="min-h-screen bg-gradient-hero">
       <Navbar />
       
-      <div className="container mx-auto px-4 pt-24 pb-12">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <Button
-          variant="ghost"
+          variant="outline"
           onClick={() => navigate(`/btech-notes/${year}`)}
-          className="mb-6 hover:bg-primary/10"
+          className="mb-4"
         >
           <ArrowLeft className="h-4 w-4 mr-2" />
           Back to Semesters
