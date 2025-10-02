@@ -11,8 +11,10 @@ import DSANotes from "./pages/DSANotes";
 import Dashboard from "./pages/Dashboard";
 import FirstSemesterNotes from "./pages/FirstSemesterNotes";
 import SecondSemesterNotes from "./pages/SecondSemesterNotes";
-import ThirdSemesterNotes from "./pages/ThirdSemesterNotes";
-import FourthSemesterNotes from "./pages/FourthSemesterNotes";
+import ThirdSemesterCSENotes from "./pages/ThirdSemesterCSENotes";
+import FourthSemesterCSENotes from "./pages/FourthSemesterCSENotes";
+import ThirdSemesterMENotes from "./pages/ThirdSemesterMENotes";
+import ThirdSemesterCHENotes from "./pages/ThirdSemesterCHENotes";
 import LearningPlatforms from "./pages/LearningPlatforms";
 import NotFound from "./pages/NotFound";
 import Opportunities from "./pages/Opportunities";
@@ -79,12 +81,20 @@ export const navItems = [
     page: <SecondSemesterNotes />,
   },
   {
-    to: "/third-semester",
-    page: <ThirdSemesterNotes />,
+    to: "/third-semester-cse",
+    page: <ThirdSemesterCSENotes />,
   },
   {
-    to: "/fourth-semester",
-    page: <FourthSemesterNotes />,
+    to: "/fourth-semester-cse",
+    page: <FourthSemesterCSENotes />,
+  },
+  {
+    to: "/third-semester-me",
+    page: <ThirdSemesterMENotes />,
+  },
+  {
+    to: "/third-semester-che",
+    page: <ThirdSemesterCHENotes />,
   },
   {
     to: "/learning-platforms",
