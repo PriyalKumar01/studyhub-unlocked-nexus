@@ -15,6 +15,12 @@ import ThirdSemesterCSENotes from "./pages/ThirdSemesterCSENotes";
 import FourthSemesterCSENotes from "./pages/FourthSemesterCSENotes";
 import ThirdSemesterMENotes from "./pages/ThirdSemesterMENotes";
 import ThirdSemesterCHENotes from "./pages/ThirdSemesterCHENotes";
+import ThirdSemesterLFTNotes from "./pages/ThirdSemesterLFTNotes";
+import ThirdSemesterETNotes from "./pages/ThirdSemesterETNotes";
+import ThirdSemesterPTNotes from "./pages/ThirdSemesterPTNotes";
+import ThirdSemesterBENotes from "./pages/ThirdSemesterBENotes";
+import ThirdSemesterFTNotes from "./pages/ThirdSemesterFTNotes";
+import ThirdSemesterOTNotes from "./pages/ThirdSemesterOTNotes";
 import LearningPlatforms from "./pages/LearningPlatforms";
 import NotFound from "./pages/NotFound";
 import Opportunities from "./pages/Opportunities";
@@ -95,6 +101,30 @@ export const navItems = [
   {
     to: "/third-semester-che",
     page: <ThirdSemesterCHENotes />,
+  },
+  {
+    to: "/third-semester-lft",
+    page: <ThirdSemesterLFTNotes />,
+  },
+  {
+    to: "/third-semester-et",
+    page: <ThirdSemesterETNotes />,
+  },
+  {
+    to: "/third-semester-pt",
+    page: <ThirdSemesterPTNotes />,
+  },
+  {
+    to: "/third-semester-be",
+    page: <ThirdSemesterBENotes />,
+  },
+  {
+    to: "/third-semester-ft",
+    page: <ThirdSemesterFTNotes />,
+  },
+  {
+    to: "/third-semester-ot",
+    page: <ThirdSemesterOTNotes />,
   },
   {
     to: "/learning-platforms",
