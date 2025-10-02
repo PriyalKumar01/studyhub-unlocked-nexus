@@ -25,11 +25,13 @@ const ThirdSemesterFTNotes = () => {
       fullName: 'Engineering Mathematics-II',
       description: 'Advanced engineering mathematics concepts',
       notes: [
-        { title: 'Math-II Complete Notes', url: 'https://drive.google.com/file/d/14iSP9qfSLLvqzPQxTGvPUPVt5f4Gxsae/view?usp=drivesdk' },
-        { title: 'Math-II Unit 1 Handwritten Notes', url: 'https://drive.google.com/file/d/1vIpIw_LqSVlCSmvFiVs1_0-v7CZoMIWV/view?usp=drivesdk' },
-        { title: 'Math-II Unit 2-3 Notes', url: 'https://drive.google.com/file/d/1N8h_IY46YPtXz0YqmBhJ-BbVuGwWjqjE/view?usp=drivesdk' },
-        { title: 'Math-II Unit 4-5 Notes', url: 'https://drive.google.com/file/d/12Nv3sAy2LWgqQKBYxSCUFBCjW5BqiUgG/view?usp=drivesdk' }
-      ]
+         { title: 'Unit 1 C.F & PI Notes', url: 'https://drive.google.com/uc?export=download&id=1_OfjdkVBUxb6352LJcCSqv_nKrjz4uSU' },
+  { title: 'Unit 2 Notes', url: 'https://drive.google.com/uc?export=download&id=1_OSlf-B7K9TFC1LgA6yZDUH2sQL-RTy0' },
+  { title: 'Unit 3 Notes', url: 'https://drive.google.com/uc?export=download&id=1_PtU2rwcwDjGnrBwBpTtSeohDrbvxDBa' },
+  { title: 'Mid Sem 2 Last Minute Revision', url: 'https://drive.google.com/uc?export=download&id=1oGU5M62XSyErVp3qP4CrEj1v0t5FQqej' },
+  { title: 'Best Maths Chapter 1 & 2 Notes', url: 'https://drive.google.com/uc?export=download&id=1_JfBOvZp84amQj6Mo7-KtwrARm1kTHUr' },
+  { title: 'Formula Sheet Unit 1', url: 'https://drive.google.com/uc?export=download&id=1T6PERNwiIdoA0Vm2EGyIVwp9TlrG7IrX' }
+ ]
     },
     {
       id: 'em',
@@ -37,11 +39,16 @@ const ThirdSemesterFTNotes = () => {
       fullName: 'Economics & Management',
       description: 'Business economics and management principles',
       notes: [
-        { title: 'E&M Complete Notes', url: 'https://drive.google.com/file/d/1i2r3ij0wSs4p0LN3qjWVLHt6x4k7cBAL/view?usp=drivesdk' },
-        { title: 'Economics Unit 1-2 Notes', url: 'https://drive.google.com/file/d/1f7KQBRz5cP5O0xJlL9xNdXVjG2s8gNPR/view?usp=drivesdk' },
-        { title: 'Management Unit 3-4 Notes', url: 'https://drive.google.com/file/d/1e8LRCTa6dQ6P1yKmM0zOeYWkH3t9hOQS/view?usp=drivesdk' },
-        { title: 'E&M Reference Book', url: 'https://drive.google.com/file/d/1d9MSETb7eR7Q2zLnN1aOfZXlI4u0iP@T/view?usp=drivesdk' }
-      ]
+       { title: 'Business Economics Book', url: 'https://drive.google.com/file/d/1XD2CnTGa8tpUzqLPlzzDnc1-P60wdAJO/view?usp=drive_link' },
+        { title: 'E&M Unit 1 (Part-1) Notes', url: 'https://drive.google.com/file/d/1UI4YbkhC7bbb7DpMtNgnciPCFV_c7FaL/view?usp=drive_link' },
+        { title: 'E&M Unit 1 (Part 2) Notes', url: 'https://drive.google.com/file/d/1UObid3Prm9I_JVbxPqaPSukSmQ8qyCV6/view?usp=drive_link' },
+        { title: 'Unit 1 (Elasticity Notes)', url: 'https://drive.google.com/file/d/1U8GWR590L9kRgbe5_fZ6t-myuUoXmqn8/view?usp=drive_link' },
+        { title: 'Complete Unit 2 Notes', url: 'https://drive.google.com/file/d/1UOd_TOHZeOayp-W0NeKdmnv2mXr7-or-/view?usp=drive_link' },
+        { title: 'Unit 3 (Part-1) Notes', url: 'https://drive.google.com/file/d/1UPKMYKBS5k96DWeB2xyVy1ix9gUBnF_o/view?usp=drive_link' },
+        { title: 'Unit 3 (Part-2) Notes', url: 'https://drive.google.com/file/d/1U_rmk9aE-Ge6cxrPqIBbNovw9kwXm56M/view?usp=drive_link' },
+        { title: 'E&M Handwritten Notes', url: 'https://drive.google.com/file/d/1XANMyirw8Bb8Ks4m-R9jOtJ-0CncP5mQ/view?usp=drive_link' },
+        { title: 'Full Last Min. Revision Notes', url: 'https://drive.google.com/file/d/1Tv4l6-DNZygMKa-7AP73LvBki4L3QQcI/view?usp=drive_link' }
+        ]
     }
   ];
 

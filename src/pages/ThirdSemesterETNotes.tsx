@@ -20,87 +20,89 @@ const ThirdSemesterETNotes = () => {
   };
 
   const subjects = [
-    {
-      id: 'eca',
-      name: 'ECA',
-      fullName: 'Electronic Circuit Analysis',
-      description: 'Analysis and design of electronic circuits',
-      notes: [
-        { title: 'ECA Book', url: 'https://drive.google.com/file/d/1ei7KX3yS6TCUcC2Lkya5zVVLYD99ZvF5/view?usp=drivesdk' }
-      ]
-    },
-    {
-      id: 'de',
-      name: 'DE',
-      fullName: 'Digital Electronics',
-      description: 'Digital circuits and logic design',
-      notes: [
-        { title: 'Digital Circuit Book PDF', url: 'https://drive.google.com/file/d/1M7-WFp832omjfPALcua0haNhY8-SBgv6/view?usp=drivesdk' },
-        { title: 'Digital Design Book', url: 'https://drive.google.com/file/d/1ws89s_RjCm6ze8z2K1jknxTkZtgZTCgF/view?usp=drivesdk' },
-        { title: 'Digital Electronics Quantum PDF (Best)', url: 'https://drive.google.com/file/d/1ksW_xMibmzUZRFScn3NenGzYYc2yxNS0/view?usp=drivesdk' },
-        { title: 'Semiconductor Material PDF', url: 'https://drive.google.com/file/d/1P1X9JiJzdGg7FbEL3arfw4uTVISMcvbs/view?usp=drivesdk' },
-        { title: 'MOS Logic Family', url: 'https://drive.google.com/file/d/1Yy9cysGTwmRHwfZAsdRY6YI3sRIYwAlR/view?usp=drivesdk' },
-        { title: 'Transistor Logic Circuit', url: 'https://drive.google.com/file/d/1DqjPJwWjDvJ3ZBVFCQ3m6Nkg5I0XQp4l/view?usp=drivesdk' },
-        { title: 'Modeling Styles in VHDL', url: 'https://drive.google.com/file/d/18xcUAe-dJjmnYlbZ7JHbEcLYDAW4vw2S/view?usp=drivesdk' },
-        { title: 'Binary Multiplier', url: 'https://drive.google.com/file/d/1yApmfaL6yZybANtzaGWqMO2S1qp4DPNF/view?usp=drivesdk' },
-        { title: 'Code Converter PDF', url: 'https://drive.google.com/file/d/1D5fIC8AfZVwvh-Gd9N2-vqNeGV2fry51/view?usp=drivesdk' },
-        { title: '2 Bit Magnitude Comparator', url: 'https://drive.google.com/file/d/1P4Yu75WoAst1fhF9trgee_uqu-yel5Ik/view?usp=drivesdk' },
-        { title: 'Implementation of MUX', url: 'https://drive.google.com/file/d/1uyYZllDc2HKuu-Q98s8kj5_Ly_aq4shU/view?usp=drivesdk' },
-        { title: 'Minimize Output Logical Expression (Assignment)', url: 'https://drive.google.com/file/d/1FKVUTDtpTANotGo8gQQ4ul8uqv6oY0tI/view?usp=drivesdk' }
-      ]
-    },
-    {
-      id: 'emmi',
-      name: 'EMMI',
-      fullName: 'Electrical Machines & Measurements Instrumentation',
-      description: 'Electrical machines and measurement techniques',
-      notes: [
-        { title: 'Unit-1 Notes', url: 'https://drive.google.com/file/d/122gY7moNtAZyisChZzdgtvkGI0dEHIux/view?usp=drivesdk' },
-        { title: 'Unit-3 Notes', url: 'https://drive.google.com/file/d/1wLj4vhrI_P-AY3yHWcjDo2bKbRXPY9jY/view?usp=drivesdk' },
-        { title: 'Unit-4 & 5 Notes', url: 'https://drive.google.com/file/d/1-L15l3RWjJfZYbIymeVjnwxSYevcDgGh/view?usp=drivesdk' }
-      ]
-    },
-    {
-      id: 'hdl',
-      name: 'HDL',
-      fullName: 'Hardware Description Language',
-      description: 'VHDL and hardware design languages',
-      notes: [
-        { title: 'HDL Book', url: 'https://drive.google.com/file/d/1Do7Toyz5Wkjr-4RtbfrLPv4jd3rBhiqK/view?usp=drivesdk' },
-        { title: 'Complete HDL Notes', url: 'https://drive.google.com/file/d/1CuFCLwYW92Bc9OJk2nnrLx8SVAxEtdo5/view?usp=drivesdk' },
-        { title: 'HDL Lab File', url: 'https://drive.google.com/file/d/18eWiTlXAUAS-OP9JhDM8s0n-cRwO573H/view?usp=drivesdk' },
-        { title: 'VHDL Notes PDF', url: 'https://drive.google.com/file/d/1Bpa98ASoIatwH53to9pPsR8Dtfwjthdh/view?usp=drivesdk' }
-      ]
-    },
-    {
-      id: 'ssd',
-      name: 'SSD',
-      fullName: 'Solid State Devices',
-      description: 'Semiconductor devices and circuits',
-      notes: [
-        { title: 'Microelectronic Circuit Book', url: 'https://drive.google.com/file/d/1h-Xz0wo9m_tmzIUHI4a2GK1Wms5ICEqH/view?usp=drivesdk' },
-        { title: 'SSD Unit-5 Notes', url: 'https://drive.google.com/file/d/1Xkf5f7V7SMXGYsvu6x9HTFAcpiNBOFy_/view?usp=drivesdk' }
-      ]
-    },
+     {
+    id: 'eca',
+    name: 'ECA',
+    fullName: 'Electronic Circuit Analysis',
+    description: 'Analysis and design of electronic circuits',
+    notes: [
+      { title: 'ECA Book', url: 'https://drive.google.com/uc?export=download&id=1ei7KX3yS6TCUcC2Lkya5zVVLYD99ZvF5' }
+    ]
+  },
+  {
+    id: 'de',
+    name: 'DE',
+    fullName: 'Digital Electronics',
+    description: 'Digital circuits and logic design',
+    notes: [
+      { title: 'Digital Circuit Book PDF', url: 'https://drive.google.com/uc?export=download&id=1M7-WFp832omjfPALcua0haNhY8-SBgv6' },
+      { title: 'Digital Design Book', url: 'https://drive.google.com/uc?export=download&id=1ws89s_RjCm6ze8z2K1jknxTkZtgZTCgF' },
+      { title: 'Digital Electronics Quantum PDF (Best)', url: 'https://drive.google.com/uc?export=download&id=1ksW_xMibmzUZRFScn3NenGzYYc2yxNS0' },
+      { title: 'Semiconductor Material PDF', url: 'https://drive.google.com/uc?export=download&id=1P1X9JiJzdGg7FbEL3arfw4uTVISMcvbs' },
+      { title: 'MOS Logic Family', url: 'https://drive.google.com/uc?export=download&id=1Yy9cysGTwmRHwfZAsdRY6YI3sRIYwAlR' },
+      { title: 'Transistor Logic Circuit', url: 'https://drive.google.com/uc?export=download&id=1DqjPJwWjDvJ3ZBVFCQ3m6Nkg5I0XQp4l' },
+      { title: 'Modeling Styles in VHDL', url: 'https://drive.google.com/uc?export=download&id=18xcUAe-dJjmnYlbZ7JHbEcLYDAW4vw2S' },
+      { title: 'Binary Multiplier', url: 'https://drive.google.com/uc?export=download&id=1yApmfaL6yZybANtzaGWqMO2S1qp4DPNF' },
+      { title: 'Code Converter PDF', url: 'https://drive.google.com/uc?export=download&id=1D5fIC8AfZVwvh-Gd9N2-vqNeGV2fry51' },
+      { title: '2 Bit Magnitude Comparator', url: 'https://drive.google.com/uc?export=download&id=1P4Yu75WoAst1fhF9trgee_uqu-yel5Ik' },
+      { title: 'Implementation of MUX', url: 'https://drive.google.com/uc?export=download&id=1uyYZllDc2HKuu-Q98s8kj5_Ly_aq4shU' },
+      { title: 'Minimize Output Logical Expression (Assignment)', url: 'https://drive.google.com/uc?export=download&id=1FKVUTDtpTANotGo8gQQ4ul8uqv6oY0tI' }
+    ]
+  },
+  {
+    id: 'emmi',
+    name: 'EMMI',
+    fullName: 'Electrical Machines & Measurements Instrumentation',
+    description: 'Electrical machines and measurement techniques',
+    notes: [
+      { title: 'Unit-1 Notes', url: 'https://drive.google.com/uc?export=download&id=122gY7moNtAZyisChZzdgtvkGI0dEHIux' },
+      { title: 'Unit-3 Notes', url: 'https://drive.google.com/uc?export=download&id=1wLj4vhrI_P-AY3yHWcjDo2bKbRXPY9jY' },
+      { title: 'Unit-4 & 5 Notes', url: 'https://drive.google.com/uc?export=download&id=1-L15l3RWjJfZYbIymeVjnwxSYevcDgGh' }
+    ]
+  },
+  {
+    id: 'hdl',
+    name: 'HDL',
+    fullName: 'Hardware Description Language',
+    description: 'VHDL and hardware design languages',
+    notes: [
+      { title: 'HDL Book', url: 'https://drive.google.com/uc?export=download&id=1Do7Toyz5Wkjr-4RtbfrLPv4jd3rBhiqK' },
+      { title: 'Complete HDL Notes', url: 'https://drive.google.com/uc?export=download&id=1CuFCLwYW92Bc9OJk2nnrLx8SVAxEtdo5' },
+      { title: 'HDL Lab File', url: 'https://drive.google.com/uc?export=download&id=18eWiTlXAUAS-OP9JhDM8s0n-cRwO573H' },
+      { title: 'VHDL Notes PDF', url: 'https://drive.google.com/uc?export=download&id=1Bpa98ASoIatwH53to9pPsR8Dtfwjthdh' }
+    ]
+  },
+  {
+    id: 'ssd',
+    name: 'SSD',
+    fullName: 'Solid State Devices',
+    description: 'Semiconductor devices and circuits',
+    notes: [
+      { title: 'Microelectronic Circuit Book', url: 'https://drive.google.com/uc?export=download&id=1h-Xz0wo9m_tmzIUHI4a2GK1Wms5ICEqH' },
+      { title: 'SSD Unit-5 Notes', url: 'https://drive.google.com/uc?export=download&id=1Xkf5f7V7SMXGYsvu6x9HTFAcpiNBOFy_' }
+    ]
+  },
     {
       id: 'math2',
       name: 'Math-II',
       fullName: 'Engineering Mathematics-II',
       description: 'Advanced engineering mathematics concepts',
       notes: [
-        { title: 'Math-II Complete Notes', url: 'https://drive.google.com/file/d/14iSP9qfSLLvqzPQxTGvPUPVt5f4Gxsae/view?usp=drivesdk' },
-        { title: 'Math-II Unit 1 Handwritten Notes', url: 'https://drive.google.com/file/d/1vIpIw_LqSVlCSmvFiVs1_0-v7CZoMIWV/view?usp=drivesdk' },
-        { title: 'Math-II Unit 2-3 Notes', url: 'https://drive.google.com/file/d/1N8h_IY46YPtXz0YqmBhJ-BbVuGwWjqjE/view?usp=drivesdk' },
-        { title: 'Math-II Unit 4-5 Notes', url: 'https://drive.google.com/file/d/12Nv3sAy2LWgqQKBYxSCUFBCjW5BqiUgG/view?usp=drivesdk' }
-      ]
+      { title: 'Unit 1 C.F & PI Notes', url: 'https://drive.google.com/uc?export=download&id=1_OfjdkVBUxb6352LJcCSqv_nKrjz4uSU' },
+  { title: 'Unit 2 Notes', url: 'https://drive.google.com/uc?export=download&id=1_OSlf-B7K9TFC1LgA6yZDUH2sQL-RTy0' },
+  { title: 'Unit 3 Notes', url: 'https://drive.google.com/uc?export=download&id=1_PtU2rwcwDjGnrBwBpTtSeohDrbvxDBa' },
+  { title: 'Mid Sem 2 Last Minute Revision', url: 'https://drive.google.com/uc?export=download&id=1oGU5M62XSyErVp3qP4CrEj1v0t5FQqej' },
+  { title: 'Best Maths Chapter 1 & 2 Notes', url: 'https://drive.google.com/uc?export=download&id=1_JfBOvZp84amQj6Mo7-KtwrARm1kTHUr' },
+  { title: 'Formula Sheet Unit 1', url: 'https://drive.google.com/uc?export=download&id=1T6PERNwiIdoA0Vm2EGyIVwp9TlrG7IrX' }
+]
     }
   ];
 
   const pyqs = [
-    { title: 'ESE PYQs (2020-21)', url: 'https://drive.google.com/file/d/1qSh1KfrtnANPXPTi6TNkDLX2zHiOvQeZ/view?usp=drivesdk' },
-    { title: 'ESE PYQs (2024-25)', url: 'https://drive.google.com/file/d/1jITDsxslYvATjArkAP9LJkT7pbyIUsHQ/view?usp=drivesdk' },
-    { title: 'ESE PYQs (2021-22)', url: 'https://drive.google.com/file/d/1-sLPRx8hnjPoOYH3haBKAMa2wvyu6_6A/view?usp=drivesdk' }
-  ];
+   { title: 'ESE PYQs (2020-21)', url: 'https://drive.google.com/uc?export=download&id=1qSh1KfrtnANPXPTi6TNkDLX2zHiOvQeZ' },
+  { title: 'ESE PYQs (2024-25)', url: 'https://drive.google.com/uc?export=download&id=1jITDsxslYvATjArkAP9LJkT7pbyIUsHQ' },
+  { title: 'ESE PYQs (2021-22)', url: 'https://drive.google.com/uc?export=download&id=1-sLPRx8hnjPoOYH3haBKAMa2wvyu6_6A' }
+];
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-background via-background to-primary/5">
