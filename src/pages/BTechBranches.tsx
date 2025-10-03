@@ -47,9 +47,9 @@ const BTechBranches = () => {
       name: "CE",
       fullName: "Civil Engineering",
       description: "Infrastructure, construction, and structural design",
-      available: false,
+      available: semester === "semester-3" ? true : false,
       thumbnail: ceImg,
-      route: "#",
+      route: semester === "semester-3" ? "/third-semester-ce" : "#",
     },
  {
       name: "ET",

@@ -4,7 +4,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Badge } from '@/components/ui/badge';
 import { 
   BookOpen, Code, Database, Globe, GraduationCap, 
-  Cpu, FileText, Sparkles 
+  Cpu, FileText, Sparkles, Briefcase 
 } from 'lucide-react';
 import Navbar from '@/components/Navbar';
 
@@ -19,6 +19,26 @@ const NotesCategories = () => {
       gradient: 'bg-gradient-to-br from-blue-500 to-blue-600',
       available: true,
       count: '1st-4th Sem Available'
+    },
+    {
+      id: 'mba',
+      title: 'MBA Notes',
+      description: 'Master of Business Administration comprehensive study materials',
+      icon: <Briefcase className="h-8 w-8" />,
+      route: '/mba-notes',
+      gradient: 'bg-gradient-to-br from-indigo-500 to-indigo-600',
+      available: true,
+      count: '1st-4th Sem'
+    },
+    {
+      id: 'bba',
+      title: 'BBA Notes',
+      description: 'Bachelor of Business Administration study materials',
+      icon: <Briefcase className="h-8 w-8" />,
+      route: '/bba-notes',
+      gradient: 'bg-gradient-to-br from-pink-500 to-pink-600',
+      available: true,
+      count: '1st-6th Sem'
     },
     {
       id: 'dsa',

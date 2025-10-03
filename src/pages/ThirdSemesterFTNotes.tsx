@@ -39,15 +39,15 @@ const ThirdSemesterFTNotes = () => {
       fullName: 'Economics & Management',
       description: 'Business economics and management principles',
       notes: [
-       { title: 'Business Economics Book', url: 'https://drive.google.com/file/d/1XD2CnTGa8tpUzqLPlzzDnc1-P60wdAJO/view?usp=drive_link' },
-        { title: 'E&M Unit 1 (Part-1) Notes', url: 'https://drive.google.com/file/d/1UI4YbkhC7bbb7DpMtNgnciPCFV_c7FaL/view?usp=drive_link' },
-        { title: 'E&M Unit 1 (Part 2) Notes', url: 'https://drive.google.com/file/d/1UObid3Prm9I_JVbxPqaPSukSmQ8qyCV6/view?usp=drive_link' },
-        { title: 'Unit 1 (Elasticity Notes)', url: 'https://drive.google.com/file/d/1U8GWR590L9kRgbe5_fZ6t-myuUoXmqn8/view?usp=drive_link' },
-        { title: 'Complete Unit 2 Notes', url: 'https://drive.google.com/file/d/1UOd_TOHZeOayp-W0NeKdmnv2mXr7-or-/view?usp=drive_link' },
-        { title: 'Unit 3 (Part-1) Notes', url: 'https://drive.google.com/file/d/1UPKMYKBS5k96DWeB2xyVy1ix9gUBnF_o/view?usp=drive_link' },
-        { title: 'Unit 3 (Part-2) Notes', url: 'https://drive.google.com/file/d/1U_rmk9aE-Ge6cxrPqIBbNovw9kwXm56M/view?usp=drive_link' },
-        { title: 'E&M Handwritten Notes', url: 'https://drive.google.com/file/d/1XANMyirw8Bb8Ks4m-R9jOtJ-0CncP5mQ/view?usp=drive_link' },
-        { title: 'Full Last Min. Revision Notes', url: 'https://drive.google.com/file/d/1Tv4l6-DNZygMKa-7AP73LvBki4L3QQcI/view?usp=drive_link' }
+       { title: 'Business Economics Book', url: 'https://drive.google.com/uc?export=download&id=1XD2CnTGa8tpUzqLPlzzDnc1-P60wdAJO' },
+        { title: 'E&M Unit 1 (Part-1) Notes', url: 'https://drive.google.com/uc?export=download&id=1UI4YbkhC7bbb7DpMtNgnciPCFV_c7FaL' },
+        { title: 'E&M Unit 1 (Part 2) Notes', url: 'https://drive.google.com/uc?export=download&id=1UObid3Prm9I_JVbxPqaPSukSmQ8qyCV6' },
+        { title: 'Unit 1 (Elasticity Notes)', url: 'https://drive.google.com/uc?export=download&id=1U8GWR590L9kRgbe5_fZ6t-myuUoXmqn8' },
+        { title: 'Complete Unit 2 Notes', url: 'https://drive.google.com/uc?export=download&id=1UOd_TOHZeOayp-W0NeKdmnv2mXr7-or-' },
+        { title: 'Unit 3 (Part-1) Notes', url: 'https://drive.google.com/uc?export=download&id=1UPKMYKBS5k96DWeB2xyVy1ix9gUBnF_o' },
+        { title: 'Unit 3 (Part-2) Notes', url: 'https://drive.google.com/uc?export=download&id=1U_rmk9aE-Ge6cxrPqIBbNovw9kwXm56M' },
+        { title: 'E&M Handwritten Notes', url: 'https://drive.google.com/uc?export=download&id=1XANMyirw8Bb8Ks4m-R9jOtJ-0CncP5mQ' },
+        { title: 'Full Last Min. Revision Notes', url: 'https://drive.google.com/uc?export=download&id=1Tv4l6-DNZygMKa-7AP73LvBki4L3QQcI' }
         ]
     }
   ];
