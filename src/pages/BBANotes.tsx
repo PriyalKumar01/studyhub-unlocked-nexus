@@ -103,11 +103,11 @@ const BBANotes = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <Button
           variant="outline"
-          onClick={() => navigate('/')}
+          onClick={() => navigate('/notes')}
           className="mb-4"
         >
           <ArrowLeft className="h-4 w-4 mr-2" />
-          Back to Home
+          Back to Notes
         </Button>
 
         <motion.div
