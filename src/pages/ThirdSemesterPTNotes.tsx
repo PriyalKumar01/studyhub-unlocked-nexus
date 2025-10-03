@@ -100,6 +100,36 @@ const ThirdSemesterPTNotes = () => {
  ]
     },
     {
+      id: 'tofep',
+      name: 'TOFEP',
+      fullName: 'Technology of Film & Emulsion Paints',
+      description: 'Paint technology and emulsion chemistry',
+      notes: [
+      { title: '1 - Introduction & Definition Notes', url: 'https://drive.google.com/uc?export=download&id=1nykZkVtniaUYCIW0xUsA3FYMNPolU_yL' },
+{ title: '2 - Ingredient & Characteristics Notes', url: 'https://drive.google.com/uc?export=download&id=1ob5KJJV77sbjlunsulK7aASMT9VdeIm3' },
+{ title: '3 - Classification Notes', url: 'https://drive.google.com/uc?export=download&id=1W6x44NFGW3bd9VoyRiJfJIIxaGeYJyq1' },
+{ title: '4 - Fundamental Notes', url: 'https://drive.google.com/uc?export=download&id=1_sW8TnSFrIEGfSoRS8FS33gR-3fH4mCX' },
+{ title: '5 - Industry Scenario, Paint Dispersion, Flocculation, Emulsion, Stabilisation', url: 'https://drive.google.com/uc?export=download&id=1wdaw6ngi6aVq2pvBbxGUctMFmdH04Eur' },
+{ title: '6 - Oil Notes (Part-1)', url: 'https://drive.google.com/uc?export=download&id=1HIOzWJ1vljX70rVZv-Mflo_cnTXAiwl4' },
+{ title: '7 - Oil Notes (Part-2)', url: 'https://drive.google.com/uc?export=download&id=1yHAIEvwnb7AJZ6k8njiF1zC2TKhgmAKO' },
+{ title: '8 - Oil Extraction & Silent Features Notes', url: 'https://drive.google.com/uc?export=download&id=1CzUlqiSdsudv4Anb8r-fuJpfN9pr-hBI' },
+{ title: '9 - Modified Oil, Driers & Solvents Notes', url: 'https://drive.google.com/uc?export=download&id=1TiCM4GHdrrRCR45SUhq3jv0oy7rAnffq' },
+{ title: '10 - Plasticizer & Solvents Notes', url: 'https://drive.google.com/uc?export=download&id=16kytxH0_XoGAiIr8mPilVRKnU06t4GBN' },
+{ title: '11 - Pigment Notes (Part-1)', url: 'https://drive.google.com/uc?export=download&id=1gL6M2wRppjmKJWy3tELBcP_Fv9DHaq_f' },
+{ title: '12 - Pigment (Part-2)', url: 'https://drive.google.com/uc?export=download&id=13esE0MardJpzjNuc4nmIpJZ64EpigSek' },
+{ title: '13 - Pigment Notes (Part-3)', url: 'https://drive.google.com/uc?export=download&id=18XKjO7n09CBGJVS3icf_XHLWxXSzeFXA' },
+{ title: '14 - Natural Resin & Alkyl Notes', url: 'https://drive.google.com/uc?export=download&id=11j3rzNw_WMYNPkVnivx_bCJmdyFv759E' },
+{ title: '15 - Alkyd Notes', url: 'https://drive.google.com/uc?export=download&id=1bvUq42wxy0vOVjsCHc3qmendhals1Vjb' },
+{ title: '16 - Polymer Notes (Part-1)', url: 'https://drive.google.com/uc?export=download&id=15iuMVScQTgOQqpz6iKRcKriUHEPBen6h' },
+{ title: '17 - Polymer Notes (Part-2)', url: 'https://drive.google.com/uc?export=download&id=1Ml7ozTdKVUahetcgCulKn2CzPXlhKAyC' },
+{ title: '18 - Synthetic Resin Notes', url: 'https://drive.google.com/uc?export=download&id=1_9l87iTxMBsCKlDuVGb0weqW2zr8A-4D' },
+{ title: '19 - Paint Additive Notes', url: 'https://drive.google.com/uc?export=download&id=1BJS9t94b0-JPNm-j_vjP0Jq4AjYYDgbX' },
+{ title: '20 - Paint Formulation Notes', url: 'https://drive.google.com/uc?export=download&id=1TeJG0OT0Tx2DuKuVAlDT29pmNBdHTMRb' },
+{ title: '21 - Drier Notes', url: 'https://drive.google.com/uc?export=download&id=1taOp8I9d5fAm_bYDBebbm6-2uWbK0Uin' },
+{ title: '22 - Solvent Notes', url: 'https://drive.google.com/uc?export=download&id=1xXy1O0nHHQXKwGpE-W5yU42qhS5NnlAM' }
+ ]
+    },
+    {
   id: 'cpc',
   name: 'CPC',
   fullName: 'Chemical Process Calculations',
