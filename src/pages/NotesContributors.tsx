@@ -65,6 +65,15 @@ const NotesContributors = () => {
     },
     {
       rank: 6,
+      name: "Bhoomika",
+      branch: "MBA",
+      batch: "27",
+      
+      coins: 54,
+      
+    },
+    {
+      rank: 7,
       name: "Soni Rawat",
       branch: "ME",
       batch: "28",
@@ -73,7 +82,7 @@ const NotesContributors = () => {
       
     },
     {
-      rank: 7,
+      rank: 8,
       name: "Kanishtha Mishra",
       branch: "LFT",
       batch: "28",

@@ -16,7 +16,7 @@ import FourthSemesterCSENotes from "./pages/FourthSemesterCSENotes";
 import ThirdSemesterMENotes from "./pages/ThirdSemesterMENotes";
 import ThirdSemesterCHENotes from "./pages/ThirdSemesterCHENotes";
 import ThirdSemesterCENotes from "./pages/ThirdSemesterCENotes";
-import MBANotes from "./pages/MBANotes";
+import MBANotes from "./pages/MBANotes";      
 import BBANotes from "./pages/BBANotes";
 import ThirdSemesterLFTNotes from "./pages/ThirdSemesterLFTNotes";
 import ThirdSemesterETNotes from "./pages/ThirdSemesterETNotes";
@@ -130,6 +130,10 @@ export const navItems = [
     page: <ThirdSemesterOTNotes />,
   },
   {
+    to: "/third-semester-ce",
+    page: <ThirdSemesterCENotes />,
+  },
+  {
     to: "/learning-platforms",
     page: <LearningPlatforms />,
   },
@@ -168,6 +172,14 @@ export const navItems = [
   {
     to: "/notes-contributors",
     page: <NotesContributors />,
+  },
+  {
+    to: "/bba-notes",  
+    page: <BBANotes />,
+  },
+  {
+    to: "/mba-notes",  
+    page: <MBANotes />,
   },
   {
     to: "*",
