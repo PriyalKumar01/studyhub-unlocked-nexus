@@ -25,7 +25,7 @@ const BTechBranches = () => {
       description: "Software development, algorithms, and computing systems",
       available: true,
       thumbnail: cseItImg,
-      route: semester === "semester-3" ? "/third-semester-cse" : "/fourth-semester-cse",
+      route: semester === "semester-3" ? "/third-semester-cse" : semester === "semester-4" ? "/fourth-semester-cse" : semester === "semester-5" ? "/fifth-semester-cse" : "#",
     },
     {
       name: "CHE",

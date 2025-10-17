@@ -33,7 +33,7 @@ const BTechYears = () => {
     {
       name: "3rd Year",
       description: "Advanced topics and specialization courses",
-      available: false,
+      available: true,
       route: "/btech-notes/third-year",
       thumbnail: thirdYearImg,
       semesters: ["5th Semester", "6th Semester"],

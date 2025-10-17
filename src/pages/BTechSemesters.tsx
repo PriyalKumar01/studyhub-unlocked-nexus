@@ -35,7 +35,7 @@ const BTechSemesters = () => {
       {
         name: "5th Semester",
         description: "Specialization courses and electives",
-        available: false,
+        available: true,
         route: "/btech-notes/third-year/semester-5",
         thumbnail: thirdSemImg,
         branches: ["CSE/IT", "ME", "CE", "CHE", "ET", "EE", "BE", "LFT"],
