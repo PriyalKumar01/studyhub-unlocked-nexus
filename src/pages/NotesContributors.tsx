@@ -78,7 +78,7 @@ const NotesContributors = () => {
       branch: "CSE",
       batch: "28",
       
-      coins: 6,
+      coins: 20,
       
     },
     {
