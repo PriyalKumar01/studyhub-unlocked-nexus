@@ -11,8 +11,8 @@ const FifthSemesterCSENotes = () => {
   const [expandedSubjects, setExpandedSubjects] = useState<string[]>([]);
 
   const toggleSubjectExpansion = (subjectId: string) => {
-    setExpandedSubjects(prev => 
-      prev.includes(subjectId) 
+    setExpandedSubjects(prev =>
+      prev.includes(subjectId)
         ? prev.filter(id => id !== subjectId)
         : [...prev, subjectId]
     );
@@ -113,7 +113,11 @@ const FifthSemesterCSENotes = () => {
         { title: 'Unit-2 Part-5', url: 'https://drive.google.com/uc?export=download&id=1D0QrnqjcONsYvDtyoiZKS4ueGSIMbgAT' },
         { title: 'Unit-2 Case Study: On Dilemma', url: 'https://drive.google.com/uc?export=download&id=1Dp1NF-RIATPr6CU-yQrTka2ibaowWw_l' },
         { title: 'Unit-3 Part-1', url: 'https://drive.google.com/uc?export=download&id=1pB5cQ7iJ_NPiDs-w77Xw0KIIVeEGGLNv' },
-        { title: 'Unit-3 Part-2', url: 'https://drive.google.com/uc?export=download&id=1WzQMBm4wG1aUwulXKUeNXMNjmeqX_zFy' },
+        { title: 'Unit-3 Part-2', url: 'https://drive.google.com/uc?export=download&id=1zgzoyye9-shZCxCNYWcP8n5HwJiN09cd' },
+        { title: 'Unit-3 Part-3', url: 'https://drive.google.com/uc?export=download&id=1WzQMBm4wG1aUwulXKUeNXMNjmeqX_zFy' },
+        { title: 'Unit-3 Part-4', url: 'https://drive.google.com/uc?export=download&id=12alClJeKBTeE_1XIRJvJPkQ-Un9tS4X4' },
+        { title: 'Unit-4 Part-1', url: 'https://drive.google.com/uc?export=download&id=1I_1P84wI9Ke8bUuptcCsQq7iSXprJEzT' },
+        { title: 'Unit-4 Part-2', url: 'https://drive.google.com/uc?export=download&id=1tHs6ovfZ8dFwsV516_gGRvu4rvtAz899' },
       ]
     },
   ];
@@ -130,7 +134,7 @@ const FifthSemesterCSENotes = () => {
   return (
     <div className="min-h-screen bg-gradient-hero">
       <Navbar />
-      
+
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <Button
           variant="outline"
