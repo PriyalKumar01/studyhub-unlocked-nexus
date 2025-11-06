@@ -203,14 +203,14 @@ const FirstSemesterNotes = () => {
       name: 'Previous Year Questions',
       icon: '❓',
       color: 'bg-red-500',
-      notes: [
-        { title: 'All Mid Sem-1 PYQs 2024-25', url: 'https://drive.google.com/file/d/1SFx9P6EEyEu5fCwHrL6hMjnugNkodV2t/view?usp=drive_link' },
-        { title: 'All Mid Sem-2 PYQs 2024-25', url: 'https://drive.google.com/file/d/1n-6NNV_escvdTYOIRMxAKftqJB2a7w-R/view?usp=drive_link' },
-        { title: 'More Mid Sem-2 PYQs', url: 'https://drive.google.com/file/d/1oBW8TZphAGA3jPf5PaiXzhr3CDkRX8cb/view?usp=drive_link' },
-        { title: 'More Mid Sem-1 PYQs', url: 'https://drive.google.com/file/d/1Foqyb3niX43bdCX1Qog0jbp7p2jDvP93/view?usp=drive_link' },
-        { title: 'Complete All PYQs - 1st Semester (2024-25)', url: 'https://drive.google.com/file/d/1Fc0AwAU84kbiYuOYfDScpiYCx9vfbV_I/view?usp=drive_link' },
-        { title: 'Complete All PYQs - 1st Semester (2023-24)', url: 'https://drive.google.com/file/d/1_mrm9SbSkJmqiWuRDT9pwkLAEjKv6e_n/view?usp=drive_link' },
-        { title: 'All End Sem PYQs 2024-25', url: 'https://drive.google.com/file/d/1FefFp2xjatHyPb205qKyORxsdQKeqVDP/view?usp=drive_link' }
+      notes: [ 
+        { title: 'Mid Sem-1 PYQs (2025-26)', url: 'https://drive.google.com/file/d/1UHEYh3ykfe1QtYE_VfOF09nLwfWkjx5Z/view?usp=drivesdk' },
+        { title: 'Mid Sem-2 PYQs (2025-26)', url: 'https://drive.google.com/file/d/1VzarRmsgnrELjL9fsGKFy31Ba1G9nZZi/view?usp=drivesdk' },
+        { title: 'Mid Sem-1 PYQs (2024-25)', url: 'https://drive.google.com/file/d/1SFx9P6EEyEu5fCwHrL6hMjnugNkodV2t/view?usp=drive_link' },
+        { title: 'Mid Sem-2 PYQs (2024-25)', url: 'https://drive.google.com/file/d/1oBW8TZphAGA3jPf5PaiXzhr3CDkRX8cb/view?usp=drive_link' },
+        { title: 'End Sem PYQs 2024-25', url: 'https://drive.google.com/file/d/1FefFp2xjatHyPb205qKyORxsdQKeqVDP/view?usp=drive_link' },
+        { title: 'Complete All PYQs(2024-25)', url: 'https://drive.google.com/file/d/1Fc0AwAU84kbiYuOYfDScpiYCx9vfbV_I/view?usp=drive_link' },
+        { title: 'Complete All PYQs (2023-24)', url: 'https://drive.google.com/file/d/1_mrm9SbSkJmqiWuRDT9pwkLAEjKv6e_n/view?usp=drive_link' },
       ]
     }
   ];

@@ -217,15 +217,17 @@ const SecondSemesterNotes = () => {
       icon: '❓',
       color: 'bg-red-500',
       notes: [
-        { title: 'Mid Sem 1 PYQs', url: 'https://drive.google.com/file/d/1SzIrS0HedxD7rXrfdeleOMO9YXI-O4Cg/view?usp=drive_link' },
-        { title: 'More Mid Sem 1 PYQs', url: 'https://drive.google.com/file/d/1SHThDw8j2ar0oJ7huAKSTTBWAqLqgT86/view?usp=drive_link' },
-        { title: 'End Sem PYQs 2024-25', url: 'https://drive.google.com/file/d/1FoxxXrQZyJYqIWNxgqoix-whiELRM9ap/view?usp=drive_link' },
-        { title: 'Mid Sem 2 PYQs 2024-25', url: 'https://drive.google.com/file/d/1FmF7U7v0GnqSYhEY5V05Sh2nbq5_Io2V/view?usp=drive_link' },
-        { title: 'All Electrical Engineering Subject PYQs', url: 'https://drive.google.com/file/d/1T_SDeOBPNk2_PuR-MSNvyZO083YAawZT/view?usp=drive_link' },
-        { title: 'All Engineering Graphics ESE 2023-24 PYQs', url: 'https://drive.google.com/file/d/1XAQWVkHIBL98_6DQ_g5gLdJtPItnr6Fr/view?usp=drive_link' },
-        { title: 'All Engineering Math PYQs 2023-24', url: 'https://drive.google.com/file/d/1XAuHs6HHsd83jqxAhSg8jm8CqCAMubIT/view?usp=drive_link' },
-        { title: 'All ESE PYQs 2022-23', url: 'https://drive.google.com/file/d/1TUqMumNd8NU2KLY7oSapwyZKDxUwBwEe/view?usp=drive_link' },
-        { title: 'PC All End Sem PYQs', url: 'https://drive.google.com/file/d/1_gxaLSw8Uz3OhjCGUkr4nCDeFYaVy816/view?usp=drive_link' },
+        { title: 'Mid Sem 1 PYQs (2025-26) -ODD SEM', url: 'https://drive.google.com/file/d/1SXPBclZ-Bjv6l9O3iKFRionXUq9iLhkW/view?usp=drivesdk' },
+        { title: 'Mid Sem 2 PYQs (2025-26) -ODD SEM', url: 'https://drive.google.com/file/d/1wty3ubMfR4Vyt6ClzFfi0gKi-jNH0EmY/view?usp=drivesdk' },
+        { title: 'Mid Sem 1 PYQs (2024-25) -ODD SEM', url: 'https://drive.google.com/file/d/1SHThDw8j2ar0oJ7huAKSTTBWAqLqgT86/view?usp=drive_link' },
+        { title: 'Mid Sem 2 PYQs (2024-25) -ODD SEM', url: 'https://drive.google.com/file/d/1FmF7U7v0GnqSYhEY5V05Sh2nbq5_Io2V/view?usp=drive_link' },
+        { title: 'End Sem PYQs (2024-25) -ODD SEM', url: 'https://drive.google.com/file/d/1FoxxXrQZyJYqIWNxgqoix-whiELRM9ap/view?usp=drive_link' },
+        { title: 'Mid Sem 1 PYQs (2023-24) -ODD SEM', url: 'https://drive.google.com/file/d/1SzIrS0HedxD7rXrfdeleOMO9YXI-O4Cg/view?usp=drive_link' },
+        { title: 'End Sem PYQs (2022-23) -EVEN SEM', url: 'https://drive.google.com/file/d/1TUqMumNd8NU2KLY7oSapwyZKDxUwBwEe/view?usp=drive_link' },
+        { title: 'All Electrical Engg Subject PYQs (2022-23)', url: 'https://drive.google.com/file/d/1T_SDeOBPNk2_PuR-MSNvyZO083YAawZT/view?usp=drive_link' },
+        { title: 'All Engg Graphics ESE PYQs (2022-24)', url: 'https://drive.google.com/file/d/1XAQWVkHIBL98_6DQ_g5gLdJtPItnr6Fr/view?usp=drive_link' },
+        { title: 'All Engg Math PYQs (2022-24)', url: 'https://drive.google.com/file/d/1XAuHs6HHsd83jqxAhSg8jm8CqCAMubIT/view?usp=drive_link' },
+        { title: 'PC All End Sem PYQs (2021-24)', url: 'https://drive.google.com/file/d/1_gxaLSw8Uz3OhjCGUkr4nCDeFYaVy816/view?usp=drive_link' },
         { title: 'Important Unit 1-5 Physics PYQs', url: 'https://drive.google.com/file/d/1_chuSn7TOwmsI8M-TAiISYE_AvHKMg7S/view?usp=drive_link' }
       ]
     }
