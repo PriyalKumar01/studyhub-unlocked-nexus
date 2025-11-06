@@ -1,97 +1,72 @@
 import { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
-import { Separator } from '@/components/ui/separator';
-import { useToast } from '@/hooks/use-toast';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { supabase } from '@/integrations/supabase/client';
-import { Eye, EyeOff, Mail, Phone, User, BookOpen } from 'lucide-react';
-import { useNavigate } from 'react-router-dom';
+import { useToast } from '@/hooks/use-toast';
+import { Loader2, BookOpen, GraduationCap } from 'lucide-react';
+import { useAuth } from '@/contexts/AuthContext';
 
 const Auth = () => {
-  const [isSignUp, setIsSignUp] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-  const [showPassword, setShowPassword] = useState(false);
-  const [formData, setFormData] = useState({
-    firstName: '',
-    lastName: '',
-    email: '',
-    mobileNumber: '',
-    password: ''
-  });
-  const { toast } = useToast();
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
   const navigate = useNavigate();
-
-  const motivationalQuotes = [
-    "Education is the most powerful weapon which you can use to change the world. - Nelson Mandela",
-    "The beautiful thing about learning is that nobody can take it away from you. - B.B. King",
-    "Success is not final, failure is not fatal: it is the courage to continue that counts. - Winston Churchill",
-    "The future belongs to those who prepare for it today.",
-    "Study hard, dream big, achieve greatness."
-  ];
-
-  const [currentQuote, setCurrentQuote] = useState(0);
+  const { toast } = useToast();
+  const { user } = useAuth();
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentQuote((prev) => (prev + 1) % motivationalQuotes.length);
-    }, 4000);
-    return () => clearInterval(interval);
-  }, []);
-
-  useEffect(() => {
-    // Check if user is already logged in
-    const checkUser = async () => {
-      const { data: { session } } = await supabase.auth.getSession();
-      if (session) {
-        navigate('/');
-      }
-    };
-    checkUser();
-  }, [navigate]);
-
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value
-    });
-  };
+    if (user) {
+      navigate('/');
+    }
+  }, [user, navigate]);
 
   const handleSignUp = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsLoading(true);
 
-    try {
-      // Validate mobile number format
-      const mobileRegex = /^[6-9]\d{9}$/;
-      if (!mobileRegex.test(formData.mobileNumber)) {
-        toast({
-          title: "Invalid Mobile Number",
-          description: "Please enter a valid 10-digit Indian mobile number",
-          variant: "destructive",
-        });
-        return;
-      }
+    if (!email || !password || !firstName || !lastName) {
+      toast({
+        title: "Missing information",
+        description: "Please fill in all fields",
+        variant: "destructive",
+      });
+      setIsLoading(false);
+      return;
+    }
 
+    if (password.length < 6) {
+      toast({
+        title: "Weak password",
+        description: "Password must be at least 6 characters long",
+        variant: "destructive",
+      });
+      setIsLoading(false);
+      return;
+    }
+
+    try {
       const { data, error } = await supabase.auth.signUp({
-        email: formData.email,
-        password: formData.password,
+        email,
+        password,
         options: {
           emailRedirectTo: `${window.location.origin}/`,
           data: {
-            first_name: formData.firstName,
-            last_name: formData.lastName,
-            mobile_number: formData.mobileNumber,
-          },
-        },
+            first_name: firstName,
+            last_name: lastName,
+          }
+        }
       });
 
       if (error) {
-        if (error.message.includes('User already registered')) {
+        if (error.message.includes('already registered')) {
           toast({
-            title: "Account already exists",
+            title: "Account exists",
             description: "This email is already registered. Please sign in instead.",
             variant: "destructive",
           });
@@ -105,22 +80,20 @@ const Auth = () => {
         return;
       }
 
-      if (data.user && !data.session) {
+      if (data.user) {
         toast({
-          title: "Check your email",
-          description: "We've sent you a confirmation link to complete your registration.",
+          title: "Success!",
+          description: "Please check your email to verify your account",
         });
-      } else if (data.session) {
-        toast({
-          title: "Welcome to College Study Hub!",
-          description: "Your account has been created successfully.",
-        });
-        navigate('/');
+        setEmail('');
+        setPassword('');
+        setFirstName('');
+        setLastName('');
       }
     } catch (error: any) {
       toast({
         title: "Error",
-        description: error.message,
+        description: error.message || "An unexpected error occurred",
         variant: "destructive",
       });
     } finally {
@@ -132,32 +105,56 @@ const Auth = () => {
     e.preventDefault();
     setIsLoading(true);
 
+    if (!email || !password) {
+      toast({
+        title: "Missing information",
+        description: "Please enter your email and password",
+        variant: "destructive",
+      });
+      setIsLoading(false);
+      return;
+    }
+
     try {
       const { data, error } = await supabase.auth.signInWithPassword({
-        email: formData.email,
-        password: formData.password,
+        email,
+        password,
       });
 
       if (error) {
-        toast({
-          title: "Sign in failed",
-          description: error.message,
-          variant: "destructive",
-        });
+        if (error.message.includes('Invalid login credentials')) {
+          toast({
+            title: "Invalid credentials",
+            description: "Email or password is incorrect",
+            variant: "destructive",
+          });
+        } else if (error.message.includes('Email not confirmed')) {
+          toast({
+            title: "Email not verified",
+            description: "Please check your email and verify your account first",
+            variant: "destructive",
+          });
+        } else {
+          toast({
+            title: "Sign in failed",
+            description: error.message,
+            variant: "destructive",
+          });
+        }
         return;
       }
 
-      if (data.session) {
+      if (data.user) {
         toast({
           title: "Welcome back!",
-          description: "You have been signed in successfully.",
+          description: "You have successfully signed in",
         });
         navigate('/');
       }
     } catch (error: any) {
       toast({
         title: "Error",
-        description: error.message,
+        description: error.message || "An unexpected error occurred",
         variant: "destructive",
       });
     } finally {
@@ -165,241 +162,156 @@ const Auth = () => {
     }
   };
 
-  const handleGoogleSignIn = async () => {
-    try {
-      const { error } = await supabase.auth.signInWithOAuth({
-        provider: 'google',
-        options: {
-          redirectTo: `${window.location.origin}/`,
-        },
-      });
-
-      if (error) {
-        toast({
-          title: "Google sign in failed",
-          description: error.message,
-          variant: "destructive",
-        });
-      }
-    } catch (error: any) {
-      toast({
-        title: "Error",
-        description: error.message,
-        variant: "destructive",
-      });
-    }
-  };
-
   return (
     <div className="min-h-screen bg-gradient-hero flex items-center justify-center p-4">
-      <div className="w-full max-w-6xl flex flex-col lg:flex-row items-center gap-8">
-        {/* Left side - Branding and Quote */}
-        <motion.div 
-          className="flex-1 text-center lg:text-left"
-          initial={{ opacity: 0, x: -50 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.6 }}
-        >
-          <div className="mb-8">
-            <img 
-              src="/lovable-uploads/f3b6ce00-a0ff-4b44-bbdb-ab5640339741.png" 
-              alt="College Study Hub" 
-              className="w-20 h-20 mx-auto lg:mx-0 mb-4"
-            />
-            <h1 className="text-4xl lg:text-6xl font-bold text-white mb-4">
-              College Study Hub
-            </h1>
-            <p className="text-xl text-white/80 mb-8">
-              Your Ultimate Study Partner
-            </p>
+      <div className="w-full max-w-md">
+        <div className="text-center mb-8">
+          <div className="flex items-center justify-center gap-2 mb-4">
+            <GraduationCap className="h-12 w-12 text-primary" />
+            <h1 className="text-4xl font-bold text-foreground">StudyHub</h1>
           </div>
-          
-          <motion.div
-            key={currentQuote}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            transition={{ duration: 0.5 }}
-            className="bg-white/10 backdrop-blur-sm rounded-lg p-6 border border-white/20"
-          >
-            <p className="text-white italic text-lg leading-relaxed">
-              "{motivationalQuotes[currentQuote]}"
-            </p>
-          </motion.div>
-        </motion.div>
+          <p className="text-muted-foreground">Access unlimited study materials and notes</p>
+        </div>
 
-        {/* Right side - Auth Form */}
-        <motion.div 
-          className="flex-1 w-full max-w-md"
-          initial={{ opacity: 0, x: 50 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-        >
-          <Card className="gradient-card">
-            <CardHeader className="text-center">
-              <div className="w-16 h-16 bg-primary rounded-full flex items-center justify-center text-white text-2xl mb-4 mx-auto">
-                <BookOpen className="h-8 w-8" />
-              </div>
-              <CardTitle className="text-2xl">
-                {isSignUp ? 'Create Account' : 'Welcome Back'}
-              </CardTitle>
-              <CardDescription>
-                {isSignUp 
-                  ? 'Join thousands of students in their academic journey' 
-                  : 'Sign in to access your study materials'
-                }
-              </CardDescription>
-            </CardHeader>
-            <CardContent className="space-y-4">
-              <form onSubmit={isSignUp ? handleSignUp : handleSignIn} className="space-y-4">
-                {isSignUp && (
-                  <>
-                    <div className="grid grid-cols-2 gap-4">
-                      <div className="space-y-2">
-                        <Label htmlFor="firstName">First Name</Label>
-                        <div className="relative">
-                          <User className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
-                          <Input
-                            id="firstName"
-                            name="firstName"
-                            placeholder="First Name"
-                            className="pl-10"
-                            value={formData.firstName}
-                            onChange={handleInputChange}
-                            required
-                          />
-                        </div>
-                      </div>
-                      <div className="space-y-2">
-                        <Label htmlFor="lastName">Last Name</Label>
-                        <div className="relative">
-                          <User className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
-                          <Input
-                            id="lastName"
-                            name="lastName"
-                            placeholder="Last Name"
-                            className="pl-10"
-                            value={formData.lastName}
-                            onChange={handleInputChange}
-                            required
-                          />
-                        </div>
-                      </div>
+        <Card className="border-border/50 bg-card/95 backdrop-blur">
+          <CardHeader>
+            <CardTitle className="flex items-center gap-2">
+              <BookOpen className="h-5 w-5 text-primary" />
+              Get Started
+            </CardTitle>
+            <CardDescription>
+              Sign in to access notes and study materials
+            </CardDescription>
+          </CardHeader>
+          <CardContent>
+            <Tabs defaultValue="signin" className="w-full">
+              <TabsList className="grid w-full grid-cols-2">
+                <TabsTrigger value="signin">Sign In</TabsTrigger>
+                <TabsTrigger value="signup">Sign Up</TabsTrigger>
+              </TabsList>
+
+              <TabsContent value="signin">
+                <form onSubmit={handleSignIn} className="space-y-4">
+                  <div className="space-y-2">
+                    <Label htmlFor="signin-email">Email</Label>
+                    <Input
+                      id="signin-email"
+                      type="email"
+                      placeholder="your@email.com"
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                      disabled={isLoading}
+                      required
+                    />
+                  </div>
+                  <div className="space-y-2">
+                    <Label htmlFor="signin-password">Password</Label>
+                    <Input
+                      id="signin-password"
+                      type="password"
+                      placeholder="••••••••"
+                      value={password}
+                      onChange={(e) => setPassword(e.target.value)}
+                      disabled={isLoading}
+                      required
+                    />
+                  </div>
+                  <Button
+                    type="submit"
+                    className="w-full"
+                    disabled={isLoading}
+                  >
+                    {isLoading ? (
+                      <>
+                        <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                        Signing in...
+                      </>
+                    ) : (
+                      'Sign In'
+                    )}
+                  </Button>
+                </form>
+              </TabsContent>
+
+              <TabsContent value="signup">
+                <form onSubmit={handleSignUp} className="space-y-4">
+                  <div className="grid grid-cols-2 gap-4">
+                    <div className="space-y-2">
+                      <Label htmlFor="first-name">First Name</Label>
+                      <Input
+                        id="first-name"
+                        type="text"
+                        placeholder="John"
+                        value={firstName}
+                        onChange={(e) => setFirstName(e.target.value)}
+                        disabled={isLoading}
+                        required
+                      />
                     </div>
                     <div className="space-y-2">
-                      <Label htmlFor="mobileNumber">Mobile Number</Label>
-                      <div className="relative">
-                        <Phone className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
-                        <Input
-                          id="mobileNumber"
-                          name="mobileNumber"
-                          type="tel"
-                          placeholder="Mobile Number"
-                          className="pl-10"
-                          value={formData.mobileNumber}
-                          onChange={handleInputChange}
-                          required
-                        />
-                      </div>
+                      <Label htmlFor="last-name">Last Name</Label>
+                      <Input
+                        id="last-name"
+                        type="text"
+                        placeholder="Doe"
+                        value={lastName}
+                        onChange={(e) => setLastName(e.target.value)}
+                        disabled={isLoading}
+                        required
+                      />
                     </div>
-                  </>
-                )}
-                
-                <div className="space-y-2">
-                  <Label htmlFor="email">Email</Label>
-                  <div className="relative">
-                    <Mail className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
+                  </div>
+                  <div className="space-y-2">
+                    <Label htmlFor="signup-email">Email</Label>
                     <Input
-                      id="email"
-                      name="email"
+                      id="signup-email"
                       type="email"
-                      placeholder="Email"
-                      className="pl-10"
-                      value={formData.email}
-                      onChange={handleInputChange}
+                      placeholder="your@email.com"
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                      disabled={isLoading}
                       required
                     />
                   </div>
-                </div>
-                
-                <div className="space-y-2">
-                  <Label htmlFor="password">Password</Label>
-                  <div className="relative">
+                  <div className="space-y-2">
+                    <Label htmlFor="signup-password">Password</Label>
                     <Input
-                      id="password"
-                      name="password"
-                      type={showPassword ? "text" : "password"}
-                      placeholder="Password"
-                      value={formData.password}
-                      onChange={handleInputChange}
+                      id="signup-password"
+                      type="password"
+                      placeholder="••••••••"
+                      value={password}
+                      onChange={(e) => setPassword(e.target.value)}
+                      disabled={isLoading}
                       required
+                      minLength={6}
                     />
-                    <Button
-                      type="button"
-                      variant="ghost"
-                      size="sm"
-                      className="absolute right-2 top-2 h-8 w-8 p-0"
-                      onClick={() => setShowPassword(!showPassword)}
-                    >
-                      {showPassword ? (
-                        <EyeOff className="h-4 w-4" />
-                      ) : (
-                        <Eye className="h-4 w-4" />
-                      )}
-                    </Button>
+                    <p className="text-xs text-muted-foreground">
+                      Minimum 6 characters
+                    </p>
                   </div>
-                </div>
+                  <Button
+                    type="submit"
+                    className="w-full"
+                    disabled={isLoading}
+                  >
+                    {isLoading ? (
+                      <>
+                        <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                        Creating account...
+                      </>
+                    ) : (
+                      'Create Account'
+                    )}
+                  </Button>
+                </form>
+              </TabsContent>
+            </Tabs>
+          </CardContent>
+        </Card>
 
-                <Button 
-                  type="submit" 
-                  className="w-full btn-hero" 
-                  disabled={isLoading}
-                >
-                  {isLoading ? 'Processing...' : (isSignUp ? 'Create Account' : 'Sign In')}
-                </Button>
-              </form>
-
-              <div className="relative">
-                <div className="absolute inset-0 flex items-center">
-                  <Separator className="w-full" />
-                </div>
-                <div className="relative flex justify-center text-xs uppercase">
-                  <span className="bg-background px-2 text-muted-foreground">
-                    Or continue with
-                  </span>
-                </div>
-              </div>
-
-              <Button
-                variant="outline"
-                className="w-full"
-                onClick={handleGoogleSignIn}
-                disabled={isLoading}
-              >
-                <svg className="w-4 h-4 mr-2" viewBox="0 0 24 24">
-                  <path fill="currentColor" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
-                  <path fill="currentColor" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
-                  <path fill="currentColor" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/>
-                  <path fill="currentColor" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/>
-                </svg>
-                Continue with Google
-              </Button>
-
-              <div className="text-center">
-                <Button
-                  variant="link"
-                  onClick={() => setIsSignUp(!isSignUp)}
-                  className="text-sm"
-                >
-                  {isSignUp 
-                    ? 'Already have an account? Sign in' 
-                    : "Don't have an account? Sign up"
-                  }
-                </Button>
-              </div>
-            </CardContent>
-          </Card>
-        </motion.div>
+        <p className="text-center text-sm text-muted-foreground mt-4">
+          By signing up, you agree to our Terms of Service and Privacy Policy
+        </p>
       </div>
     </div>
   );

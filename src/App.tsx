@@ -9,7 +9,7 @@ import CookieConsent from "./components/CookieConsent";
 import CustomCursor from "./components/CustomCursor";
 import WhatsAppButton from "./components/WhatsAppButton";
 import ScrollToTop from "./components/ScrollToTop";
-import AuthOTP from "./pages/AuthOTP";
+import Auth from "./pages/Auth";
 
 const queryClient = new QueryClient();
 
@@ -24,7 +24,7 @@ const App = () => {
               <ScrollToTop />
               <CustomCursor />
               <Routes>
-                <Route path="/auth" element={<AuthOTP />} />
+                <Route path="/auth" element={<Auth />} />
                 {navItems.map(({ to, page }) => (
                   <Route key={to} path={to} element={page} />
                 ))}

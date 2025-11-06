@@ -82,6 +82,32 @@ const Navbar = () => {
               {theme === 'dark' ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
             </Button>
 
+            {user ? (
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <Button variant="outline" size="sm" className="hidden md:flex">
+                    <User className="h-4 w-4 mr-2" />
+                    Account
+                  </Button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent align="end">
+                  <DropdownMenuLabel>My Account</DropdownMenuLabel>
+                  <DropdownMenuSeparator />
+                  <DropdownMenuItem onClick={() => signOut()}>
+                    <LogOut className="h-4 w-4 mr-2" />
+                    Sign Out
+                  </DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
+            ) : (
+              <Button variant="default" size="sm" asChild className="hidden md:flex">
+                <Link to="/auth">
+                  <User className="h-4 w-4 mr-2" />
+                  Sign In
+                </Link>
+              </Button>
+            )}
+
             <button
               onClick={() => setIsOpen(!isOpen)}
               className="md:hidden p-2 rounded-md"
@@ -123,6 +149,19 @@ const Navbar = () => {
                   {theme === 'dark' ? <Sun className="h-4 w-4 mr-2" /> : <Moon className="h-4 w-4 mr-2" />}
                   {theme === 'dark' ? 'Light Mode' : 'Dark Mode'}
                 </Button>
+                {user ? (
+                  <Button variant="outline" onClick={() => signOut()} className="w-full justify-start">
+                    <LogOut className="h-4 w-4 mr-2" />
+                    Sign Out
+                  </Button>
+                ) : (
+                  <Button variant="default" asChild className="w-full justify-start">
+                    <Link to="/auth">
+                      <User className="h-4 w-4 mr-2" />
+                      Sign In
+                    </Link>
+                  </Button>
+                )}
               </div>
             </div>
           </div>
