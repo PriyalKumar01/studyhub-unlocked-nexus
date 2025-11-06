@@ -316,12 +316,12 @@ const FirstSemesterNotes = () => {
           className="mb-8"
         >
           <Button
-            onClick={() => navigate('/btech-notes')}
+            onClick={() => navigate('/btech-notes/first-year')}
             variant="outline"
             className="mb-4"
           >
             <ArrowLeft className="h-4 w-4 mr-2" />
-            Back to B.Tech Notes
+            Back to Years
           </Button>
           
           <h1 className="text-3xl md:text-4xl font-bold text-foreground mb-2">
