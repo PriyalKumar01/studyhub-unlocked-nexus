@@ -68,8 +68,8 @@ const TermsOfService = () => {
                   <section>
                     <h2 className="text-2xl font-semibold mb-4">4. Admin Approval Process</h2>
                     <p className="text-muted-foreground leading-relaxed">
-                      <strong>All uploaded notes are subject to approval by admin.</strong> The platform 
-                      reserves the right to review, reject, or remove any content that violates these terms 
+                      <strong>All shared notes are subject to approval by admin.</strong> Content will be manually uploaded by College Study Hub administrators, with proper credit to the original creators by adding their name in contributor list which is available on home page. The platform 
+                      <strong> reserves the right to review, reject, or remove any content </strong> that violates these terms 
                       or is deemed inappropriate for the educational community.
                     </p>
                   </section>
