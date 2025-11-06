@@ -1,63 +1,67 @@
 import { motion } from 'framer-motion';
-import { BookOpen, GraduationCap, Lightbulb, BookMarked, PenTool, FlaskConical, Calculator, Microscope } from 'lucide-react';
+import logoImg from '@/assets/college-study-hub-logo.png';
 
 const AuthBackground = () => {
-  const leftIcons = [
-    { Icon: BookOpen, delay: 0 },
-    { Icon: GraduationCap, delay: 0.5 },
-    { Icon: Lightbulb, delay: 1 },
-    { Icon: BookMarked, delay: 1.5 },
+  const leftLogos = [
+    { delay: 0, y: 0 },
+    { delay: 0.5, y: 100 },
+    { delay: 1, y: 200 },
+    { delay: 1.5, y: 300 },
   ];
 
-  const rightIcons = [
-    { Icon: PenTool, delay: 0.2 },
-    { Icon: FlaskConical, delay: 0.7 },
-    { Icon: Calculator, delay: 1.2 },
-    { Icon: Microscope, delay: 1.7 },
+  const rightLogos = [
+    { delay: 0.2, y: 50 },
+    { delay: 0.7, y: 150 },
+    { delay: 1.2, y: 250 },
+    { delay: 1.7, y: 350 },
   ];
 
   return (
     <div className="fixed inset-0 pointer-events-none overflow-hidden">
-      {/* Left side icons */}
-      <div className="absolute left-4 md:left-12 top-1/4 space-y-12">
-        {leftIcons.map(({ Icon, delay }, index) => (
+      {/* Left side logos */}
+      <div className="absolute left-4 md:left-12 top-0">
+        {leftLogos.map(({ delay, y }, index) => (
           <motion.div
             key={`left-${index}`}
+            style={{ position: 'absolute', top: `${y}px` }}
             animate={{
-              y: [0, -20, 0],
-              rotate: [0, 10, -10, 0],
+              y: [0, -30, 0],
+              rotate: [0, 15, -15, 0],
+              opacity: [0.15, 0.25, 0.15],
             }}
             transition={{
-              duration: 4,
+              duration: 5,
               delay,
               repeat: Infinity,
               repeatType: "loop",
             }}
-            className="text-primary/20"
+            className="opacity-20"
           >
-            <Icon className="w-12 h-12 md:w-16 md:h-16" />
+            <img src={logoImg} alt="" className="w-16 h-16 md:w-20 md:h-20" />
           </motion.div>
         ))}
       </div>
 
-      {/* Right side icons */}
-      <div className="absolute right-4 md:right-12 top-1/4 space-y-12">
-        {rightIcons.map(({ Icon, delay }, index) => (
+      {/* Right side logos */}
+      <div className="absolute right-4 md:right-12 top-0">
+        {rightLogos.map(({ delay, y }, index) => (
           <motion.div
             key={`right-${index}`}
+            style={{ position: 'absolute', top: `${y}px` }}
             animate={{
-              y: [0, -20, 0],
-              rotate: [0, 10, -10, 0],
+              y: [0, -30, 0],
+              rotate: [0, -15, 15, 0],
+              opacity: [0.15, 0.25, 0.15],
             }}
             transition={{
-              duration: 4,
+              duration: 5,
               delay,
               repeat: Infinity,
               repeatType: "loop",
             }}
-            className="text-secondary/20"
+            className="opacity-20"
           >
-            <Icon className="w-12 h-12 md:w-16 md:h-16" />
+            <img src={logoImg} alt="" className="w-16 h-16 md:w-20 md:h-20" />
           </motion.div>
         ))}
       </div>

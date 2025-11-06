@@ -8,10 +8,11 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Checkbox } from '@/components/ui/checkbox';
 import { supabase } from '@/integrations/supabase/client';
 import { useToast } from '@/hooks/use-toast';
-import { Loader2, BookOpen, GraduationCap } from 'lucide-react';
+import { Loader2, BookOpen } from 'lucide-react';
 import { useAuth } from '@/contexts/AuthContext';
 import AuthBackground from '@/components/AuthBackground';
 import AvatarSelector from '@/components/AvatarSelector';
+import logoImg from '@/assets/college-study-hub-logo.png';
 
 const Auth = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -22,6 +23,9 @@ const Auth = () => {
   const [acceptedTerms, setAcceptedTerms] = useState(false);
   const [showAvatarSelector, setShowAvatarSelector] = useState(false);
   const [selectedAvatar, setSelectedAvatar] = useState('👨‍🎓');
+  const [college, setCollege] = useState('');
+  const [branch, setBranch] = useState('');
+  const [year, setYear] = useState('');
   const navigate = useNavigate();
   const { toast } = useToast();
   const { user } = useAuth();
@@ -36,7 +40,7 @@ const Auth = () => {
     e.preventDefault();
     setIsLoading(true);
 
-    if (!email || !password || !firstName || !lastName) {
+    if (!email || !password || !firstName || !lastName || !college || !branch || !year) {
       toast({
         title: "Missing information",
         description: "Please fill in all fields",
@@ -76,6 +80,9 @@ const Auth = () => {
             first_name: firstName,
             last_name: lastName,
             avatar: selectedAvatar,
+            college: college,
+            branch: branch,
+            year: year,
           }
         }
       });
@@ -183,8 +190,12 @@ const Auth = () => {
       <div className="w-full max-w-md relative z-10">
         <div className="text-center mb-8">
           <div className="flex items-center justify-center gap-3 mb-4">
-            <GraduationCap className="h-14 w-14 text-primary animate-pulse" />
-            <h1 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-primary via-accent to-secondary bg-clip-text text-transparent">
+            <img 
+              src={logoImg} 
+              alt="College Study Hub" 
+              className="h-14 w-14 animate-pulse"
+            />
+            <h1 className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-primary via-accent to-secondary bg-clip-text text-transparent">
               College Study Hub
             </h1>
           </div>
@@ -295,6 +306,46 @@ const Auth = () => {
                         placeholder="Doe"
                         value={lastName}
                         onChange={(e) => setLastName(e.target.value)}
+                        disabled={isLoading}
+                        required
+                      />
+                    </div>
+                  </div>
+                  
+                  <div className="space-y-2">
+                    <Label htmlFor="college">College Name</Label>
+                    <Input
+                      id="college"
+                      type="text"
+                      placeholder="e.g., HBTU"
+                      value={college}
+                      onChange={(e) => setCollege(e.target.value)}
+                      disabled={isLoading}
+                      required
+                    />
+                  </div>
+
+                  <div className="grid grid-cols-2 gap-4">
+                    <div className="space-y-2">
+                      <Label htmlFor="branch">Branch</Label>
+                      <Input
+                        id="branch"
+                        type="text"
+                        placeholder="e.g., CSE"
+                        value={branch}
+                        onChange={(e) => setBranch(e.target.value)}
+                        disabled={isLoading}
+                        required
+                      />
+                    </div>
+                    <div className="space-y-2">
+                      <Label htmlFor="year">Year</Label>
+                      <Input
+                        id="year"
+                        type="text"
+                        placeholder="e.g., 2nd"
+                        value={year}
+                        onChange={(e) => setYear(e.target.value)}
                         disabled={isLoading}
                         required
                       />
