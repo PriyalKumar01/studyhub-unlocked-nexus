@@ -1,14 +1,17 @@
 import { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { Checkbox } from '@/components/ui/checkbox';
 import { supabase } from '@/integrations/supabase/client';
 import { useToast } from '@/hooks/use-toast';
 import { Loader2, BookOpen, GraduationCap } from 'lucide-react';
 import { useAuth } from '@/contexts/AuthContext';
+import AuthBackground from '@/components/AuthBackground';
+import AvatarSelector from '@/components/AvatarSelector';
 
 const Auth = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -16,6 +19,9 @@ const Auth = () => {
   const [password, setPassword] = useState('');
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
+  const [acceptedTerms, setAcceptedTerms] = useState(false);
+  const [showAvatarSelector, setShowAvatarSelector] = useState(false);
+  const [selectedAvatar, setSelectedAvatar] = useState('👨‍🎓');
   const navigate = useNavigate();
   const { toast } = useToast();
   const { user } = useAuth();
@@ -34,6 +40,16 @@ const Auth = () => {
       toast({
         title: "Missing information",
         description: "Please fill in all fields",
+        variant: "destructive",
+      });
+      setIsLoading(false);
+      return;
+    }
+
+    if (!acceptedTerms) {
+      toast({
+        title: "Accept Terms & Conditions",
+        description: "Please accept the Terms & Conditions to continue",
         variant: "destructive",
       });
       setIsLoading(false);
@@ -59,6 +75,7 @@ const Auth = () => {
           data: {
             first_name: firstName,
             last_name: lastName,
+            avatar: selectedAvatar,
           }
         }
       });
@@ -82,13 +99,10 @@ const Auth = () => {
 
       if (data.user) {
         toast({
-          title: "Success!",
-          description: "Please check your email to verify your account",
+          title: "Welcome to College Study Hub!",
+          description: "Your account has been created successfully",
         });
-        setEmail('');
-        setPassword('');
-        setFirstName('');
-        setLastName('');
+        navigate('/dashboard');
       }
     } catch (error: any) {
       toast({
@@ -149,7 +163,7 @@ const Auth = () => {
           title: "Welcome back!",
           description: "You have successfully signed in",
         });
-        navigate('/');
+        navigate('/dashboard');
       }
     } catch (error: any) {
       toast({
@@ -163,24 +177,30 @@ const Auth = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-hero flex items-center justify-center p-4">
-      <div className="w-full max-w-md">
+    <div className="min-h-screen bg-gradient-to-br from-background via-primary/5 to-secondary/5 flex items-center justify-center p-4 relative">
+      <AuthBackground />
+      
+      <div className="w-full max-w-md relative z-10">
         <div className="text-center mb-8">
-          <div className="flex items-center justify-center gap-2 mb-4">
-            <GraduationCap className="h-12 w-12 text-primary" />
-            <h1 className="text-4xl font-bold text-foreground">StudyHub</h1>
+          <div className="flex items-center justify-center gap-3 mb-4">
+            <GraduationCap className="h-14 w-14 text-primary animate-pulse" />
+            <h1 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-primary via-accent to-secondary bg-clip-text text-transparent">
+              College Study Hub
+            </h1>
           </div>
-          <p className="text-muted-foreground">Access unlimited study materials and notes</p>
+          <p className="text-muted-foreground text-lg">
+            Your Gateway to Academic Excellence
+          </p>
         </div>
 
-        <Card className="border-border/50 bg-card/95 backdrop-blur">
-          <CardHeader>
-            <CardTitle className="flex items-center gap-2">
-              <BookOpen className="h-5 w-5 text-primary" />
+        <Card className="border-border/50 bg-card/98 backdrop-blur-xl shadow-2xl">
+          <CardHeader className="space-y-1">
+            <CardTitle className="flex items-center gap-2 text-2xl">
+              <BookOpen className="h-6 w-6 text-primary" />
               Get Started
             </CardTitle>
-            <CardDescription>
-              Sign in to access notes and study materials
+            <CardDescription className="text-base">
+              Join thousands of students accessing quality study materials
             </CardDescription>
           </CardHeader>
           <CardContent>
@@ -235,6 +255,25 @@ const Auth = () => {
 
               <TabsContent value="signup">
                 <form onSubmit={handleSignUp} className="space-y-4">
+                  {/* Avatar Selection */}
+                  <div className="flex items-center justify-center gap-3 p-4 bg-muted/50 rounded-lg">
+                    <div className="w-16 h-16 rounded-full bg-gradient-to-br from-primary to-accent flex items-center justify-center text-3xl cursor-pointer hover:scale-110 transition-transform" onClick={() => setShowAvatarSelector(true)}>
+                      {selectedAvatar}
+                    </div>
+                    <div className="flex-1">
+                      <p className="text-sm font-medium">Choose Your Avatar</p>
+                      <Button
+                        type="button"
+                        variant="link"
+                        size="sm"
+                        className="p-0 h-auto"
+                        onClick={() => setShowAvatarSelector(true)}
+                      >
+                        Click to change
+                      </Button>
+                    </div>
+                  </div>
+
                   <div className="grid grid-cols-2 gap-4">
                     <div className="space-y-2">
                       <Label htmlFor="first-name">First Name</Label>
@@ -266,12 +305,15 @@ const Auth = () => {
                     <Input
                       id="signup-email"
                       type="email"
-                      placeholder="your@email.com"
+                      placeholder="your@email.com or student@hbtu.ac.in"
                       value={email}
-                      onChange={(e) => setEmail(e.target.value)}
+                      onChange={(e) => setEmail(e.target.value.toLowerCase())}
                       disabled={isLoading}
                       required
                     />
+                    <p className="text-xs text-muted-foreground">
+                      Both personal and college emails are accepted
+                    </p>
                   </div>
                   <div className="space-y-2">
                     <Label htmlFor="signup-password">Password</Label>
@@ -289,10 +331,42 @@ const Auth = () => {
                       Minimum 6 characters
                     </p>
                   </div>
+
+                  {/* Terms & Conditions Checkbox */}
+                  <div className="flex items-start space-x-2">
+                    <Checkbox
+                      id="terms"
+                      checked={acceptedTerms}
+                      onCheckedChange={(checked) => setAcceptedTerms(checked as boolean)}
+                      disabled={isLoading}
+                    />
+                    <label
+                      htmlFor="terms"
+                      className="text-sm leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                    >
+                      I agree to the{' '}
+                      <Link 
+                        to="/terms-of-service" 
+                        className="text-primary hover:underline font-medium"
+                        target="_blank"
+                      >
+                        Terms & Conditions
+                      </Link>
+                      {' '}and{' '}
+                      <Link 
+                        to="/privacy-policy" 
+                        className="text-primary hover:underline font-medium"
+                        target="_blank"
+                      >
+                        Privacy Policy
+                      </Link>
+                    </label>
+                  </div>
+
                   <Button
                     type="submit"
-                    className="w-full"
-                    disabled={isLoading}
+                    className="w-full bg-gradient-to-r from-primary to-accent hover:opacity-90 transition-opacity"
+                    disabled={isLoading || !acceptedTerms}
                   >
                     {isLoading ? (
                       <>
@@ -309,10 +383,14 @@ const Auth = () => {
           </CardContent>
         </Card>
 
-        <p className="text-center text-sm text-muted-foreground mt-4">
-          By signing up, you agree to our Terms of Service and Privacy Policy
-        </p>
       </div>
+
+      <AvatarSelector
+        open={showAvatarSelector}
+        onClose={() => setShowAvatarSelector(false)}
+        onSelect={(avatar) => setSelectedAvatar(avatar)}
+        currentAvatar={selectedAvatar}
+      />
     </div>
   );
 };
