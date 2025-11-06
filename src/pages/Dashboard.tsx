@@ -9,6 +9,14 @@ import Navbar from '@/components/Navbar';
 const Dashboard = () => {
   const { user } = useAuth();
 
+  // Get user's first name from metadata or email
+  const getDisplayName = () => {
+    if (user?.user_metadata?.first_name) {
+      return user.user_metadata.first_name;
+    }
+    return user?.email?.split('@')[0] || 'Student';
+  };
+
   const quickActions = [
     {
       title: 'Browse Notes',
@@ -74,7 +82,7 @@ const Dashboard = () => {
           className="mb-8"
         >
           <h1 className="text-3xl md:text-4xl font-bold text-foreground mb-2">
-            Welcome back, {user?.email?.split('@')[0] || 'Student'}! 👋
+            Welcome back, @{getDisplayName()}! 👋
           </h1>
           <p className="text-muted-foreground text-lg">
             Ready to continue your academic journey? Here's what you can do today.

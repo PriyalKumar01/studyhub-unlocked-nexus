@@ -291,26 +291,26 @@ const Index = () => {
               How It Works
             </h2>
             <p className="text-xl text-muted-foreground">
-              Simple steps to get started with College Study Hub
+              Three simple steps to unlock your academic potential
             </p>
           </motion.div>
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {[
               {
-                step: '1',
+                icon: <BookOpen className="w-10 h-10" />,
                 title: 'Access Notes Instantly',
-                description: 'Open semester-wise notes, assignments, and study playlists without any login hassle.',
+                description: 'Browse semester-wise notes, assignments, and curated study materials - no login required.',
               },
               {
-                step: '2',
-                title: 'Explore Resources & Learn',
-                description: 'Find previous year papers, CGPA calculators, AI tools, and placement materials to boost your preparation.',
+                icon: <TrendingUp className="w-10 h-10" />,
+                title: 'Explore & Learn',
+                description: 'Utilize CGPA calculators, previous year papers, AI tools, and placement resources.',
               },
               {
-                step: '3',
-                title: 'Opportunities Ahead & Succeed',
-                description: 'Discover internships, career guidance, and skill resources to stay ahead in academics and beyond.',
+                icon: <Briefcase className="w-10 h-10" />,
+                title: 'Discover Opportunities',
+                description: 'Find internships, scholarships, hackathons, and career guidance to excel beyond academics.',
               },
             ].map((step, index) => (
               <motion.div
@@ -321,8 +321,8 @@ const Index = () => {
                 viewport={{ once: true }}
                 className="text-center"
               >
-                <div className="w-16 h-16 bg-gradient-primary rounded-full flex items-center justify-center text-white text-2xl font-bold mx-auto mb-6">
-                  {step.step}
+                <div className="w-20 h-20 bg-gradient-to-br from-primary to-accent rounded-2xl flex items-center justify-center text-white mx-auto mb-6 transform hover:scale-110 transition-transform duration-300 shadow-lg">
+                  {step.icon}
                 </div>
                 <h3 className="text-xl font-semibold mb-4">{step.title}</h3>
                 <p className="text-muted-foreground leading-relaxed">{step.description}</p>
@@ -333,7 +333,7 @@ const Index = () => {
       </section>
 
       {/* Testimonials */}
-      <section className="py-20">
+      <section className="py-20 overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -350,35 +350,49 @@ const Index = () => {
             </p>
           </motion.div>
           
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {testimonials.map((testimonial, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                viewport={{ once: true }}
-              >
-                <Card className="gradient-card h-full">
-                  <CardHeader>
-                    <div className="flex items-center gap-1 mb-4">
-                      {[...Array(testimonial.rating)].map((_, i) => (
-                        <Star key={i} className="h-4 w-4 fill-yellow-400 text-yellow-400" />
-                      ))}
-                    </div>
-                    <CardDescription className="text-base italic">
-                      "{testimonial.message}"
-                    </CardDescription>
-                  </CardHeader>
-                  <CardContent>
-                    <div>
-                      <h4 className="font-semibold">{testimonial.name}</h4>
-                      <p className="text-sm text-muted-foreground">{testimonial.branch}</p>
-                    </div>
-                  </CardContent>
-                </Card>
-              </motion.div>
-            ))}
+          {/* Auto-scrolling testimonials */}
+          <div className="relative">
+            <motion.div 
+              className="flex gap-6"
+              animate={{
+                x: [0, -1800],
+              }}
+              transition={{
+                x: {
+                  repeat: Infinity,
+                  repeatType: "loop",
+                  duration: 30,
+                  ease: "linear",
+                },
+              }}
+            >
+              {/* Repeat testimonials 3 times for seamless loop */}
+              {[...testimonials, ...testimonials, ...testimonials].map((testimonial, index) => (
+                <div
+                  key={index}
+                  className="min-w-[350px]"
+                >
+                  <Card className="gradient-card h-full">
+                    <CardHeader>
+                      <div className="flex items-center gap-1 mb-4">
+                        {[...Array(testimonial.rating)].map((_, i) => (
+                          <Star key={i} className="h-4 w-4 fill-yellow-400 text-yellow-400" />
+                        ))}
+                      </div>
+                      <CardDescription className="text-base italic">
+                        "{testimonial.message}"
+                      </CardDescription>
+                    </CardHeader>
+                    <CardContent>
+                      <div>
+                        <h4 className="font-semibold">{testimonial.name}</h4>
+                        <p className="text-sm text-muted-foreground">{testimonial.branch}</p>
+                      </div>
+                    </CardContent>
+                  </Card>
+                </div>
+              ))}
+            </motion.div>
           </div>
         </div>
       </section>

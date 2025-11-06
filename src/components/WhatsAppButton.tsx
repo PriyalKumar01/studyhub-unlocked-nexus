@@ -1,12 +1,8 @@
+import { useState } from 'react';
 import { MessageCircle } from 'lucide-react';
-import { Button } from '@/components/ui/button';
-import { useState, useEffect } from 'react';
 
 const WhatsAppButton = () => {
-  const [isVisible, setIsVisible] = useState(true);
-  const [typewriterText, setTypewriterText] = useState('');
-  const [isPulsing, setIsPulsing] = useState(false);
-   const fullText = '';
+  const [isHovered, setIsHovered] = useState(false);
 
   const handleWhatsAppClick = () => {
     const phoneNumber = '+918957221543';
@@ -15,75 +11,42 @@ const WhatsAppButton = () => {
     window.open(whatsappUrl, '_blank');
   };
 
-  useEffect(() => {
-    // Typewriter effect
-    let currentIndex = 0;
-    const typeInterval = setInterval(() => {
-      if (currentIndex <= fullText.length) {
-        setTypewriterText(fullText.slice(0, currentIndex));
-        currentIndex++;
-      } else {
-        clearInterval(typeInterval);
-        setTimeout(() => {
-          setTypewriterText('');
-          currentIndex = 0;
-          const newInterval = setInterval(() => {
-            if (currentIndex <= fullText.length) {
-              setTypewriterText(fullText.slice(0, currentIndex));
-              currentIndex++;
-            } else {
-              clearInterval(newInterval);
-            }
-          }, 100);
-        }, 3000);
-      }
-    }, 100);
-
-    // Pulse effect
-    const pulseInterval = setInterval(() => {
-      setIsPulsing(true);
-      setTimeout(() => setIsPulsing(false), 1000);
-    }, 6000);
-
-    return () => {
-      clearInterval(typeInterval);
-      clearInterval(pulseInterval);
-    };
-  }, []);
-
   return (
-    <div className="fixed right-6 bottom-6 z-50 flex items-center gap-3">
-      {/* Typewriter Text */}
+    <div className="fixed right-6 bottom-6 z-50">
       <div 
-        className={`bg-white dark:bg-gray-800 text-gray-800 dark:text-white px-4 py-2 rounded-full shadow-lg border transition-all duration-500 ${
-          typewriterText ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-4'
-        }`}
+        className="relative flex items-center cursor-pointer group"
+        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={() => setIsHovered(false)}
+        onClick={handleWhatsAppClick}
       >
-        <span className="text-sm font-medium">
-          {typewriterText}
-          <span className="animate-pulse">|</span>
-        </span>
-      </div>
-      
-      {/* WhatsApp Button */}
-      <div className={`relative transition-all duration-500 ${isPulsing ? 'animate-pulse scale-110' : ''}`}>
-        <a
-  href="https://wa.me/918957221543?text=Hi%20Priyal%2C%20I%20need%20help%20regarding%20College%20Study%20Hub."
-  target="_blank"
-  rel="noopener noreferrer"
-  className="fixed right-6 bottom-6 z-50"
->
-  <Button
-    className="w-16 h-16 rounded-full bg-green-500 text-white shadow-lg flex items-center justify-center"
-    title="Need Help? WhatsApp us!"
-  >
-    <MessageCircle className="h-7 w-7" />
-  </Button>
-</a>
-
+        {/* Text that slides out */}
+        <div 
+          className={`
+            absolute right-20 bg-white dark:bg-gray-800 
+            text-gray-800 dark:text-white px-4 py-3 rounded-full 
+            shadow-lg border whitespace-nowrap font-medium
+            transition-all duration-500 ease-in-out
+            ${isHovered ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-8 pointer-events-none'}
+          `}
+        >
+          Contact Us
+        </div>
         
-        {/* Ripple Effect */}
-        <div className="absolute inset-0 rounded-full bg-green-400 opacity-20 animate-ping" />
+        {/* WhatsApp Button */}
+        <button
+          className="
+            w-16 h-16 rounded-full bg-[#25D366] hover:bg-[#20BA5A] 
+            text-white shadow-lg flex items-center justify-center
+            transition-all duration-300 hover:scale-110
+            relative overflow-hidden
+          "
+          aria-label="Contact us on WhatsApp"
+        >
+          <MessageCircle className="h-8 w-8 relative z-10" />
+          
+          {/* Ripple effect */}
+          <span className="absolute inset-0 rounded-full bg-[#25D366] opacity-20 animate-ping" />
+        </button>
       </div>
     </div>
   );
