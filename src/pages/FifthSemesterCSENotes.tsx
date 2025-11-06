@@ -123,12 +123,13 @@ const FifthSemesterCSENotes = () => {
   ];
 
   const pyqs = [
-    { title: '5th & 6th Sem_Mid & ESE (2021-22)', url: 'https://drive.google.com/uc?export=download&id=1Ri4K7fLnTx3uAi1RyBwG1RSs8PrqFLQn' },
+    { title: 'Mid Sem-1 PYQ\'S (2025-26)', url: 'https://drive.google.com/uc?export=download&id=1hwZUf4FxQfW8EoLcWR2XWjWroxvFz_As' },
+    { title: 'Mid Sem-2 PYQ\'S (2025-26)', url: 'https://drive.google.com/file/d/1PZ-P27xJkvH3FCj_fv_QrC88HrJAD5SA/view?usp=drivesdk' },
+    { title: 'Mid sem-1 PYQ\'S (2024-25)', url: 'https://drive.google.com/uc?export=download&id=1EazLLUeWlY2BZxFJP25PlcEo5Zu4V1rG' },
     { title: 'ESE PYQ\'S (2024-25)', url: 'https://drive.google.com/uc?export=download&id=1yHRuoCBaTwQ8i32JLiqxFUeiaS38__fp' },
     { title: 'Mid Sem-1 PYQ\'S (2022-23)', url: 'https://drive.google.com/uc?export=download&id=1JuRAwhvJT_CKXeajVgBcFAbq-gc7yeCk' },
-    { title: 'Mid sem-1 PYQ\'S (2024-25)', url: 'https://drive.google.com/uc?export=download&id=1EazLLUeWlY2BZxFJP25PlcEo5Zu4V1rG' },
-    { title: 'Mid Sem-1 PYQ\'S (2025-26)', url: 'https://drive.google.com/uc?export=download&id=1hwZUf4FxQfW8EoLcWR2XWjWroxvFz_As' },
     { title: 'Mid Sem-2 PYQ\'S (2022-23)', url: 'https://drive.google.com/uc?export=download&id=12FS2XjhzpgWpDyWSPUj-Kji_ygTViDjv' },
+    { title: '5th & 6th Sem_Mid & ESE (2021-22)', url: 'https://drive.google.com/uc?export=download&id=1Ri4K7fLnTx3uAi1RyBwG1RSs8PrqFLQn' },
   ];
 
   return (
