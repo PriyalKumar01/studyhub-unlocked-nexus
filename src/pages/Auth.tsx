@@ -83,7 +83,7 @@ const Auth = () => {
       if (data.user) {
         toast({
           title: "Success!",
-          description: "Please check your email to verify your account",
+          description: "welcome on College Study !!",
         });
         setEmail('');
         setPassword('');
