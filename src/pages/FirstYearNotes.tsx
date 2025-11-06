@@ -47,7 +47,7 @@ const FirstYearNotes = () => {
           className="mb-4"
         >
           <ArrowLeft className="h-4 w-4 mr-2" />
-          Back to Years
+          Back to B.Tech Notes
         </Button>
 
         <motion.div
