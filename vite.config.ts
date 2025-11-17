@@ -18,8 +18,8 @@ export default defineConfig(({ mode }) => ({
       registerType: 'autoUpdate',
       includeAssets: ['icon-192.png', 'icon-512.png'],
       manifest: {
-        name: 'StudyHub - College Notes & Resources',
-        short_name: 'StudyHub',
+        name: 'College Study - College Notes & Resources',
+        short_name: 'College Study',
         description: 'Access college notes, study materials, and resources for B.Tech, MBA, and BBA students',
         theme_color: '#1a1a2e',
         background_color: '#0f172a',
